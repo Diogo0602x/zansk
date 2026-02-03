@@ -9,13 +9,13 @@ export default function TeamPage() {
   return (
     <Box>
       {/* Hero Section */}
-      <Box className="py-16 lg:py-24">
+      <Box className="py-24 lg:py-32 pt-32">
         <Container>
           <Stack align="center" spacing="xl" className="text-center max-w-3xl mx-auto">
-            <Typography variant="display" weight="bold">
+            <Typography variant="display" weight="bold" className="text-gray-900">
               {teamContent.content.headline}
             </Typography>
-            <Typography variant="subtitle" className="text-secondary-300">
+            <Typography variant="subtitle" className="text-gray-600 leading-relaxed">
               {teamContent.content.text}
             </Typography>
           </Stack>
@@ -23,10 +23,10 @@ export default function TeamPage() {
       </Box>
 
       {/* Team Images */}
-      <Box className="py-16 lg:py-24 bg-white/5">
+      <Box className="py-20 lg:py-28 bg-gray-50/50">
         <Container>
           <Box className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <Card variant="glass" padding="none" className="overflow-hidden aspect-video relative">
+            <Card variant="glass" padding="none" className="overflow-hidden aspect-video relative shadow-lg">
               <Image
                 src={teamContent.images.teamSilhouette}
                 alt="Team"
@@ -34,7 +34,7 @@ export default function TeamPage() {
                 className="object-cover"
               />
             </Card>
-            <Card variant="glass" padding="none" className="overflow-hidden aspect-video relative">
+            <Card variant="glass" padding="none" className="overflow-hidden aspect-video relative shadow-lg">
               <Image
                 src={teamContent.images.pairProgramming}
                 alt="Pair Programming"
@@ -47,45 +47,45 @@ export default function TeamPage() {
       </Box>
 
       {/* Culture Section */}
-      <Box className="py-16 lg:py-24">
+      <Box className="py-20 lg:py-28">
         <Container>
           <Box className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <Stack spacing="lg">
-              <Typography variant="title" weight="bold">
+            <Stack spacing="xl">
+              <Typography variant="title" weight="bold" className="text-gray-900">
                 Cultura de excelência
               </Typography>
-              <Typography variant="body" className="text-secondary-300">
+              <Typography variant="body" className="text-gray-600 leading-loose">
                 Investimos em pessoas que valorizam qualidade, aprendizado contínuo e colaboração
                 genuína.
               </Typography>
-              <Stack spacing="sm">
+              <Stack spacing="md">
                 <Box className="flex items-start gap-3">
-                  <Box className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex-shrink-0 mt-1">
-                    <FaGraduationCap className="text-primary text-sm" />
+                  <Box className="flex items-center justify-center w-8 h-8 rounded-lg bg-accent-100 border border-accent-200 flex-shrink-0 mt-1">
+                    <FaGraduationCap className="text-accent-600 text-sm" />
                   </Box>
-                  <Typography variant="body" className="text-secondary-300">
+                  <Typography variant="body" className="text-gray-600 leading-relaxed">
                     Desenvolvimento técnico constante
                   </Typography>
                 </Box>
                 <Box className="flex items-start gap-3">
-                  <Box className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex-shrink-0 mt-1">
-                    <FaHandshake className="text-primary text-sm" />
+                  <Box className="flex items-center justify-center w-8 h-8 rounded-lg bg-accent-100 border border-accent-200 flex-shrink-0 mt-1">
+                    <FaHandshake className="text-accent-600 text-sm" />
                   </Box>
-                  <Typography variant="body" className="text-secondary-300">
+                  <Typography variant="body" className="text-gray-600 leading-relaxed">
                     Autonomia e responsabilidade
                   </Typography>
                 </Box>
                 <Box className="flex items-start gap-3">
-                  <Box className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex-shrink-0 mt-1">
-                    <FaComments className="text-primary text-sm" />
+                  <Box className="flex items-center justify-center w-8 h-8 rounded-lg bg-accent-100 border border-accent-200 flex-shrink-0 mt-1">
+                    <FaComments className="text-accent-600 text-sm" />
                   </Box>
-                  <Typography variant="body" className="text-secondary-300">
+                  <Typography variant="body" className="text-gray-600 leading-relaxed">
                     Feedback transparente e construtivo
                   </Typography>
                 </Box>
               </Stack>
             </Stack>
-            <Card variant="glass" padding="none" className="overflow-hidden aspect-square relative">
+            <Card variant="glass" padding="none" className="overflow-hidden aspect-square relative shadow-lg">
               <Image src={teamContent.images.culture} alt="Culture" fill className="object-cover" />
             </Card>
           </Box>

@@ -27,17 +27,17 @@ export function Header() {
     <Box
       as="header"
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         scrolled
-          ? "bg-dark/90 backdrop-blur-xl border-b border-primary/20 shadow-glass-lg"
-          : "bg-gradient-to-b from-dark/60 via-dark/30 to-transparent backdrop-blur-sm"
+          ? "bg-white/80 backdrop-blur-md border-b border-gray-200/60 shadow-sm"
+          : "bg-transparent"
       )}
     >
       <Container>
-        <Stack direction="row" align="center" justify="between" className="py-4 lg:py-6">
+        <Stack direction="row" align="center" justify="between" className="py-4 lg:py-5">
           {/* Logo */}
-          <Link href="/" variant="nav" className="flex items-center gap-3 no-underline">
-            <Box className="relative w-10 h-10 lg:w-12 lg:h-12">
+          <Link href="/" variant="nav" className="flex items-center gap-3 no-underline group">
+            <Box className="relative w-10 h-10 lg:w-11 lg:h-11 transition-transform group-hover:scale-105">
               <Image
                 src="/logo.png"
                 alt="Zansk Tech Logo"
@@ -46,31 +46,42 @@ export function Header() {
                 priority
               />
             </Box>
-            <Typography variant="subtitle" weight="bold" className="text-xl lg:text-2xl">
+            <Typography
+              variant="subtitle"
+              weight="bold"
+              className={cn(
+                "text-xl lg:text-2xl transition-colors",
+                scrolled ? "text-gray-900" : "text-gray-700"
+              )}
+            >
               {siteContent.siteName}
             </Typography>
           </Link>
 
           {/* Desktop Navigation */}
           <Box as="nav" className="hidden lg:block">
-            <Stack direction="row" spacing="lg" align="center">
+            <Stack direction="row" spacing="md" align="center">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   variant="nav"
                   className={cn(
-                    "text-sm font-medium no-underline px-3 py-2 rounded-lg transition-colors",
+                    "text-sm font-medium no-underline px-4 py-2 rounded-lg transition-all duration-200",
                     pathname === link.href
-                      ? "bg-white/10 text-primary"
-                      : "text-primary/80 hover:text-primary hover:bg-white/5"
+                      ? scrolled
+                        ? "bg-gray-100 text-gray-900"
+                        : "bg-white/20 text-gray-900"
+                      : scrolled
+                        ? "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                        : "text-gray-600 hover:text-gray-900 hover:bg-white/10"
                   )}
                 >
                   {link.label}
                 </Link>
               ))}
               <Link href="/contact">
-                <Button variant="glass" size="sm">
+                <Button variant="ghost" size="sm">
                   <Box className="flex items-center gap-2">
                     <FaPhoneAlt className="text-sm" />
                     <Typography variant="caption" weight="medium">
@@ -86,7 +97,10 @@ export function Header() {
           <IconButton
             icon={
               <svg
-                className="w-6 h-6 text-primary"
+                className={cn(
+                  "w-6 h-6 transition-colors",
+                  scrolled ? "text-gray-900" : "text-gray-700"
+                )}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -118,7 +132,7 @@ export function Header() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <Box as="nav" className="lg:hidden pb-4 animate-in slide-in-from-top duration-200">
+          <Box as="nav" className="lg:hidden pb-4 animate-in slide-in-from-top">
             <Stack spacing="xs">
               {navLinks.map((link) => (
                 <Link
@@ -126,10 +140,10 @@ export function Header() {
                   href={link.href}
                   variant="nav"
                   className={cn(
-                    "block px-4 py-3 rounded-lg text-sm font-medium no-underline transition-colors",
+                    "block px-4 py-3 rounded-lg text-sm font-medium no-underline transition-all duration-200",
                     pathname === link.href
-                      ? "bg-white/10 text-primary"
-                      : "text-primary/80 hover:text-primary hover:bg-white/5"
+                      ? "bg-gray-100 text-gray-900"
+                      : "text-gray-700 hover:text-gray-900 hover:bg-gray-50"
                   )}
                   onClick={() => setMobileMenuOpen(false)}
                 >
@@ -138,7 +152,7 @@ export function Header() {
               ))}
               <Box className="pt-2">
                 <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
-                  <Button variant="glass" size="md" fullWidth>
+                  <Button variant="ghost" size="md" fullWidth>
                     <Typography variant="body" weight="medium">
                       Fale conosco
                     </Typography>

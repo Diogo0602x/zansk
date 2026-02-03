@@ -10,10 +10,10 @@ interface TypographyProps extends HTMLAttributes<HTMLElement> {
 }
 
 const variantStyles = {
-  display: "text-4xl md:text-5xl lg:text-6xl leading-tight",
-  title: "text-2xl md:text-3xl lg:text-4xl leading-tight",
+  display: "text-4xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight",
+  title: "text-2xl md:text-3xl lg:text-4xl leading-tight tracking-tight",
   subtitle: "text-xl md:text-2xl leading-relaxed",
-  body: "text-base md:text-lg leading-relaxed",
+  body: "text-base md:text-lg leading-loose",
   caption: "text-sm md:text-base leading-relaxed",
 };
 

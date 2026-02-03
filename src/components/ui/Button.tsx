@@ -11,9 +11,9 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variantClasses = {
-  solid: "bg-primary text-dark hover:bg-primary-200 hover:scale-[1.02] active:scale-[0.98] shadow-md hover:shadow-lg",
-  ghost: "bg-transparent hover:bg-white/10 hover:scale-[1.02] active:scale-[0.98] border border-white/20 hover:border-white/30",
-  glass: "bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 hover:border-white/30 hover:scale-[1.02] active:scale-[0.98] shadow-glass-sm hover:shadow-glass",
+  solid: "bg-accent-500 text-white hover:bg-accent-600 hover:scale-[1.02] active:scale-[0.98] shadow-sm hover:shadow-md transition-all",
+  ghost: "bg-transparent hover:bg-gray-100 hover:scale-[1.02] active:scale-[0.98] border border-gray-300 hover:border-gray-400 text-gray-700 hover:text-gray-900 transition-all",
+  glass: "bg-white/60 backdrop-blur-sm border border-gray-200 hover:bg-white/80 hover:border-gray-300 hover:scale-[1.02] active:scale-[0.98] shadow-sm hover:shadow transition-all text-gray-700 hover:text-gray-900",
 };
 
 const sizeClasses = {

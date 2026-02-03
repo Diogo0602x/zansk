@@ -27,23 +27,23 @@ export default function ReviewsPage() {
   return (
     <Box>
       {/* Hero with Background */}
-      <Box className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+      <Box className="relative min-h-[65vh] flex items-center justify-center overflow-hidden">
         <Box className="absolute inset-0 z-0">
           <Image
             src={reviewsContent.images.bgMinimal}
             alt="Reviews Background"
             fill
-            className="object-cover"
+            className="object-cover opacity-30"
           />
-          <Box className="absolute inset-0 bg-gradient-to-b from-dark/80 via-dark/60 to-dark" />
+          <Box className="absolute inset-0 bg-gradient-to-b from-white/60 via-white/80 to-white" />
         </Box>
 
-        <Container className="relative z-10">
+        <Container className="relative z-10 pt-20">
           <Stack align="center" spacing="lg" className="text-center max-w-3xl mx-auto">
-            <Typography variant="display" weight="bold">
+            <Typography variant="display" weight="bold" className="text-gray-900">
               {reviewsContent.content.headline}
             </Typography>
-            <Typography variant="subtitle" className="text-secondary-300">
+            <Typography variant="subtitle" className="text-gray-600 leading-relaxed">
               {reviewsContent.content.text}
             </Typography>
           </Stack>
@@ -51,28 +51,28 @@ export default function ReviewsPage() {
       </Box>
 
       {/* Testimonials */}
-      <Box className="py-16 lg:py-24">
+      <Box className="py-20 lg:py-28">
         <Container>
           <Box className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {testimonials.map((testimonial, index) => (
               <Card key={index} variant="glass" padding="lg">
                 <Stack spacing="md">
                   <Box className="flex items-center justify-between">
-                    <FaQuoteLeft className="text-primary text-2xl opacity-50" />
+                    <FaQuoteLeft className="text-accent-600 text-2xl opacity-40" />
                     <Box className="flex gap-1">
                       {[...Array(5)].map((_, i) => (
-                        <FaStar key={i} className="text-primary text-sm" />
+                        <FaStar key={i} className="text-accent-500 text-sm" />
                       ))}
                     </Box>
                   </Box>
-                  <Typography variant="body" className="text-secondary-300 italic">
+                  <Typography variant="body" className="text-gray-700 italic leading-relaxed">
                     &ldquo;{testimonial.text}&rdquo;
                   </Typography>
                   <Box>
-                    <Typography variant="body" weight="semibold">
+                    <Typography variant="body" weight="semibold" className="text-gray-900">
                       {testimonial.author}
                     </Typography>
-                    <Typography variant="caption" className="text-secondary-400">
+                    <Typography variant="caption" className="text-gray-500">
                       {testimonial.role}
                     </Typography>
                   </Box>
@@ -84,10 +84,10 @@ export default function ReviewsPage() {
       </Box>
 
       {/* Results Section */}
-      <Box className="py-16 lg:py-24 bg-white/5">
+      <Box className="py-20 lg:py-28 bg-gray-50/50">
         <Container>
           <Box className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <Card variant="glass" padding="none" className="overflow-hidden aspect-video relative">
+            <Card variant="glass" padding="none" className="overflow-hidden aspect-video relative shadow-lg">
               <Image
                 src={reviewsContent.images.results}
                 alt="Results"
@@ -95,11 +95,11 @@ export default function ReviewsPage() {
                 className="object-cover"
               />
             </Card>
-            <Stack spacing="lg">
-              <Typography variant="title" weight="bold">
+            <Stack spacing="xl">
+              <Typography variant="title" weight="bold" className="text-gray-900">
                 Resultados mensuráveis
               </Typography>
-              <Typography variant="body" className="text-secondary-300">
+              <Typography variant="body" className="text-gray-600 leading-loose">
                 Cada projeto é acompanhado de métricas claras e relatórios de progresso, garantindo
                 transparência total.
               </Typography>

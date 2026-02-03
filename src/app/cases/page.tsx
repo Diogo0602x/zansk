@@ -29,23 +29,23 @@ export default function CasesPage() {
   return (
     <Box>
       {/* Hero with Background */}
-      <Box className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+      <Box className="relative min-h-[65vh] flex items-center justify-center overflow-hidden">
         <Box className="absolute inset-0 z-0">
           <Image
             src={casesContent.images.bgTech}
             alt="Cases Background"
             fill
-            className="object-cover"
+            className="object-cover opacity-30"
           />
-          <Box className="absolute inset-0 bg-gradient-to-b from-dark/80 via-dark/60 to-dark" />
+          <Box className="absolute inset-0 bg-gradient-to-b from-white/60 via-white/80 to-white" />
         </Box>
 
-        <Container className="relative z-10">
+        <Container className="relative z-10 pt-20">
           <Stack align="center" spacing="lg" className="text-center max-w-3xl mx-auto">
-            <Typography variant="display" weight="bold">
+            <Typography variant="display" weight="bold" className="text-gray-900">
               {casesContent.content.headline}
             </Typography>
-            <Typography variant="subtitle" className="text-secondary-300">
+            <Typography variant="subtitle" className="text-gray-600 leading-relaxed">
               {casesContent.content.text}
             </Typography>
           </Stack>
@@ -53,7 +53,7 @@ export default function CasesPage() {
       </Box>
 
       {/* Case Studies Grid */}
-      <Box className="py-16 lg:py-24">
+      <Box className="py-20 lg:py-28">
         <Container>
           <Box className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {caseStudies.map((caseStudy, index) => {
@@ -63,35 +63,35 @@ export default function CasesPage() {
                   key={index}
                   variant="glass"
                   padding="none"
-                  className="overflow-hidden group cursor-pointer hover:border-primary/40 transition-colors"
+                  className="overflow-hidden group cursor-pointer hover:border-gray-400 transition-all"
                 >
                   <Box className="relative aspect-video">
                     <Image
                       src={casesContent.images.mockups}
                       alt={caseStudy.title}
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <Box className="absolute inset-0 bg-gradient-to-t from-dark via-dark/70 to-transparent" />
-                    <Box className="absolute top-4 left-4 flex items-center justify-center w-12 h-12 rounded-xl bg-dark/80 backdrop-blur-sm border border-primary/20">
-                      <Icon className="text-primary text-xl" />
+                    <Box className="absolute inset-0 bg-gradient-to-t from-gray-900/70 via-gray-900/30 to-transparent" />
+                    <Box className="absolute top-4 left-4 flex items-center justify-center w-12 h-12 rounded-xl bg-white/80 backdrop-blur-sm border border-gray-200">
+                      <Icon className="text-accent-600 text-xl" />
                     </Box>
                   </Box>
                   <Stack spacing="md" className="p-6">
                     <Box className="flex items-start justify-between gap-3">
-                      <Typography variant="subtitle" weight="semibold">
+                      <Typography variant="subtitle" weight="semibold" className="text-gray-900">
                         {caseStudy.title}
                       </Typography>
-                      <FaArrowRight className="text-primary mt-1 group-hover:translate-x-1 transition-transform" />
+                      <FaArrowRight className="text-accent-600 mt-1 group-hover:translate-x-1 transition-transform" />
                     </Box>
-                    <Typography variant="body" className="text-secondary-300">
+                    <Typography variant="body" className="text-gray-600 leading-relaxed">
                       {caseStudy.description}
                     </Typography>
                     <Box className="flex flex-wrap gap-2">
                       {caseStudy.tags.map((tag) => (
                         <Box
                           key={tag}
-                          className="px-3 py-1 bg-primary/10 border border-primary/20 rounded-full text-sm text-primary"
+                          className="px-3 py-1 bg-accent-100 border border-accent-200 rounded-full text-sm text-accent-700 font-medium"
                         >
                           {tag}
                         </Box>
@@ -106,9 +106,9 @@ export default function CasesPage() {
       </Box>
 
       {/* Mockups Section */}
-      <Box className="py-16 lg:py-24 bg-white/5">
+      <Box className="py-20 lg:py-28 bg-gray-50/50">
         <Container>
-          <Card variant="glass" padding="none" className="overflow-hidden aspect-video relative">
+          <Card variant="glass" padding="none" className="overflow-hidden aspect-video relative shadow-lg">
             <Image
               src={casesContent.images.heroMinimal}
               alt="Portfolio"

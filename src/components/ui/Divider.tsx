@@ -9,7 +9,7 @@ export function Divider({ orientation = "horizontal", className }: DividerProps)
   return (
     <div
       className={cn(
-        "bg-white/10",
+        "bg-gray-200",
         orientation === "horizontal" ? "h-px w-full" : "w-px h-full",
         className
       )}

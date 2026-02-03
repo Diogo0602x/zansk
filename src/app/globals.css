@@ -8,7 +8,7 @@
   }
 
   body {
-    @apply bg-dark text-primary antialiased;
+    @apply bg-gradient-to-br from-white via-gray-50 to-gray-100 text-gray-900 antialiased;
     @apply min-h-screen;
   }
 }
@@ -18,23 +18,27 @@
     text-wrap: balance;
   }
 
+  .glass-light {
+    @apply bg-white/70 backdrop-blur-sm border border-gray-200/50;
+  }
+
   .glass-effect {
-    @apply bg-white/5 backdrop-blur-md border border-white/10;
+    @apply bg-white/80 backdrop-blur-md border border-white/60;
   }
 
   .animate-in {
-    animation: enter 0.2s ease-out;
+    animation: enter 0.3s ease-out;
   }
 
   .slide-in-from-top {
-    animation: slide-in-from-top 0.2s ease-out;
+    animation: slide-in-from-top 0.3s ease-out;
   }
 }
 
 @keyframes enter {
   from {
     opacity: 0;
-    transform: scale(0.95);
+    transform: scale(0.98);
   }
   to {
     opacity: 1;
@@ -45,7 +49,7 @@
 @keyframes slide-in-from-top {
   from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-8px);
   }
   to {
     opacity: 1;

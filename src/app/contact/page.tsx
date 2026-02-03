@@ -44,23 +44,23 @@ export default function ContactPage() {
   return (
     <Box>
       {/* Hero with Background */}
-      <Box className="relative min-h-[50vh] flex items-center justify-center overflow-hidden">
+      <Box className="relative min-h-[55vh] flex items-center justify-center overflow-hidden">
         <Box className="absolute inset-0 z-0">
           <Image
             src={contactContent.images.bgStripes}
             alt="Contact Background"
             fill
-            className="object-cover"
+            className="object-cover opacity-30"
           />
-          <Box className="absolute inset-0 bg-gradient-to-b from-dark/80 via-dark/70 to-dark" />
+          <Box className="absolute inset-0 bg-gradient-to-b from-white/60 via-white/80 to-white" />
         </Box>
 
-        <Container className="relative z-10">
+        <Container className="relative z-10 pt-20">
           <Stack align="center" spacing="lg" className="text-center max-w-3xl mx-auto">
-            <Typography variant="display" weight="bold">
+            <Typography variant="display" weight="bold" className="text-gray-900">
               {contactContent.content.headline}
             </Typography>
-            <Typography variant="subtitle" className="text-secondary-300">
+            <Typography variant="subtitle" className="text-gray-600 leading-relaxed">
               {contactContent.content.text}
             </Typography>
           </Stack>
@@ -68,21 +68,21 @@ export default function ContactPage() {
       </Box>
 
       {/* Contact Form */}
-      <Box className="py-16 lg:py-24">
+      <Box className="py-20 lg:py-28">
         <Container size="md">
           <Box className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Form */}
             <Card variant="glass" padding="xl">
               <form onSubmit={handleSubmit}>
                 <Stack spacing="lg">
-                  <Typography variant="title" weight="bold">
+                  <Typography variant="title" weight="bold" className="text-gray-900">
                     {ctas[0] || "Enviar briefing"}
                   </Typography>
 
                   <Box>
                     <Box className="flex items-center gap-2 mb-2">
-                      <FaUser className="text-primary" />
-                      <Typography variant="caption" weight="medium">
+                      <FaUser className="text-gray-600" />
+                      <Typography variant="caption" weight="medium" className="text-gray-700">
                         Nome *
                       </Typography>
                     </Box>
@@ -93,14 +93,14 @@ export default function ContactPage() {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+                      className="w-full px-4 py-3 bg-white/80 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent transition-all text-gray-900"
                     />
                   </Box>
 
                   <Box>
                     <Box className="flex items-center gap-2 mb-2">
-                      <FaEnvelope className="text-primary" />
-                      <Typography variant="caption" weight="medium">
+                      <FaEnvelope className="text-gray-600" />
+                      <Typography variant="caption" weight="medium" className="text-gray-700">
                         Email *
                       </Typography>
                     </Box>
@@ -111,14 +111,14 @@ export default function ContactPage() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+                      className="w-full px-4 py-3 bg-white/80 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent transition-all text-gray-900"
                     />
                   </Box>
 
                   <Box>
                     <Box className="flex items-center gap-2 mb-2">
-                      <FaBuilding className="text-primary" />
-                      <Typography variant="caption" weight="medium">
+                      <FaBuilding className="text-gray-600" />
+                      <Typography variant="caption" weight="medium" className="text-gray-700">
                         Empresa
                       </Typography>
                     </Box>
@@ -128,14 +128,14 @@ export default function ContactPage() {
                       name="company"
                       value={formData.company}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+                      className="w-full px-4 py-3 bg-white/80 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent transition-all text-gray-900"
                     />
                   </Box>
 
                   <Box>
                     <Box className="flex items-center gap-2 mb-2">
-                      <FaComment className="text-primary" />
-                      <Typography variant="caption" weight="medium">
+                      <FaComment className="text-gray-600" />
+                      <Typography variant="caption" weight="medium" className="text-gray-700">
                         Mensagem *
                       </Typography>
                     </Box>
@@ -146,11 +146,11 @@ export default function ContactPage() {
                       onChange={handleChange}
                       required
                       rows={5}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary transition-all resize-none"
+                      className="w-full px-4 py-3 bg-white/80 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent transition-all resize-none text-gray-900"
                     />
                   </Box>
 
-                  <Button type="submit" variant="solid" size="lg" fullWidth loading={isSubmitting}>
+                  <Button type="submit" variant="ghost" size="lg" fullWidth loading={isSubmitting}>
                     <Box className="flex items-center justify-center gap-2">
                       <FaPaperPlane className="text-sm" />
                       <Typography variant="body" weight="medium">
@@ -167,15 +167,15 @@ export default function ContactPage() {
               <Card variant="glass" padding="lg">
                 <Stack spacing="md">
                   <Box className="flex items-center gap-2">
-                    <FaEnvelope className="text-primary text-xl" />
-                    <Typography variant="subtitle" weight="semibold">
+                    <FaEnvelope className="text-accent-600 text-xl" />
+                    <Typography variant="subtitle" weight="semibold" className="text-gray-900">
                       Email
                     </Typography>
                   </Box>
                   <Link
                     href={`mailto:${contactInfo.email}`}
                     variant="footer"
-                    className="text-secondary-300 hover:text-primary transition-colors"
+                    className="text-gray-600 hover:text-gray-900 transition-colors"
                   >
                     <Typography variant="body">
                       {contactInfo.email}
@@ -187,12 +187,12 @@ export default function ContactPage() {
               <Card variant="glass" padding="lg">
                 <Stack spacing="md">
                   <Box className="flex items-center gap-2">
-                    <FaLinkedinIn className="text-primary text-xl" />
-                    <Typography variant="subtitle" weight="semibold">
+                    <FaLinkedinIn className="text-accent-600 text-xl" />
+                    <Typography variant="subtitle" weight="semibold" className="text-gray-900">
                       {ctas[1] || "Redes Sociais"}
                     </Typography>
                   </Box>
-                  <Typography variant="body" className="text-secondary-300">
+                  <Typography variant="body" className="text-gray-600">
                     Conecte-se conosco no LinkedIn
                   </Typography>
                   <Link
@@ -218,7 +218,7 @@ export default function ContactPage() {
               <Card
                 variant="glass"
                 padding="none"
-                className="overflow-hidden aspect-square relative"
+                className="overflow-hidden aspect-square relative shadow-lg"
               >
                 <Image
                   src={contactContent.images.humanMessage}

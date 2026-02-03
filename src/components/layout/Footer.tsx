@@ -7,7 +7,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <Box as="footer" className="bg-dark/50 backdrop-blur-md border-t border-white/10 mt-auto">
+    <Box as="footer" className="bg-gray-50/80 backdrop-blur-sm border-t border-gray-200 mt-auto">
       <Container>
         <Stack spacing="xl" className="py-12 lg:py-16">
           {/* Main Footer Content */}
@@ -23,34 +23,34 @@ export function Footer() {
                     className="object-contain"
                   />
                 </Box>
-                <Typography variant="title" as="h3" weight="bold" className="text-primary">
+                <Typography variant="title" as="h3" weight="bold" className="text-gray-900">
                   {siteContent.siteName}
                 </Typography>
               </Box>
-              <Typography variant="caption" className="text-secondary-300">
+              <Typography variant="caption" className="text-gray-600">
                 Transformamos ideias em produtos digitais com impacto real.
               </Typography>
             </Stack>
 
             {/* Pages */}
             <Stack spacing="sm">
-              <Typography variant="body" weight="semibold" className="text-primary">
+              <Typography variant="body" weight="semibold" className="text-gray-900">
                 Páginas
               </Typography>
               <Stack spacing="xs">
-                <Link href="/" variant="footer" className="flex items-center gap-2">
+                <Link href="/" variant="footer" className="flex items-center gap-2 text-gray-600 hover:text-gray-900">
                   <FaHome className="w-3.5 h-3.5" />
                   Home
                 </Link>
-                <Link href="/about" variant="footer" className="flex items-center gap-2">
+                <Link href="/about" variant="footer" className="flex items-center gap-2 text-gray-600 hover:text-gray-900">
                   <FaInfoCircle className="w-3.5 h-3.5" />
                   Sobre
                 </Link>
-                <Link href="/services" variant="footer" className="flex items-center gap-2">
+                <Link href="/services" variant="footer" className="flex items-center gap-2 text-gray-600 hover:text-gray-900">
                   <FaBriefcase className="w-3.5 h-3.5" />
                   Serviços
                 </Link>
-                <Link href="/team" variant="footer" className="flex items-center gap-2">
+                <Link href="/team" variant="footer" className="flex items-center gap-2 text-gray-600 hover:text-gray-900">
                   <FaUsers className="w-3.5 h-3.5" />
                   Time
                 </Link>
@@ -59,23 +59,23 @@ export function Footer() {
 
             {/* Resources */}
             <Stack spacing="sm">
-              <Typography variant="body" weight="semibold" className="text-primary">
+              <Typography variant="body" weight="semibold" className="text-gray-900">
                 Recursos
               </Typography>
               <Stack spacing="xs">
-                <Link href="/cases" variant="footer" className="flex items-center gap-2">
+                <Link href="/cases" variant="footer" className="flex items-center gap-2 text-gray-600 hover:text-gray-900">
                   <FaFolderOpen className="w-3.5 h-3.5" />
                   Cases
                 </Link>
-                <Link href="/processes" variant="footer" className="flex items-center gap-2">
+                <Link href="/processes" variant="footer" className="flex items-center gap-2 text-gray-600 hover:text-gray-900">
                   <FaSitemap className="w-3.5 h-3.5" />
                   Processos
                 </Link>
-                <Link href="/reviews" variant="footer" className="flex items-center gap-2">
+                <Link href="/reviews" variant="footer" className="flex items-center gap-2 text-gray-600 hover:text-gray-900">
                   <FaStar className="w-3.5 h-3.5" />
                   Avaliações
                 </Link>
-                <Link href="/contact" variant="footer" className="flex items-center gap-2">
+                <Link href="/contact" variant="footer" className="flex items-center gap-2 text-gray-600 hover:text-gray-900">
                   <FaPhoneAlt className="w-3.5 h-3.5" />
                   Contato
                 </Link>
@@ -84,7 +84,7 @@ export function Footer() {
 
             {/* Contact */}
             <Stack spacing="sm">
-              <Typography variant="body" weight="semibold" className="text-primary">
+              <Typography variant="body" weight="semibold" className="text-gray-900">
                 Contato
               </Typography>
               <Stack spacing="xs">
@@ -92,7 +92,7 @@ export function Footer() {
                   href={`mailto:${contactInfo.email}`}
                   variant="footer"
                   external
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 text-gray-600 hover:text-gray-900"
                 >
                   <FaEnvelope className="w-4 h-4" />
                   {contactInfo.email}
@@ -101,7 +101,7 @@ export function Footer() {
                   href={contactInfo.linkedin}
                   variant="footer"
                   external
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 text-gray-600 hover:text-gray-900"
                 >
                   <FaLinkedinIn className="w-4 h-4" />
                   LinkedIn
@@ -110,7 +110,7 @@ export function Footer() {
                   href={contactInfo.getWhatsAppLink()}
                   variant="footer"
                   external
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 text-gray-600 hover:text-gray-900"
                 >
                   <FaWhatsapp className="w-4 h-4" />
                   WhatsApp
@@ -128,15 +128,15 @@ export function Footer() {
             align="center"
             className="flex-col md:flex-row gap-4"
           >
-            <Typography variant="caption" className="text-secondary-400">
+            <Typography variant="caption" className="text-gray-500">
               © {currentYear} {siteContent.siteName}. Todos os direitos reservados.
             </Typography>
             <Stack direction="row" spacing="md">
-              <Link href="/privacy" variant="footer" className="flex items-center gap-1.5">
+              <Link href="/privacy" variant="footer" className="flex items-center gap-1.5 text-gray-600 hover:text-gray-900">
                 <FaShieldAlt className="w-3 h-3" />
                 Privacidade
               </Link>
-              <Link href="/terms" variant="footer" className="flex items-center gap-1.5">
+              <Link href="/terms" variant="footer" className="flex items-center gap-1.5 text-gray-600 hover:text-gray-900">
                 <FaFileContract className="w-3 h-3" />
                 Termos
               </Link>

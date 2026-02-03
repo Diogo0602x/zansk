@@ -20,13 +20,13 @@ export function LoadingOverlay({
     <div
       className={cn(
         "fixed inset-0 z-50 flex flex-col items-center justify-center",
-        "bg-dark/80 backdrop-blur-md",
+        "bg-white/90 backdrop-blur-md",
         className
       )}
     >
       <div className="flex flex-col items-center gap-4">
-        <div className="h-12 w-12 animate-spin rounded-full border-4 border-primary border-t-transparent" />
-        {message && <p className="text-lg text-primary font-medium">{message}</p>}
+        <div className="h-12 w-12 animate-spin rounded-full border-4 border-accent-500 border-t-transparent" />
+        {message && <p className="text-lg text-gray-900 font-medium">{message}</p>}
         {children}
       </div>
     </div>
