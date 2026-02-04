@@ -1,4 +1,4 @@
-import { Box, Container, Stack, Typography, Card, Image } from "@/components/ui";
+import { Box, Container, Stack, Typography, Card, Image, HeroSection, SectionTitle } from "@/components/ui";
 import siteContent from "@/constants/siteContent";
 import { FaEye, FaAward, FaBullseye } from "react-icons/fa";
 
@@ -8,19 +8,13 @@ const aboutContent = pages.about;
 export default function AboutPage() {
   return (
     <Box>
-      {/* Hero Section */}
-      <Box className="py-24 lg:py-32 pt-32">
-        <Container>
-          <Stack align="center" spacing="xl" className="text-center max-w-3xl mx-auto">
-            <Typography variant="display" weight="bold" className="text-gray-900">
-              {aboutContent.content.headline}
-            </Typography>
-            <Typography variant="subtitle" className="text-gray-600 leading-relaxed">
-              {aboutContent.content.text}
-            </Typography>
-          </Stack>
-        </Container>
-      </Box>
+      {/* Hero Section Premium */}
+      <HeroSection
+        layout="default"
+        title={aboutContent.content.headline || "Sobre"}
+        subtitle={aboutContent.content.text}
+        backgroundImage={aboutContent.images.humanWorkspace}
+      />
 
       {/* Images Grid */}
       <Box className="py-20 lg:py-28 bg-gray-50/50">
@@ -62,10 +56,10 @@ export default function AboutPage() {
       <Box className="py-20 lg:py-28">
         <Container>
           <Stack spacing="xl">
-            <Typography variant="title" weight="bold" align="center" className="mb-8 text-gray-900">
+            <SectionTitle align="center" subtitle="Princípios que guiam nosso trabalho e definem nossa cultura">
               Nossos valores
-            </Typography>
-            <Box className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            </SectionTitle>
+            <Box className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
               <Card variant="glass" padding="lg">
                 <Stack spacing="md">
                   <Box className="flex items-center gap-3">

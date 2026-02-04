@@ -60,26 +60,32 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <Box as="nav" className="hidden lg:block">
-            <Stack direction="row" spacing="md" align="center">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  variant="nav"
-                  className={cn(
-                    "text-sm font-medium no-underline px-4 py-2 rounded-lg transition-all duration-200",
-                    pathname === link.href
-                      ? scrolled
-                        ? "bg-gray-100 text-gray-900"
-                        : "bg-white/20 text-gray-900"
-                      : scrolled
-                        ? "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
-                        : "text-gray-600 hover:text-gray-900 hover:bg-white/10"
+            <Stack direction="row" spacing="xs" align="center">
+              {navLinks.map((link, index) => (
+                <Box key={link.href} className="flex items-center">
+                  <Link
+                    href={link.href}
+                    variant="nav"
+                    className={cn(
+                      "text-sm font-medium no-underline px-4 py-2 transition-all duration-300 relative group",
+                      pathname === link.href
+                        ? "text-gray-900"
+                        : "text-gray-600 hover:text-gray-900"
+                    )}
+                  >
+                    {link.label}
+                    {/* Linha sob item ativo */}
+                    {pathname === link.href && (
+                      <Box className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-accent-500 rounded-full" />
+                    )}
+                  </Link>
+                  {/* Separador vertical entre itens */}
+                  {index < navLinks.length - 1 && (
+                    <Box className="h-4 w-px bg-gray-300/40 mx-1" />
                   )}
-                >
-                  {link.label}
-                </Link>
+                </Box>
               ))}
+              <Box className="h-4 w-px bg-gray-300/40 mx-2" />
               <Link href="/contact">
                 <Button variant="ghost" size="sm">
                   <Box className="flex items-center gap-2">

@@ -10,7 +10,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Zansk Tech - Transformamos ideias em produtos digitais",
+  title: "Zansk Tech",
   description:
     "Design, tecnologia e estratégia para lançar, evoluir ou reestruturar produtos digitais.",
   keywords: ["desenvolvimento web", "design", "UX/UI", "tecnologia", "produtos digitais"],

@@ -1,6 +1,6 @@
-import { Box, Container, Stack, Typography, Card, Image } from "@/components/ui";
+import { Box, Container, Stack, Typography, Card, Image, HeroSection, SectionTitle } from "@/components/ui";
 import siteContent from "@/constants/siteContent";
-import { FaGraduationCap, FaHandshake, FaComments } from "react-icons/fa";
+import { FaHandshake, FaGraduationCap, FaComments } from "react-icons/fa";
 
 const { pages } = siteContent;
 const teamContent = pages.team;
@@ -8,19 +8,13 @@ const teamContent = pages.team;
 export default function TeamPage() {
   return (
     <Box>
-      {/* Hero Section */}
-      <Box className="py-24 lg:py-32 pt-32">
-        <Container>
-          <Stack align="center" spacing="xl" className="text-center max-w-3xl mx-auto">
-            <Typography variant="display" weight="bold" className="text-gray-900">
-              {teamContent.content.headline}
-            </Typography>
-            <Typography variant="subtitle" className="text-gray-600 leading-relaxed">
-              {teamContent.content.text}
-            </Typography>
-          </Stack>
-        </Container>
-      </Box>
+      {/* Hero Section Premium */}
+      <HeroSection
+        layout="default"
+        title={teamContent.content.headline}
+        subtitle={teamContent.content.text}
+        backgroundImage={teamContent.images.teamSilhouette}
+      />
 
       {/* Team Images */}
       <Box className="py-20 lg:py-28 bg-gray-50/50">
@@ -51,9 +45,9 @@ export default function TeamPage() {
         <Container>
           <Box className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <Stack spacing="xl">
-              <Typography variant="title" weight="bold" className="text-gray-900">
+              <SectionTitle>
                 Cultura de excelência
-              </Typography>
+              </SectionTitle>
               <Typography variant="body" className="text-gray-600 leading-loose">
                 Investimos em pessoas que valorizam qualidade, aprendizado contínuo e colaboração
                 genuína.

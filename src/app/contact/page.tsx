@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Box, Container, Stack, Typography, Button, Card, Image, Link } from "@/components/ui";
+import { Box, Container, Stack, Typography, Button, Card, Image, Link, HeroSection, VisualAccent } from "@/components/ui";
 import siteContent from "@/constants/siteContent";
 import { FaUser, FaEnvelope, FaBuilding, FaComment, FaPaperPlane, FaLinkedinIn } from "react-icons/fa";
 import { contactInfo } from "@/constants/contact";
@@ -43,34 +43,20 @@ export default function ContactPage() {
 
   return (
     <Box>
-      {/* Hero with Background */}
-      <Box className="relative min-h-[55vh] flex items-center justify-center overflow-hidden">
-        <Box className="absolute inset-0 z-0">
-          <Image
-            src={contactContent.images.bgStripes}
-            alt="Contact Background"
-            fill
-            className="object-cover opacity-30"
-          />
-          <Box className="absolute inset-0 bg-gradient-to-b from-white/60 via-white/80 to-white" />
-        </Box>
+      {/* Hero centrado com contexto visual */}
+      <HeroSection
+        layout="centered"
+        title={contactContent.content.headline}
+        subtitle={contactContent.content.text}
+        backgroundImage={contactContent.images.bgStripes}
+      />
 
-        <Container className="relative z-10 pt-20">
-          <Stack align="center" spacing="lg" className="text-center max-w-3xl mx-auto">
-            <Typography variant="display" weight="bold" className="text-gray-900">
-              {contactContent.content.headline}
-            </Typography>
-            <Typography variant="subtitle" className="text-gray-600 leading-relaxed">
-              {contactContent.content.text}
-            </Typography>
-          </Stack>
-        </Container>
-      </Box>
+      {/* Contact Form com layout assimétrico */}
+      <Box className="py-20 lg:py-32 relative">
+        <VisualAccent position="top-right" variant="circle" />
 
-      {/* Contact Form */}
-      <Box className="py-20 lg:py-28">
         <Container size="md">
-          <Box className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <Box className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
             {/* Form */}
             <Card variant="glass" padding="xl">
               <form onSubmit={handleSubmit}>

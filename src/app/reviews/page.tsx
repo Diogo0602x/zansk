@@ -1,4 +1,4 @@
-import { Box, Container, Stack, Typography, Card, Image } from "@/components/ui";
+import { Box, Container, Stack, Typography, Card, Image, HeroSection, SectionTitle } from "@/components/ui";
 import siteContent from "@/constants/siteContent";
 import { FaQuoteLeft, FaStar } from "react-icons/fa";
 
@@ -26,29 +26,13 @@ const testimonials = [
 export default function ReviewsPage() {
   return (
     <Box>
-      {/* Hero with Background */}
-      <Box className="relative min-h-[65vh] flex items-center justify-center overflow-hidden">
-        <Box className="absolute inset-0 z-0">
-          <Image
-            src={reviewsContent.images.bgMinimal}
-            alt="Reviews Background"
-            fill
-            className="object-cover opacity-30"
-          />
-          <Box className="absolute inset-0 bg-gradient-to-b from-white/60 via-white/80 to-white" />
-        </Box>
-
-        <Container className="relative z-10 pt-20">
-          <Stack align="center" spacing="lg" className="text-center max-w-3xl mx-auto">
-            <Typography variant="display" weight="bold" className="text-gray-900">
-              {reviewsContent.content.headline}
-            </Typography>
-            <Typography variant="subtitle" className="text-gray-600 leading-relaxed">
-              {reviewsContent.content.text}
-            </Typography>
-          </Stack>
-        </Container>
-      </Box>
+      {/* Hero Section Premium */}
+      <HeroSection
+        layout="default"
+        title={reviewsContent.content.headline}
+        subtitle={reviewsContent.content.text}
+        backgroundImage={reviewsContent.images.bgMinimal}
+      />
 
       {/* Testimonials */}
       <Box className="py-20 lg:py-28">
@@ -96,9 +80,9 @@ export default function ReviewsPage() {
               />
             </Card>
             <Stack spacing="xl">
-              <Typography variant="title" weight="bold" className="text-gray-900">
+              <SectionTitle>
                 Resultados mensuráveis
-              </Typography>
+              </SectionTitle>
               <Typography variant="body" className="text-gray-600 leading-loose">
                 Cada projeto é acompanhado de métricas claras e relatórios de progresso, garantindo
                 transparência total.

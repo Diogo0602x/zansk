@@ -8,9 +8,9 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 const variantClasses = {
-  glass: "bg-white/70 backdrop-blur-sm border border-gray-200/60 hover:bg-white/80 hover:border-gray-300/70 transition-all",
-  solid: "bg-white shadow-sm hover:shadow-md transition-all",
-  outline: "border border-gray-200 hover:border-gray-300 transition-all",
+  glass: "bg-white/70 backdrop-blur-sm border border-gray-200/60 hover:bg-white/80 hover:border-gray-300/70 hover:shadow-md transition-all duration-300",
+  solid: "bg-white shadow-sm hover:shadow-md transition-all duration-300",
+  outline: "border border-gray-200 hover:border-gray-300 transition-all duration-300",
 };
 
 const paddingClasses = {

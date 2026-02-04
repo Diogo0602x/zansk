@@ -1,4 +1,4 @@
-import { Box, Container, Stack, Typography, Card, Image } from "@/components/ui";
+import { Box, Container, Stack, Typography, Card, Image, HeroSection, SectionTitle } from "@/components/ui";
 import siteContent from "@/constants/siteContent";
 import {
   FaSearch,
@@ -54,19 +54,13 @@ const processDetails = [
 export default function ProcessesPage() {
   return (
     <Box>
-      {/* Hero Section */}
-      <Box className="py-24 lg:py-32 pt-32">
-        <Container>
-          <Stack align="center" spacing="xl" className="text-center max-w-3xl mx-auto">
-            <Typography variant="display" weight="bold" className="text-gray-900">
-              {processesContent.content.headline}
-            </Typography>
-            <Typography variant="subtitle" className="text-gray-600 leading-relaxed">
-              {processesContent.content.steps}
-            </Typography>
-          </Stack>
-        </Container>
-      </Box>
+      {/* Hero Section Premium */}
+      <HeroSection
+        layout="default"
+        title={processesContent.content.headline}
+        subtitle={processesContent.content.steps}
+        backgroundImage={processesContent.images.timeline}
+      />
 
       {/* Process Steps */}
       <Box className="py-20 lg:py-28 bg-gray-50/50">
@@ -124,10 +118,10 @@ export default function ProcessesPage() {
       <Box className="py-20 lg:py-28 bg-gray-50/50">
         <Container>
           <Stack spacing="xl">
-            <Typography variant="title" weight="bold" align="center" className="text-gray-900">
+            <SectionTitle align="center" subtitle="Uma metodologia testada e aprovada por dezenas de projetos">
               Por que nosso processo funciona
-            </Typography>
-            <Box className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            </SectionTitle>
+            <Box className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
               <Card variant="glass" padding="lg">
                 <Stack spacing="md">
                   <Typography variant="subtitle" weight="semibold" className="text-gray-900">
