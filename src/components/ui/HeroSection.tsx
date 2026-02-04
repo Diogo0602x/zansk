@@ -180,7 +180,7 @@ export function HeroSection({
                           <Typography
                             variant="display"
                             weight="bold"
-                            className="text-gray-900 leading-[1.08] tracking-[-0.02em] 
+                            className="text-gray-900 leading-[1.08] tracking-[-0.02em]
                                      text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem]"
                           >
                             {title}
