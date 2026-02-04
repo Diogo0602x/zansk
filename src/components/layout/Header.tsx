@@ -35,7 +35,6 @@ export function Header() {
     >
       <Container>
         <Stack direction="row" align="center" justify="between" className="py-4 lg:py-5">
-          {/* Logo */}
           <Link href="/" variant="nav" className="flex items-center gap-3 no-underline group">
             <Box className="relative w-10 h-10 lg:w-11 lg:h-11 transition-transform group-hover:scale-105">
               <Image
@@ -58,7 +57,6 @@ export function Header() {
             </Typography>
           </Link>
 
-          {/* Desktop Navigation */}
           <Box as="nav" className="hidden lg:block">
             <Stack direction="row" spacing="xs" align="center">
               {navLinks.map((link, index) => (
@@ -74,12 +72,10 @@ export function Header() {
                     )}
                   >
                     {link.label}
-                    {/* Linha sob item ativo */}
                     {pathname === link.href && (
                       <Box className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-accent-500 rounded-full" />
                     )}
                   </Link>
-                  {/* Separador vertical entre itens */}
                   {index < navLinks.length - 1 && (
                     <Box className="h-4 w-px bg-gray-300/40 mx-1" />
                   )}
@@ -99,7 +95,6 @@ export function Header() {
             </Stack>
           </Box>
 
-          {/* Mobile Menu Button */}
           <IconButton
             icon={
               <svg
@@ -136,7 +131,6 @@ export function Header() {
           />
         </Stack>
 
-        {/* Mobile Menu */}
         {mobileMenuOpen && (
           <Box as="nav" className="lg:hidden pb-4 animate-in slide-in-from-top">
             <Stack spacing="xs">

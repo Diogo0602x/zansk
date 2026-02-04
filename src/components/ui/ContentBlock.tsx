@@ -11,10 +11,6 @@ interface ContentBlockProps {
   children: ReactNode;
 }
 
-/**
- * ContentBlock: composição visual inteligente para textos e conteúdo
- * Garante que nenhum texto fique "jogado" na página
- */
 export function ContentBlock({
   title,
   subtitle,
@@ -38,13 +34,11 @@ export function ContentBlock({
         className
       )}
     >
-      {/* Decoração lateral para layout bordered */}
       {layout === "bordered" && (
         <Box className="absolute -left-0.5 top-0 w-0.5 h-16 bg-accent-500" />
       )}
 
       <Box className={cn("space-y-6", alignmentClasses[alignment])}>
-        {/* Header do bloco */}
         {(title || subtitle) && (
           <Box className={cn("space-y-3", alignmentClasses[alignment])}>
             {title && (
@@ -72,7 +66,6 @@ export function ContentBlock({
           </Box>
         )}
 
-        {/* Conteúdo principal */}
         <Box>{children}</Box>
       </Box>
     </Box>

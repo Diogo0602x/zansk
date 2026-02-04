@@ -7,10 +7,6 @@ interface SectionDividerProps {
   className?: string;
 }
 
-/**
- * SectionDivider: quebra intencional de espaços vazios
- * Cria transições visuais entre seções
- */
 export function SectionDivider({
   variant = "gradient",
   spacing = "md",
@@ -59,10 +55,6 @@ interface VisualAccentProps {
   className?: string;
 }
 
-/**
- * VisualAccent: elementos gráficos sutis para preencher vazios
- * Adiciona contexto visual sem poluir
- */
 export function VisualAccent({
   position = "top-right",
   variant = "lines",

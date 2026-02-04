@@ -24,7 +24,6 @@ export function PageIntro({
         className
       )}
     >
-      {/* Background */}
       {backgroundImage ? (
         <Box className="absolute inset-0 z-0">
           <Image
@@ -64,10 +63,8 @@ export function PageIntro({
         </Box>
       )}
 
-      {/* Content */}
       <Container className="relative z-10 pt-24 pb-12">
         <Stack align="center" spacing="lg" className="text-center max-w-3xl mx-auto">
-          {/* Linha decorativa superior */}
           <Box className="w-16 h-0.5 bg-gradient-to-r from-transparent via-accent-500 to-transparent rounded-full" />
 
           <Typography
@@ -89,7 +86,6 @@ export function PageIntro({
 
           {children}
 
-          {/* Linha decorativa inferior */}
           <Box className="w-24 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent rounded-full mt-4" />
         </Stack>
       </Container>

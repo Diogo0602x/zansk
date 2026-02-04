@@ -26,7 +26,6 @@ const testimonials = [
 export default function ReviewsPage() {
   return (
     <Box>
-      {/* Hero Section Premium */}
       <HeroSection
         layout="default"
         title={reviewsContent.content.headline}
@@ -34,7 +33,6 @@ export default function ReviewsPage() {
         backgroundImage={reviewsContent.images.bgMinimal}
       />
 
-      {/* Testimonials */}
       <Box className="py-20 lg:py-28">
         <Container>
           <Box className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -67,7 +65,6 @@ export default function ReviewsPage() {
         </Container>
       </Box>
 
-      {/* Results Section */}
       <Box className="py-20 lg:py-28 bg-gray-50/50">
         <Container>
           <Box className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">

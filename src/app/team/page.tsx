@@ -8,7 +8,6 @@ const teamContent = pages.team;
 export default function TeamPage() {
   return (
     <Box>
-      {/* Hero Section Premium */}
       <HeroSection
         layout="default"
         title={teamContent.content.headline}
@@ -16,7 +15,6 @@ export default function TeamPage() {
         backgroundImage={teamContent.images.teamSilhouette}
       />
 
-      {/* Team Images */}
       <Box className="py-20 lg:py-28 bg-gray-50/50">
         <Container>
           <Box className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -25,7 +23,7 @@ export default function TeamPage() {
                 src={teamContent.images.teamSilhouette}
                 alt="Team"
                 fill
-                className="object-cover"
+                className="object-cover object-[center_20%]"
               />
             </Card>
             <Card variant="glass" padding="none" className="overflow-hidden aspect-video relative shadow-lg">
@@ -40,7 +38,6 @@ export default function TeamPage() {
         </Container>
       </Box>
 
-      {/* Culture Section */}
       <Box className="py-20 lg:py-28">
         <Container>
           <Box className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">

@@ -54,7 +54,6 @@ const processDetails = [
 export default function ProcessesPage() {
   return (
     <Box>
-      {/* Hero Section Premium */}
       <HeroSection
         layout="default"
         title={processesContent.content.headline}
@@ -62,7 +61,6 @@ export default function ProcessesPage() {
         backgroundImage={processesContent.images.timeline}
       />
 
-      {/* Process Steps */}
       <Box className="py-20 lg:py-28 bg-gray-50/50">
         <Container>
           <Box className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -90,7 +88,6 @@ export default function ProcessesPage() {
         </Container>
       </Box>
 
-      {/* Visual Section */}
       <Box className="py-20 lg:py-28">
         <Container>
           <Box className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -114,7 +111,6 @@ export default function ProcessesPage() {
         </Container>
       </Box>
 
-      {/* Benefits Section */}
       <Box className="py-20 lg:py-28 bg-gray-50/50">
         <Container>
           <Stack spacing="xl">

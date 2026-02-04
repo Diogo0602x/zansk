@@ -1,11 +1,9 @@
 import { Box, Container, Stack, Typography, Card, Image, HeroSection, ContentBlock, SectionDivider, VisualAccent } from "@/components/ui";
 import siteContent from "@/constants/siteContent";
-import { FaLaptopCode, FaMobileAlt, FaShoppingCart, FaArrowRight } from "react-icons/fa";
+import { FaMobileAlt, FaShoppingCart, FaArrowRight } from "react-icons/fa";
 
 const { pages } = siteContent;
 const casesContent = pages.cases;
-
-const caseIcons = [FaLaptopCode, FaMobileAlt, FaShoppingCart];
 
 const caseStudies = [
   {
@@ -31,7 +29,6 @@ const caseStudies = [
 export default function CasesPage() {
   return (
     <Box>
-      {/* Hero Section Premium */}
       <HeroSection
         layout="default"
         title={casesContent.content.headline}
@@ -39,13 +36,11 @@ export default function CasesPage() {
         backgroundImage={casesContent.images.bgTech}
       />
 
-      {/* CASE 1: Layout Destacado (Full Width com Split) */}
       <Box className="py-20 lg:py-32 relative">
         <VisualAccent position="top-right" variant="lines" />
 
         <Container>
           <Box className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            {/* Imagem em destaque - 7 colunas */}
             <Box className="lg:col-span-7 order-2 lg:order-1">
               <Card
                 variant="glass"
@@ -59,10 +54,8 @@ export default function CasesPage() {
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-700"
                   />
-                  {/* Overlay sutil */}
                   <Box className="absolute inset-0 bg-gradient-to-br from-accent-500/10 via-transparent to-gray-900/20" />
 
-                  {/* Badge no canto */}
                   <Box className="absolute top-6 right-6 px-4 py-2 bg-white/95 backdrop-blur-md rounded-full border border-gray-200 shadow-lg">
                     <Typography variant="caption" weight="semibold" className="text-gray-900">
                       Em Destaque
@@ -72,7 +65,6 @@ export default function CasesPage() {
               </Card>
             </Box>
 
-            {/* Conteúdo - 5 colunas */}
             <Box className="lg:col-span-5 order-1 lg:order-2">
               <ContentBlock
                 layout="bordered"
@@ -106,20 +98,17 @@ export default function CasesPage() {
 
       <SectionDivider variant="asymmetric" spacing="md" />
 
-      {/* CASES 2 & 3: Grid Alternado (Lado a Lado com variação) */}
       <Box className="py-20 lg:py-28 bg-gradient-to-b from-transparent via-gray-50/40 to-transparent relative">
         <VisualAccent position="bottom-left" variant="circle" />
 
         <Container>
           <Box className="space-y-16 lg:space-y-20">
-            {/* Case 2: Imagem como background */}
             <Box className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               <Card
                 variant="glass"
                 padding="lg"
                 className="relative overflow-hidden group cursor-pointer hover:border-accent-400 transition-all"
               >
-                {/* Background da própria imagem com crop diferente */}
                 <Box className="absolute inset-0 opacity-10 scale-110 group-hover:scale-100 transition-transform duration-700">
                   <Image
                     src={casesContent.images.mockups}
@@ -159,14 +148,12 @@ export default function CasesPage() {
                 </Box>
               </Card>
 
-              {/* Case 3: Imagem menor lateral */}
               <Card
                 variant="glass"
                 padding="none"
                 className="overflow-hidden group cursor-pointer hover:border-accent-400 transition-all"
               >
                 <Box className="grid grid-cols-5">
-                  {/* Imagem estreita */}
                   <Box className="col-span-2 relative">
                     <Box className="absolute inset-0">
                       <Image
@@ -175,12 +162,10 @@ export default function CasesPage() {
                         fill
                         className="object-cover object-right group-hover:scale-110 transition-transform duration-700"
                       />
-                      {/* Gradient para integrar com conteúdo */}
                       <Box className="absolute inset-0 bg-gradient-to-r from-transparent to-white/80" />
                     </Box>
                   </Box>
 
-                  {/* Conteúdo */}
                   <Box className="col-span-3 p-6 flex flex-col justify-center space-y-4">
                     <Box className="flex items-center justify-between">
                       <Box className="flex items-center justify-center w-12 h-12 rounded-xl bg-accent-100 border border-accent-200">
@@ -217,7 +202,6 @@ export default function CasesPage() {
 
       <SectionDivider variant="dots" spacing="lg" />
 
-      {/* Portfolio Gallery - Imagem hero usada de forma diferente */}
       <Box className="py-20 lg:py-28 relative">
         <Container>
           <ContentBlock
@@ -234,7 +218,6 @@ export default function CasesPage() {
                   fill
                   className="object-cover"
                 />
-                {/* Overlay suave */}
                 <Box className="absolute inset-0 bg-gradient-to-t from-gray-900/40 via-transparent to-transparent" />
               </Card>
             </Box>

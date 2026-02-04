@@ -8,7 +8,6 @@ const homeContent = pages.home;
 export default function HomePage() {
   return (
     <Box>
-      {/* Hero Section Premium - Novo padrão */}
       <HeroSection
         layout="default"
         title={homeContent.content.headline}
@@ -25,13 +24,11 @@ export default function HomePage() {
         </Button>
       </HeroSection>
 
-      {/* UI Design Section - Layout com profundidade */}
       <Box className="py-20 lg:py-32 relative overflow-hidden">
         <VisualAccent position="top-right" variant="grid" />
 
         <Container>
           <Box className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            {/* Conteúdo - 5 colunas */}
             <Box className="lg:col-span-5">
               <ContentBlock
                 layout="bordered"
@@ -61,9 +58,7 @@ export default function HomePage() {
               </ContentBlock>
             </Box>
 
-            {/* Imagem - 7 colunas com layers */}
             <Box className="lg:col-span-7 relative">
-              {/* Layer decorativa de fundo */}
               <Box className="absolute -right-8 -top-8 w-full h-full bg-gradient-to-br from-accent-100/30 to-transparent rounded-3xl blur-2xl opacity-50" />
 
               <Card
@@ -78,11 +73,9 @@ export default function HomePage() {
                   className="object-cover"
                 />
 
-                {/* Overlay com gradiente diagonal */}
                 <Box className="absolute inset-0 bg-gradient-to-tr from-accent-500/5 via-transparent to-transparent" />
               </Card>
 
-              {/* Badge flutuante */}
               <Box className="absolute -bottom-4 -left-4 px-5 py-3 bg-white backdrop-blur-md rounded-2xl border border-gray-200 shadow-xl">
                 <Box className="flex items-center gap-3">
                   <Box className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent-100 to-accent-50 flex items-center justify-center">
@@ -105,15 +98,12 @@ export default function HomePage() {
 
       <SectionDivider variant="gradient" spacing="md" />
 
-      {/* Method Section - Alternância com composição visual */}
       <Box className="py-20 lg:py-32 bg-gradient-to-b from-transparent via-gray-50/60 to-transparent relative">
         <VisualAccent position="bottom-left" variant="lines" />
 
         <Container>
           <Box className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
-            {/* Imagem - 6 colunas, ordem invertida em desktop */}
             <Box className="lg:col-span-6 order-2 lg:order-1 relative">
-              {/* Elemento decorativo */}
               <Box className="absolute -left-4 top-1/2 -translate-y-1/2 space-y-2 hidden lg:block">
                 <Box className="w-8 h-px bg-gradient-to-r from-accent-400 to-transparent" />
                 <Box className="w-12 h-px bg-gradient-to-r from-accent-300 to-transparent" />
@@ -135,7 +125,6 @@ export default function HomePage() {
                   <Box className="absolute inset-0 bg-gradient-to-tl from-accent-500/10 via-transparent to-transparent" />
                 </Card>
 
-                {/* Métrica flutuante */}
                 <Box className="absolute -top-4 -right-4 px-4 py-3 bg-white/95 backdrop-blur-md rounded-xl border border-gray-200 shadow-lg">
                   <Typography variant="caption" weight="bold" className="text-accent-600 text-2xl block">
                     100%
@@ -147,7 +136,6 @@ export default function HomePage() {
               </Box>
             </Box>
 
-            {/* Conteúdo - 6 colunas */}
             <Box className="lg:col-span-6 order-1 lg:order-2">
               <ContentBlock
                 title="Processo claro e entrega consistente"
@@ -156,7 +144,6 @@ export default function HomePage() {
                   Trabalhamos com transparência total, alinhando expectativas e entregando resultados mensuráveis em cada etapa.
                 </Typography>
 
-                {/* Grid de benefícios */}
                 <Box className="grid grid-cols-2 gap-4 mt-8">
                   <Card variant="glass" padding="md" className="border-gray-200/60">
                     <Box className="space-y-2">
@@ -194,9 +181,7 @@ export default function HomePage() {
 
       <SectionDivider variant="asymmetric" spacing="lg" />
 
-      {/* CTA Section - Destaque visual */}
       <Box className="py-20 lg:py-32 relative overflow-hidden">
-        {/* Background decorativo */}
         <Box className="absolute inset-0 opacity-40">
           <Box className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-accent-100/60 to-transparent rounded-full blur-3xl" />
           <Box className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-tl from-accent-100/60 to-transparent rounded-full blur-3xl" />
@@ -205,7 +190,6 @@ export default function HomePage() {
         <Container className="relative z-10">
           <Card variant="glass" padding="none" className="max-w-5xl mx-auto overflow-hidden border-accent-200/60">
             <Box className="grid grid-cols-1 lg:grid-cols-12">
-              {/* Barra decorativa lateral */}
               <Box className="lg:col-span-1 bg-gradient-to-b from-accent-500 via-accent-400 to-accent-300 hidden lg:flex items-center justify-center">
                 <Box className="space-y-4 py-8">
                   <Box className="w-2 h-2 rounded-full bg-white/80" />
@@ -214,7 +198,6 @@ export default function HomePage() {
                 </Box>
               </Box>
 
-              {/* Conteúdo principal */}
               <Box className="lg:col-span-11 p-10 lg:p-16">
                 <Stack align="center" spacing="xl" className="text-center">
                   <Box className="flex items-center justify-center w-20 h-20 rounded-3xl bg-gradient-to-br from-accent-100 to-accent-50 border-2 border-accent-200">

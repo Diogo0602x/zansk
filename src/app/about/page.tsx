@@ -8,7 +8,6 @@ const aboutContent = pages.about;
 export default function AboutPage() {
   return (
     <Box>
-      {/* Hero Section Premium */}
       <HeroSection
         layout="default"
         title={aboutContent.content.headline || "Sobre"}
@@ -16,7 +15,6 @@ export default function AboutPage() {
         backgroundImage={aboutContent.images.humanWorkspace}
       />
 
-      {/* Images Grid */}
       <Box className="py-20 lg:py-28 bg-gray-50/50">
         <Container>
           <Box className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -52,7 +50,6 @@ export default function AboutPage() {
         </Container>
       </Box>
 
-      {/* Values Section */}
       <Box className="py-20 lg:py-28">
         <Container>
           <Stack spacing="xl">

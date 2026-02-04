@@ -10,9 +10,7 @@ export function Footer() {
     <Box as="footer" className="bg-gray-50/80 backdrop-blur-sm border-t border-gray-200 mt-auto">
       <Container>
         <Stack spacing="xl" className="py-12 lg:py-16">
-          {/* Main Footer Content */}
           <Box className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-            {/* Brand */}
             <Stack spacing="md">
               <Box className="flex items-center gap-3">
                 <Box className="relative w-10 h-10">
@@ -32,7 +30,6 @@ export function Footer() {
               </Typography>
             </Stack>
 
-            {/* Pages */}
             <Stack spacing="sm">
               <Typography variant="body" weight="semibold" className="text-gray-900">
                 Páginas
@@ -57,7 +54,6 @@ export function Footer() {
               </Stack>
             </Stack>
 
-            {/* Resources */}
             <Stack spacing="sm">
               <Typography variant="body" weight="semibold" className="text-gray-900">
                 Recursos
@@ -82,7 +78,6 @@ export function Footer() {
               </Stack>
             </Stack>
 
-            {/* Contact */}
             <Stack spacing="sm">
               <Typography variant="body" weight="semibold" className="text-gray-900">
                 Contato
@@ -121,7 +116,6 @@ export function Footer() {
 
           <Divider />
 
-          {/* Bottom Footer */}
           <Stack
             direction="row"
             justify="between"

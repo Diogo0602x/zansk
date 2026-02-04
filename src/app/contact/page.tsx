@@ -22,7 +22,6 @@ export default function ContactPage() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
     await new Promise((resolve) => setTimeout(resolve, 2000));
 
     alert("Mensagem enviada! Entraremos em contato em breve.");
@@ -43,7 +42,6 @@ export default function ContactPage() {
 
   return (
     <Box>
-      {/* Hero centrado com contexto visual */}
       <HeroSection
         layout="centered"
         title={contactContent.content.headline}
@@ -51,13 +49,11 @@ export default function ContactPage() {
         backgroundImage={contactContent.images.bgStripes}
       />
 
-      {/* Contact Form com layout assimétrico */}
       <Box className="py-20 lg:py-32 relative">
         <VisualAccent position="top-right" variant="circle" />
 
         <Container size="md">
           <Box className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-            {/* Form */}
             <Card variant="glass" padding="xl">
               <form onSubmit={handleSubmit}>
                 <Stack spacing="lg">
@@ -148,7 +144,6 @@ export default function ContactPage() {
               </form>
             </Card>
 
-            {/* Contact Info */}
             <Stack spacing="lg">
               <Card variant="glass" padding="lg">
                 <Stack spacing="md">
