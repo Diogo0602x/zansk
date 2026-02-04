@@ -1,10 +1,12 @@
-import { ReactNode } from "react";
+import { ReactNode, useMemo } from "react";
 import { Box, Container, Stack, Typography, Image, Card } from "@/components/ui";
 import { cn } from "@/lib/utils";
+import { normalizeAssetPath } from "@/utils/assets";
 
 interface HeroSectionProps {
   title: string | ReactNode;
   subtitle?: string;
+  /** Pode ser bg-* (background) ou uma imagem de apoio visual */
   backgroundImage?: string;
   layout?: "default" | "centered";
   className?: string;
@@ -12,12 +14,11 @@ interface HeroSectionProps {
 }
 
 /**
- * HeroSection Premium v2 - Composição visual avançada
- * - Ancoragem visual assimétrica com card semi-flutuante
- * - Background participativo com grain/noise
- * - Equilíbrio horizontal com elementos secundários
- * - Micro-interações no CTA
- * - Padrão replicável para todas as páginas
+ * HeroSection Premium — Clean, tecnológico, replicável
+ * - bg-* sempre como background (pronto para receber texto)
+ * - Composição horizontal no desktop (card + visual element)
+ * - Mobile-first: compacto, legível, sem vazios
+ * - Camadas e decoração reduzidas (código mais sustentável)
  */
 export function HeroSection({
   title,
@@ -27,90 +28,98 @@ export function HeroSection({
   className,
   children,
 }: HeroSectionProps) {
+  const asset = useMemo(() => {
+    const src = backgroundImage ? normalizeAssetPath(backgroundImage) : undefined;
+    if (!src) return { src: undefined, isBg: false };
+
+    // Regra: qualquer asset com "bg" no nome do arquivo é tratado como background
+    // Ex.: /home/bg.png, /contact/bg-stripes.png, /cases/bg-tech.png
+    const filename = src.split("/").pop()?.toLowerCase() ?? "";
+    const isBg = filename.startsWith("bg") || filename.includes("bg-");
+
+    return { src, isBg };
+  }, [backgroundImage]);
+
+  const showVisualAside = layout === "default" && asset.src && !asset.isBg;
+
   return (
     <Box
       className={cn(
         "relative overflow-hidden",
-        // Altura compacta - elimina espaço em branco
-        "min-h-[50vh] lg:min-h-[55vh]",
         "flex items-center",
+        // Mobile-first: compacto e sem vazios artificiais
+        "py-14 sm:py-16 lg:py-18",
+        // Altura mínima suave (não “tela inteira”)
+        "min-h-[520px] lg:min-h-[560px]",
         className
       )}
     >
-      {/* Background image com overlay participativo */}
-      {backgroundImage && (
-        <Box className="absolute inset-0 z-0">
+      {/* BACKGROUND (sempre leve e legível) */}
+      <Box className="absolute inset-0 -z-10">
+        {/* Imagem bg-* (quando existir) */}
+        {asset.src && asset.isBg && (
           <Image
-            src={backgroundImage}
-            alt="Hero Background"
+            src={asset.src}
+            alt="Hero background"
             fill
-            className="object-cover"
-            style={{ opacity: 0.18 }}
             priority
+            className="object-cover"
           />
-          {/* Overlay com variação de luz horizontal */}
-          <Box className="absolute inset-0 bg-gradient-to-r from-white/97 via-white/94 to-gray-50/96" />
-          {/* Grain/noise sutil para textura */}
-          <Box
-            className="absolute inset-0 opacity-[0.015] mix-blend-overlay"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-            }}
-          />
-        </Box>
-      )}
+        )}
 
-      {/* Grid técnico mais perceptível */}
-      <Box className="absolute inset-0 z-0 opacity-[0.25]">
+        {/* Base clara para manter o padrão transparente e leitura */}
+        <Box className="absolute inset-0 bg-gradient-to-b from-white via-white/95 to-white" />
+
+        {/* Grid técnico sutil (bem discreto) */}
         <Box
-          className="absolute inset-0"
+          className={cn(
+            "absolute inset-0",
+            "opacity-[0.22]",
+            "pointer-events-none"
+          )}
           style={{
             backgroundImage: `
-              linear-gradient(to right, rgb(59 130 246 / 0.12) 1px, transparent 1px),
-              linear-gradient(to bottom, rgb(59 130 246 / 0.12) 1px, transparent 1px)
+              linear-gradient(to right, rgb(59 130 246 / 0.08) 1px, transparent 1px),
+              linear-gradient(to bottom, rgb(59 130 246 / 0.08) 1px, transparent 1px)
             `,
-            backgroundSize: "60px 60px",
+            backgroundSize: "72px 72px",
           }}
         />
+
+        {/* “Glow” ambiental — bem sutil */}
+        <Box className="absolute -right-24 top-1/2 -translate-y-1/2 h-[520px] w-[520px] rounded-full bg-gradient-radial from-blue-200/25 via-blue-100/15 to-transparent blur-3xl pointer-events-none" />
+        <Box className="absolute -left-24 top-1/3 h-[420px] w-[420px] rounded-full bg-gradient-radial from-gray-200/30 via-gray-100/15 to-transparent blur-3xl pointer-events-none" />
+
+        {/* Linhas finas de moldura (detalhe tech) */}
+        <Box className="absolute top-0 right-0 h-[2px] w-[38%] bg-gradient-to-l from-blue-500/25 via-blue-400/10 to-transparent" />
+        <Box className="absolute bottom-0 left-0 h-[2px] w-[34%] bg-gradient-to-r from-blue-500/25 via-blue-400/10 to-transparent" />
       </Box>
 
-      {/* Linhas decorativas mais visíveis */}
-      <Box className="absolute top-0 right-0 w-[40%] h-[2px] bg-gradient-to-l from-accent-500/40 via-accent-400/20 to-transparent" />
-      <Box className="absolute bottom-0 left-0 w-[35%] h-[2px] bg-gradient-to-r from-accent-500/40 via-accent-400/20 to-transparent" />
-
-      {/* Ponto decorativo superior direito */}
-      <Box className="absolute top-8 right-12 hidden lg:block">
-        <Box className="w-2 h-2 rounded-full bg-accent-500/50 shadow-sm shadow-accent-500/30" />
-      </Box>
-
-      {/* Content com ancoragem visual */}
-      <Container className="relative z-10 py-12 lg:py-14">
+      <Container className="relative">
         {layout === "centered" ? (
-          // Layout centralizado para páginas específicas
-          <Box className="max-w-4xl mx-auto">
+          <Box className="mx-auto max-w-4xl">
             <Card
               variant="glass"
               padding="xl"
-              className="backdrop-blur-md bg-white/60 border-white/40 shadow-xl
-                       hover:shadow-2xl transition-shadow duration-500
-                       relative
-                       before:absolute before:inset-0 before:rounded-2xl
-                       before:bg-gradient-to-br before:from-accent-500/5 before:to-transparent
-                       before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-500"
+              className={cn(
+                "relative",
+                "bg-white/70 border-white/55 backdrop-blur-md",
+                "shadow-[0_12px_36px_rgba(0,0,0,0.10)]",
+                "transition-shadow duration-300 hover:shadow-[0_18px_48px_rgba(0,0,0,0.12)]"
+              )}
             >
               <Stack align="center" spacing="lg" className="text-center">
-                {/* Indicador visual superior */}
-                <Box className="flex items-center gap-2 opacity-60">
-                  <Box className="w-8 h-[2px] bg-gradient-to-r from-transparent via-accent-500 to-transparent" />
-                  <Box className="w-1.5 h-1.5 rounded-full bg-accent-500" />
-                  <Box className="w-8 h-[2px] bg-gradient-to-l from-transparent via-accent-500 to-transparent" />
+                <Box className="flex items-center gap-2 opacity-70">
+                  <Box className="h-[2px] w-10 bg-gradient-to-r from-transparent via-blue-500/70 to-transparent" />
+                  <Box className="h-2 w-2 rounded-full bg-blue-500/70" />
+                  <Box className="h-[2px] w-10 bg-gradient-to-l from-transparent via-blue-500/70 to-transparent" />
                 </Box>
 
                 {typeof title === "string" ? (
                   <Typography
                     variant="display"
                     weight="bold"
-                    className="text-balance text-gray-900 leading-[1.1] tracking-[-0.02em] text-4xl lg:text-5xl xl:text-6xl"
+                    className="text-balance text-gray-900 leading-[1.08] tracking-[-0.02em] text-4xl sm:text-5xl lg:text-6xl"
                   >
                     {title}
                   </Typography>
@@ -129,158 +138,119 @@ export function HeroSection({
 
                 {children && <Box className="pt-2">{children}</Box>}
 
-                {/* Indicador visual inferior */}
-                <Box className="w-16 h-[2px] bg-gradient-to-r from-transparent via-gray-300 to-transparent opacity-50 mt-2" />
+                <Box className="mt-2 h-[2px] w-20 bg-gradient-to-r from-transparent via-gray-300/80 to-transparent opacity-60" />
               </Stack>
             </Card>
           </Box>
         ) : (
-          // Layout assimétrico (default) - hero full-width com composição integrada
-          <Box className="relative max-w-[1400px] mx-auto">
-            <Box className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              {/* Barra lateral decorativa */}
-              <Box className="hidden lg:flex flex-col items-center gap-4 py-12">
-                <Box className="w-[2px] h-20 bg-gradient-to-b from-transparent via-accent-500/70 to-transparent" />
-                <Box className="w-2.5 h-2.5 rounded-full bg-accent-500 shadow-lg shadow-accent-500/50
-                              animate-pulse"
-                     style={{ animationDuration: '3s' }}
-                />
-                <Box className="w-[2px] h-12 bg-gradient-to-b from-accent-500/50 to-transparent" />
+          <Box className="mx-auto max-w-[1400px]">
+            <Box className="grid grid-cols-1 lg:grid-cols-12 items-center gap-10">
+              {/* Decor lateral mínima (desktop only) */}
+              <Box className="hidden lg:flex lg:col-span-1 flex-col items-center gap-4 py-10">
+                <Box className="w-[2px] h-20 bg-gradient-to-b from-transparent via-blue-500/60 to-transparent" />
+                <Box className="w-2.5 h-2.5 rounded-full bg-blue-500/70 shadow-sm shadow-blue-500/30" />
+                <Box className="w-[2px] h-12 bg-gradient-to-b from-blue-500/45 to-transparent" />
               </Box>
 
-              {/* Conteúdo principal - card expandido com elementos integrados */}
-              <Box className="lg:col-span-11 relative">
-                <Box className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center">
-                  {/* Card de conteúdo - 3 colunas */}
-                  <Box className="lg:col-span-3 relative z-10">
-                    {/* Elemento decorativo escapando */}
-                    <Box className="absolute -left-6 top-8 w-1.5 h-24 bg-gradient-to-b from-accent-500 via-accent-400/50 to-transparent rounded-full hidden lg:block" />
+              {/* Conteúdo */}
+              <Box className={cn("relative", showVisualAside ? "lg:col-span-7" : "lg:col-span-11")}>
+                <Card
+                  variant="glass"
+                  padding="xl"
+                  className={cn(
+                    "relative",
+                    "bg-white/78 border-white/60 backdrop-blur-lg",
+                    "shadow-[0_10px_34px_rgba(0,0,0,0.10)]",
+                    "transition-all duration-300 hover:shadow-[0_16px_46px_rgba(0,0,0,0.12)]"
+                  )}
+                >
+                  {/* Detalhe “escapando” do card */}
+                  <Box className="hidden lg:block absolute -left-6 top-10 w-[6px] h-28 rounded-full bg-gradient-to-b from-blue-500/80 via-blue-400/35 to-transparent" />
 
-                    <Card
-                      variant="glass"
-                      padding="xl"
-                      className="backdrop-blur-lg bg-white/75 border-white/70
-                               shadow-[0_8px_32px_rgb(0,0,0,0.09)]
-                               hover:shadow-[0_16px_48px_rgb(0,0,0,0.13)]
-                               transition-all duration-500
-                               relative
-                               before:absolute before:inset-0 before:rounded-2xl
-                               before:bg-gradient-to-br before:from-accent-500/8 before:via-transparent before:to-transparent
-                               before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-500"
-                    >
-                      <Stack spacing="lg">
-                        {/* Badge superior */}
-                        <Box className="flex items-center gap-3">
-                          <Box className="w-14 h-[2px] bg-gradient-to-r from-accent-500 via-accent-400 to-accent-300 rounded-full" />
-                          <Box className="w-2 h-2 rounded-full bg-accent-500 shadow-md shadow-accent-500/40" />
-                        </Box>
-
-                        {/* Título */}
-                        {typeof title === "string" ? (
-                          <Typography
-                            variant="display"
-                            weight="bold"
-                            className="text-gray-900 leading-[1.08] tracking-[-0.02em]
-                                     text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem]"
-                          >
-                            {title}
-                          </Typography>
-                        ) : (
-                          title
-                        )}
-
-                        {/* Subtítulo */}
-                        {subtitle && (
-                          <Typography
-                            variant="subtitle"
-                            className="text-gray-600 leading-relaxed text-lg"
-                          >
-                            {subtitle}
-                          </Typography>
-                        )}
-
-                        {/* CTA com micro-interações */}
-                        {children && (
-                          <Box className="pt-3 [&_button]:transition-all [&_button]:duration-300
-                                        [&_button:hover]:bg-white/90 [&_button:hover]:border-accent-400/70
-                                        [&_button:hover]:shadow-xl [&_button:hover]:shadow-accent-500/15
-                                        [&_button:hover]:scale-[1.02]
-                                        [&_button_svg]:transition-transform [&_button_svg]:duration-300
-                                        [&_button:hover_svg]:translate-x-1.5">
-                            {children}
-                          </Box>
-                        )}
-                      </Stack>
-                    </Card>
-                  </Box>
-
-                  {/* Área visual integrada - 2 colunas */}
-                  <Box className="hidden lg:block lg:col-span-2 relative h-[420px]">
-                    {/* Container visual com elementos sobrepostos */}
-                    <Box className="absolute inset-0">
-                      {/* Imagem principal com tratamento */}
-                      {backgroundImage && (
-                        <Box className="absolute right-0 top-1/2 -translate-y-1/2 w-full h-[360px] rounded-3xl overflow-hidden">
-                          <Image
-                            src={backgroundImage}
-                            alt="Visual Element"
-                            fill
-                            className="object-cover scale-105"
-                          />
-                          <Box className="absolute inset-0 bg-gradient-to-br from-white/70 via-white/40 to-white/60 backdrop-blur-[2px]" />
-                          <Box className="absolute inset-0 bg-gradient-to-l from-transparent via-accent-500/5 to-accent-500/10" />
-                        </Box>
-                      )}
-
-                      {/* Grade técnica grande */}
-                      <Box className="absolute right-8 top-8 w-48 h-48 opacity-30 rounded-3xl overflow-hidden">
-                        <Box
-                          className="w-full h-full"
-                          style={{
-                            backgroundImage: `
-                              linear-gradient(to right, rgb(59 130 246 / 0.5) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgb(59 130 246 / 0.5) 1px, transparent 1px)
-                            `,
-                            backgroundSize: "24px 24px",
-                          }}
-                        />
-                      </Box>
-
-                      {/* Formas geométricas decorativas */}
-                      <Box className="absolute left-0 top-12 w-40 h-40 rounded-[2.5rem] bg-gradient-to-br from-accent-100/40 to-accent-50/20 backdrop-blur-sm border border-accent-200/40 rotate-12 shadow-lg shadow-accent-500/10" />
-                      <Box className="absolute right-12 bottom-12 w-28 h-28 rounded-3xl bg-gradient-to-tl from-gray-100/50 to-accent-50/30 backdrop-blur-sm border border-gray-200/50 -rotate-6" />
-
-                      {/* Linhas técnicas variadas */}
-                      <Box className="absolute left-8 top-1/2 -translate-y-1/2 space-y-5 opacity-50">
-                        <Box className="flex items-center gap-2.5">
-                          <Box className="w-24 h-[2px] bg-gradient-to-r from-accent-500 to-accent-400/50 rounded-full shadow-sm shadow-accent-500/30" />
-                          <Box className="w-2 h-2 rounded-full bg-accent-500 shadow-sm shadow-accent-500/40" />
-                        </Box>
-                        <Box className="flex items-center gap-2 pl-8">
-                          <Box className="w-28 h-[2px] bg-gradient-to-r from-accent-400 to-gray-400/50 rounded-full" />
-                        </Box>
-                        <Box className="flex items-center gap-2.5 pl-4">
-                          <Box className="w-20 h-[2px] bg-gradient-to-r from-accent-500 to-transparent rounded-full shadow-sm shadow-accent-500/20" />
-                          <Box className="w-1.5 h-1.5 rounded-full bg-accent-400" />
-                        </Box>
-                        <Box className="flex items-center gap-2 pl-12">
-                          <Box className="w-24 h-[2px] bg-gradient-to-r from-gray-500 to-gray-300/50 rounded-full" />
-                        </Box>
-                        <Box className="flex items-center gap-2 pl-6">
-                          <Box className="w-16 h-[2px] bg-gradient-to-r from-accent-300 to-transparent rounded-full" />
-                        </Box>
-                      </Box>
-
-                      {/* Pontos decorativos */}
-                      <Box className="absolute right-20 top-24 w-3 h-3 rounded-full bg-accent-500/60 shadow-lg shadow-accent-500/40 animate-pulse" style={{ animationDuration: '2s' }} />
-                      <Box className="absolute right-32 bottom-20 w-2 h-2 rounded-full bg-accent-400/50 shadow-md shadow-accent-400/30" />
-
-                      {/* Glow ambiente expandido */}
-                      <Box className="absolute -right-12 top-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-radial from-accent-200/30 via-accent-100/20 to-transparent rounded-full blur-3xl pointer-events-none" />
+                  <Stack spacing="lg">
+                    <Box className="flex items-center gap-3">
+                      <Box className="w-14 h-[2px] bg-gradient-to-r from-blue-500/80 via-blue-400/55 to-blue-300/40 rounded-full" />
+                      <Box className="w-2 h-2 rounded-full bg-blue-500/70 shadow-sm shadow-blue-500/30" />
                     </Box>
+
+                    {typeof title === "string" ? (
+                      <Typography
+                        variant="display"
+                        weight="bold"
+                        className="text-gray-900 leading-[1.06] tracking-[-0.02em] text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem]"
+                      >
+                        {title}
+                      </Typography>
+                    ) : (
+                      title
+                    )}
+
+                    {subtitle && (
+                      <Typography
+                        variant="subtitle"
+                        className="text-gray-600 leading-relaxed text-lg max-w-2xl"
+                      >
+                        {subtitle}
+                      </Typography>
+                    )}
+
+                    {children && (
+                      <Box
+                        className={cn(
+                          "pt-3",
+                          // Micro-interações “produto” para CTAs dentro do hero
+                          "[&_button]:transition-all [&_button]:duration-300",
+                          "[&_button:hover]:bg-white/90 [&_button:hover]:border-blue-400/55",
+                          "[&_button:hover]:shadow-lg [&_button:hover]:shadow-blue-500/10",
+                          "[&_button:hover]:scale-[1.02]",
+                          "[&_button_svg]:transition-transform [&_button_svg]:duration-300",
+                          "[&_button:hover_svg]:translate-x-1.5"
+                        )}
+                      >
+                        {children}
+                      </Box>
+                    )}
+                  </Stack>
+                </Card>
+              </Box>
+
+              {/* Visual aside (somente se NÃO for bg-*) */}
+              {showVisualAside && (
+                <Box className="hidden lg:block lg:col-span-4 relative h-[440px]">
+                  <Box className="absolute inset-0">
+                    <Box className="absolute right-0 top-1/2 -translate-y-1/2 w-full h-[360px] rounded-3xl overflow-hidden">
+                      <Image
+                        src={asset.src!}
+                        alt="Visual element"
+                        fill
+                        className="object-cover scale-105"
+                      />
+                      {/* Tratamento claro para manter transparência e legibilidade do conjunto */}
+                      <Box className="absolute inset-0 bg-gradient-to-br from-white/70 via-white/35 to-white/60 backdrop-blur-[2px]" />
+                      <Box className="absolute inset-0 bg-gradient-to-l from-transparent via-blue-500/5 to-blue-500/10" />
+                    </Box>
+
+                    {/* Grid pequeno e formas (bem sutis) */}
+                    <Box className="absolute right-8 top-8 w-44 h-44 opacity-25 rounded-3xl overflow-hidden">
+                      <Box
+                        className="w-full h-full"
+                        style={{
+                          backgroundImage: `
+                            linear-gradient(to right, rgb(59 130 246 / 0.35) 1px, transparent 1px),
+                            linear-gradient(to bottom, rgb(59 130 246 / 0.35) 1px, transparent 1px)
+                          `,
+                          backgroundSize: "22px 22px",
+                        }}
+                      />
+                    </Box>
+
+                    <Box className="absolute left-0 top-14 w-36 h-36 rounded-[2.25rem] bg-gradient-to-br from-blue-100/45 to-blue-50/20 backdrop-blur-sm border border-blue-200/35 rotate-12 shadow-md shadow-blue-500/10" />
+                    <Box className="absolute right-10 bottom-12 w-28 h-28 rounded-3xl bg-gradient-to-tl from-gray-100/55 to-blue-50/25 backdrop-blur-sm border border-gray-200/45 -rotate-6" />
+
+                    <Box className="absolute right-20 top-24 w-3 h-3 rounded-full bg-blue-500/55 shadow-md shadow-blue-500/25" />
                   </Box>
                 </Box>
-              </Box>
+              )}
             </Box>
           </Box>
         )}
