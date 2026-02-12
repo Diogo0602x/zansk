@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Box, Container, Stack, Typography, Button, Card, Image, Link, HeroSection, VisualAccent } from "@/components/ui";
 import siteContent from "@/constants/siteContent";
-import { FaUser, FaEnvelope, FaBuilding, FaComment, FaPaperPlane, FaLinkedinIn } from "react-icons/fa";
+import { FaUser, FaEnvelope, FaBuilding, FaComment, FaLinkedinIn } from "react-icons/fa";
 import { contactInfo } from "@/constants/contact";
 
 const { pages } = siteContent;
@@ -132,13 +132,8 @@ export default function ContactPage() {
                     />
                   </Box>
 
-                  <Button type="submit" variant="ghost" size="lg" fullWidth loading={isSubmitting}>
-                    <Box className="flex items-center justify-center gap-2">
-                      <FaPaperPlane className="text-sm" />
-                      <Typography variant="body" weight="medium">
-                        Enviar mensagem
-                      </Typography>
-                    </Box>
+                  <Button type="submit" variant="ghost" size="lg" fullWidth loading={isSubmitting} whatsapp={process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}>
+                    Enviar mensagem
                   </Button>
                 </Stack>
               </form>

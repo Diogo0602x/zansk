@@ -4,8 +4,8 @@ export const contactInfo = {
   email: process.env.NEXT_PUBLIC_EMAIL || "zanskco@gmail.com",
 
   getWhatsAppLink: (message?: string) => {
-    const phone = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.replace(/\D/g, "") || "5561996332981";
-    const encodedMessage = message ? encodeURIComponent(message) : "";
-    return `https://wa.me/${phone}${encodedMessage ? `?text=${encodedMessage}` : ""}`;
+    const phone = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.replace(/\D/g, "");
+    const encodedMessage = message ? `?text=${encodeURIComponent(message)}` : "";
+    return `https://wa.me/${phone}${encodedMessage}`;
   },
 };
