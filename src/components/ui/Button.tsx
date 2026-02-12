@@ -8,6 +8,8 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: "sm" | "md" | "lg";
   loading?: boolean;
   fullWidth?: boolean;
+  phone?: string;
+  whatsapp?: string;
 }
 
 const variantClasses = {
@@ -30,9 +32,61 @@ export function Button({
   fullWidth = false,
   disabled,
   className,
+  phone,
+  whatsapp,
   ...props
 }: ButtonProps) {
-  return (
+  const content = loading ? (
+    <Box className="flex items-center justify-center gap-2">
+      <Box className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+      <Typography variant="caption" weight="medium">
+        Carregando...
+      </Typography>
+    </Box>
+  ) : (
+    children
+  );
+
+  if (whatsapp) {
+    const whatsappMessage = encodeURIComponent("Olá, gostaria de realizar um orçamento!");
+    return (
+      <a
+        href={`https://wa.me/${whatsapp}?text=${whatsappMessage}`}
+        className={cn(
+          "inline-block rounded-xl font-medium transition-all duration-200",
+          "focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2",
+          "disabled:opacity-50 disabled:cursor-not-allowed",
+          variantClasses[variant],
+          sizeClasses[size],
+          fullWidth && "w-full",
+          className
+        )}
+        aria-label={`Enviar mensagem para ${whatsapp}`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return phone ? (
+    <a
+      href={`tel:${phone}`}
+      className={cn(
+        "inline-block rounded-xl font-medium transition-all duration-200",
+        "focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2",
+        "disabled:opacity-50 disabled:cursor-not-allowed",
+        variantClasses[variant],
+        sizeClasses[size],
+        fullWidth && "w-full",
+        className
+      )}
+      aria-label={`Ligar para ${phone}`}
+    >
+      {content}
+    </a>
+  ) : (
     <button
       className={cn(
         "rounded-xl font-medium transition-all duration-200",
@@ -46,16 +100,7 @@ export function Button({
       disabled={disabled || loading}
       {...props}
     >
-      {loading ? (
-        <Box className="flex items-center justify-center gap-2">
-          <Box className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
-          <Typography variant="caption" weight="medium">
-            Carregando...
-          </Typography>
-        </Box>
-      ) : (
-        children
-      )}
+      {content}
     </button>
   );
 }

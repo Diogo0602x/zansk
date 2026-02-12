@@ -14,13 +14,8 @@ export default function HomePage() {
         subtitle={homeContent.content.subheadline}
         backgroundImage={homeContent.images.bg}
       >
-        <Button variant="ghost" size="lg" className="group mt-2">
-          <Box className="flex items-center gap-3">
-            <Typography variant="body" weight="medium">
-              {homeContent.content.cta}
-            </Typography>
-            <FaArrowRight className="group-hover:translate-x-1 transition-transform text-sm" />
-          </Box>
+        <Button variant="ghost" size="lg" className="group mt-2" whatsapp={process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}>
+          <FaArrowRight className="mr-2 inline" /> Agendar uma conversa
         </Button>
       </HeroSection>
 
@@ -213,13 +208,8 @@ export default function HomePage() {
                     </Typography>
                   </Box>
 
-                  <Button variant="ghost" size="lg" className="group mt-4">
-                    <Box className="flex items-center gap-3">
-                      <Typography variant="body" weight="medium">
-                        {homeContent.content.cta}
-                      </Typography>
-                      <FaArrowRight className="group-hover:translate-x-1 transition-transform text-sm" />
-                    </Box>
+                  <Button variant="ghost" size="lg" className="group mt-4" whatsapp="556196332981">
+                    <FaArrowRight className="mr-2 inline" /> Agendar uma conversa
                   </Button>
                 </Stack>
               </Box>

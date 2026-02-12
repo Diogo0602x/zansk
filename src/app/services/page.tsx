@@ -225,14 +225,10 @@ export default function ServicesPage() {
                   subtitle="Conte para nós sobre o seu produto e vamos criar um plano personalizado"
                   alignment="left"
                 >
-                  <Button variant="ghost" size="lg" className="group mt-6">
-                    <Box className="flex items-center gap-3">
-                      <Typography variant="body" weight="medium">
-                        {servicesContent.content.cta}
-                      </Typography>
-                      <FaArrowRight className="group-hover:translate-x-1 transition-transform text-sm" />
-                    </Box>
+                  <Button variant="ghost" size="lg" className="group mt-6" whatsapp={process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}>
+                    <FaArrowRight className="mr-2 inline" /> Montar um plano para o meu produto
                   </Button>
+
                 </ContentBlock>
               </Box>
             </Box>
