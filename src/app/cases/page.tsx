@@ -1,33 +1,39 @@
-import { Box, Container, Stack, Typography, Card, Image, HeroSection, ContentBlock, SectionDivider, VisualAccent } from "@/components/ui";
-import { Reveal, Stagger } from "@/components/motion";
+ "use client";
+
+import { useEffect, useState } from "react";
+import { Box, Container, Stack, Typography, Card, Image, HeroSection, ContentBlock, VisualAccent } from "@/components/ui";
+import { Reveal } from "@/components/motion";
 import siteContent from "@/constants/siteContent";
-import { FaMobileAlt, FaShoppingCart, FaArrowRight } from "react-icons/fa";
+import { FaArrowRight, FaTimes } from "react-icons/fa";
 
 const { pages } = siteContent;
 const casesContent = pages.cases;
+const emmanuelSiteUrl = "https://www.emmanuelnascimentoadv.com.br/";
 
-const caseStudies = [
-  {
-    title: "Plataforma SaaS B2B",
-    description: "Redesign completo de UX e migração de arquitetura para cloud-native",
-    tags: ["UX/UI", "Backend", "Cloud"],
-    highlight: true,
-  },
-  {
-    title: "App Mobile de Saúde",
-    description: "Desenvolvimento do zero com foco em acessibilidade e performance",
-    tags: ["Mobile", "React Native", "API"],
-    highlight: false,
-  },
-  {
-    title: "E-commerce de Moda",
-    description: "Otimização de conversão e implementação de checkout personalizado",
-    tags: ["Frontend", "UX", "Conversão"],
-    highlight: false,
-  },
-];
+const caseSummary = {
+  title: "Case real - Emmanuel Nascimento Adv",
+  tags: ["React", "Next.js", "Tailwind CSS", "TypeScript", "Mobile-first", "Responsivo"],
+};
 
 export default function CasesPage() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isModalOpen) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsModalOpen(false);
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [isModalOpen]);
+
   return (
     <Box>
       <Reveal as="section" variant="heading">
@@ -52,8 +58,8 @@ export default function CasesPage() {
               >
                 <Box className="relative aspect-[4/3]">
                   <Image
-                    src={casesContent.images.mockups}
-                    alt={caseStudies[0].title}
+                    src="/cases/emmanuel/mockup-site-emmanuel-novo.png"
+                    alt={caseSummary.title}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-700"
                   />
@@ -71,12 +77,12 @@ export default function CasesPage() {
             <Reveal as="div" variant="rise" className="lg:col-span-5 order-1 lg:order-2">
               <ContentBlock
                 layout="bordered"
-                title={caseStudies[0].title}
-                subtitle={caseStudies[0].description}
+                title={caseSummary.title}
+                subtitle="Resumo rapido do projeto com stack, foco e resultado. Os detalhes completos ficam no modal."
               >
                 <Stack spacing="md">
                   <Box className="flex flex-wrap gap-2">
-                    {caseStudies[0].tags.map((tag) => (
+                    {caseSummary.tags.map((tag) => (
                       <Box
                         key={tag}
                         className="px-3 py-1.5 bg-white/80 backdrop-blur-sm border border-gray-300 rounded-lg text-sm text-gray-700 font-medium hover:border-accent-400 transition-colors"
@@ -86,11 +92,17 @@ export default function CasesPage() {
                     ))}
                   </Box>
 
-                  <Box className="flex items-center gap-2 text-accent-600 hover:gap-3 transition-all group cursor-pointer">
-                    <Typography variant="body" weight="medium">
-                      Ver projeto completo
-                    </Typography>
-                    <FaArrowRight className="text-sm group-hover:translate-x-1 transition-transform" />
+                  <Box className="flex flex-wrap items-center gap-3 pt-1">
+                    <button
+                      type="button"
+                      onClick={() => setIsModalOpen(true)}
+                      className="inline-flex items-center gap-2 px-4 py-2.5 bg-accent-600 text-white rounded-xl hover:bg-accent-700 transition-colors shadow-md shadow-accent-600/25"
+                    >
+                      <Typography variant="body" weight="medium" className="text-white">
+                        Ver mais do projeto
+                      </Typography>
+                      <FaArrowRight className="text-sm" />
+                    </button>
                   </Box>
                 </Stack>
               </ContentBlock>
@@ -99,138 +111,103 @@ export default function CasesPage() {
         </Container>
       </Box>
 
-      <SectionDivider variant="asymmetric" spacing="md" />
-
-      <Box className="py-20 lg:py-28 bg-gradient-to-b from-transparent via-gray-50/40 to-transparent relative">
-        <VisualAccent position="bottom-left" variant="circle" />
-
-        <Container>
-          <Box className="space-y-16 lg:space-y-20">
-            <Stagger as="div" className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center" childSelector="[data-stagger-item]">
-              <Card
-                data-stagger-item
-                variant="glass"
-                padding="lg"
-                className="relative overflow-hidden group cursor-pointer hover:border-accent-400 transition-all"
-              >
-                <Box className="absolute inset-0 opacity-10 scale-110 group-hover:scale-100 transition-transform duration-700">
-                  <Image
-                    src={casesContent.images.mockups}
-                    alt="Background"
-                    fill
-                    className="object-cover object-left"
-                  />
-                </Box>
-
-                <Box className="relative z-10 space-y-6">
-                  <Box className="flex items-center justify-between">
-                    <Box className="flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-accent-100 to-accent-50 border border-accent-200">
-                      <FaMobileAlt className="text-accent-600 text-2xl" />
-                    </Box>
-                    <FaArrowRight className="text-accent-600 group-hover:translate-x-1 transition-transform" />
-                  </Box>
-
-                  <Box className="space-y-3">
-                    <Typography variant="subtitle" weight="bold" className="text-gray-900">
-                      {caseStudies[1].title}
-                    </Typography>
-                    <Typography variant="body" className="text-gray-600 leading-relaxed">
-                      {caseStudies[1].description}
-                    </Typography>
-                  </Box>
-
-                  <Box className="flex flex-wrap gap-2">
-                    {caseStudies[1].tags.map((tag) => (
-                      <Box
-                        key={tag}
-                        className="px-3 py-1 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-full text-xs text-gray-700 font-medium"
-                      >
-                        {tag}
-                      </Box>
-                    ))}
-                  </Box>
-                </Box>
-              </Card>
-
-              <Card
-                data-stagger-item
-                variant="glass"
-                padding="none"
-                className="overflow-hidden group cursor-pointer hover:border-accent-400 transition-all"
-              >
-                <Box className="grid grid-cols-5">
-                  <Box className="col-span-2 relative">
-                    <Box className="absolute inset-0">
-                      <Image
-                        src={casesContent.images.mockups}
-                        alt={caseStudies[2].title}
-                        fill
-                        className="object-cover object-right group-hover:scale-110 transition-transform duration-700"
-                      />
-                      <Box className="absolute inset-0 bg-gradient-to-r from-transparent to-white/80" />
-                    </Box>
-                  </Box>
-
-                  <Box className="col-span-3 p-6 flex flex-col justify-center space-y-4">
-                    <Box className="flex items-center justify-between">
-                      <Box className="flex items-center justify-center w-12 h-12 rounded-xl bg-accent-100 border border-accent-200">
-                        <FaShoppingCart className="text-accent-600 text-lg" />
-                      </Box>
-                      <FaArrowRight className="text-accent-600 group-hover:translate-x-1 transition-transform" />
-                    </Box>
-
-                    <Typography variant="subtitle" weight="semibold" className="text-gray-900">
-                      {caseStudies[2].title}
-                    </Typography>
-
-                    <Typography variant="body" className="text-gray-600 text-sm leading-relaxed">
-                      {caseStudies[2].description}
-                    </Typography>
-
-                    <Box className="flex flex-wrap gap-1.5">
-                      {caseStudies[2].tags.map((tag) => (
-                        <Box
-                          key={tag}
-                          className="px-2 py-0.5 bg-accent-50 border border-accent-200 rounded text-xs text-accent-700 font-medium"
-                        >
-                          {tag}
-                        </Box>
-                      ))}
-                    </Box>
-                  </Box>
-                </Box>
-              </Card>
-            </Stagger>
-          </Box>
-        </Container>
-      </Box>
-
-      <SectionDivider variant="dots" spacing="lg" />
-
-      <Box className="py-20 lg:py-28 relative">
-        <Container>
-          <Reveal as="div" variant="rise">
-            <ContentBlock
-              title="Portfólio Completo"
-              subtitle="Cada projeto é uma oportunidade de criar impacto real e duradouro"
-              alignment="center"
-              className="mb-12"
-            >
-              <Box className="mt-8">
-                <Card variant="glass" padding="none" className="overflow-hidden aspect-[21/9] relative shadow-2xl">
-                  <Image
-                    src={casesContent.images.heroMinimal}
-                    alt="Portfolio Completo"
-                    fill
-                    className="object-cover"
-                  />
-                  <Box className="absolute inset-0 bg-gradient-to-t from-gray-900/40 via-transparent to-transparent" />
-                </Card>
+      {isModalOpen && (
+        <Box className="fixed inset-0 z-[100] bg-gray-950/75 backdrop-blur-md p-4 md:p-8 flex items-center justify-center" onClick={() => setIsModalOpen(false)}>
+          <Box
+            className="w-full max-w-5xl max-h-[90vh] bg-white rounded-2xl shadow-2xl overflow-hidden border border-accent-100 flex flex-col"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <Box className="p-5 md:p-7 border-b border-accent-100 bg-gradient-to-r from-white via-accent-50/30 to-white flex items-start justify-between gap-4 flex-shrink-0">
+              <Box>
+                <Typography variant="title" weight="bold" className="text-gray-900">
+                  Emmanuel Nascimento Adv - Case completo
+                </Typography>
+                <Typography variant="body" className="text-gray-600 mt-2">
+                  Projeto completo em React, Next.js, Tailwind e TypeScript com foco em performance, responsividade e conversao.
+                </Typography>
               </Box>
-            </ContentBlock>
-          </Reveal>
-        </Container>
-      </Box>
+              <button
+                type="button"
+                onClick={() => setIsModalOpen(false)}
+                className="w-10 h-10 rounded-xl border border-accent-200 text-accent-700 hover:bg-accent-50 transition-colors flex items-center justify-center"
+                aria-label="Fechar modal"
+              >
+                <FaTimes />
+              </button>
+            </Box>
+
+            <Box className="p-5 md:p-7 overflow-y-auto flex-1">
+              <Stack spacing="xl">
+                <Box className="flex flex-wrap gap-2">
+                  {caseSummary.tags.map((tag) => (
+                    <Box key={tag} className="px-3 py-1.5 rounded-full bg-accent-50 border border-accent-200 text-xs text-accent-700 font-medium">
+                      {tag}
+                    </Box>
+                  ))}
+                </Box>
+
+                <Box className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  <Card variant="glass" padding="none" className="overflow-hidden border border-gray-200/70">
+                    <Box className="relative h-[300px] sm:h-[380px]">
+                      <Image src="/cases/emmanuel/mockup-site-emmanuel-antigo.png" alt="Layout antigo do projeto" fill className="object-contain bg-gray-50" />
+                      <Box className="absolute top-3 left-3 px-3 py-1 rounded-full bg-gray-900/80 text-white text-xs font-medium">Antes</Box>
+                    </Box>
+                  </Card>
+
+                  <Card variant="glass" padding="none" className="overflow-hidden border border-gray-200/70">
+                    <Box className="relative h-[300px] sm:h-[380px]">
+                      <Image src="/cases/emmanuel/mockup-site-emmanuel-novo.png" alt="Layout novo do projeto" fill className="object-contain bg-gray-50" />
+                      <Box className="absolute top-3 left-3 px-3 py-1 rounded-full bg-accent-600/90 text-white text-xs font-medium">Depois</Box>
+                    </Box>
+                  </Card>
+                </Box>
+
+                <Card variant="glass" padding="none" className="overflow-hidden border border-gray-200/70">
+                  <Box className="relative h-[260px] sm:h-[360px]">
+                    <Image src="/cases/emmanuel/mockup-site-emmanuel-comparacao.png" alt="Comparacao visual do projeto" fill className="object-contain bg-gray-50" />
+                  </Box>
+                </Card>
+
+                <Box className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <Card variant="glass" padding="md">
+                    <Typography variant="body" weight="semibold" className="text-gray-900">Mobile-first real</Typography>
+                    <Typography variant="caption" className="text-gray-600">Fluxo e hierarquia pensados primeiro para telas pequenas.</Typography>
+                  </Card>
+                  <Card variant="glass" padding="md">
+                    <Typography variant="body" weight="semibold" className="text-gray-900">Responsividade consistente</Typography>
+                    <Typography variant="caption" className="text-gray-600">Layout adaptado para celular, tablet e desktop com padrao visual unico.</Typography>
+                  </Card>
+                  <Card variant="glass" padding="md">
+                    <Typography variant="body" weight="semibold" className="text-gray-900">Base tecnica escalavel</Typography>
+                    <Typography variant="caption" className="text-gray-600">Implementacao em TypeScript e componentes reutilizaveis com Tailwind.</Typography>
+                  </Card>
+                </Box>
+              </Stack>
+            </Box>
+
+            <Box className="p-4 md:p-5 border-t border-accent-100 bg-white/95 backdrop-blur flex-shrink-0">
+              <Box className="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-3">
+                <button
+                  type="button"
+                  onClick={() => setIsModalOpen(false)}
+                  className="inline-flex w-full sm:w-auto items-center justify-center px-4 py-2.5 rounded-xl border border-gray-300 text-gray-700 hover:bg-gray-100 transition-colors"
+                >
+                  <Typography variant="body" weight="medium">Fechar</Typography>
+                </button>
+                <a
+                  href={emmanuelSiteUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex w-full sm:w-auto items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-accent-600 text-white hover:bg-accent-700 transition-colors shadow-md shadow-accent-600/25"
+                >
+                  <Typography variant="body" weight="medium" className="text-white">Acessar site do projeto</Typography>
+                  <FaArrowRight className="text-sm" />
+                </a>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
+      )}
     </Box>
   );
 }
