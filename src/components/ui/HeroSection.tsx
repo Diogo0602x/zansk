@@ -1,7 +1,12 @@
-import { ReactNode, useMemo } from "react";
+"use client";
+
+import { ReactNode, useEffect, useMemo, useRef } from "react";
 import { Box, Container, Stack, Typography, Image, Card } from "@/components/ui";
 import { cn } from "@/lib/utils";
 import { normalizeAssetPath } from "@/utils/assets";
+import { loadMotionModules } from "@/lib/motion/engine";
+import { motionTokens } from "@/lib/motion/tokens";
+import { usePrefersReducedMotion } from "@/lib/motion/usePrefersReducedMotion";
 
 interface HeroSectionProps {
   title: string | ReactNode;
@@ -20,6 +25,9 @@ export function HeroSection({
   className,
   children,
 }: HeroSectionProps) {
+  const rootRef = useRef<HTMLDivElement | null>(null);
+  const prefersReducedMotion = usePrefersReducedMotion();
+
   const asset = useMemo(() => {
     const src = backgroundImage ? normalizeAssetPath(backgroundImage) : undefined;
     if (!src) return { src: undefined, isBg: false };
@@ -32,49 +40,94 @@ export function HeroSection({
 
   const showVisualAside = layout === "default" && asset.src && !asset.isBg;
 
+  useEffect(() => {
+    if (prefersReducedMotion || !rootRef.current) return;
+
+    let cleanup = () => {};
+    let cancelled = false;
+
+    void (async () => {
+      try {
+        const { gsap } = await loadMotionModules();
+        if (cancelled || !rootRef.current) return;
+
+        const root = rootRef.current;
+
+        const introTargets = root.querySelectorAll<HTMLElement>(
+          "[data-hero-card], [data-hero-rail], [data-hero-title], [data-hero-subtitle], [data-hero-cta], [data-hero-visual]"
+        );
+        const gridTarget = root.querySelector<HTMLElement>("[data-hero-grid]");
+
+        const ctx = gsap.context(() => {
+          if (introTargets.length > 0) {
+            gsap.fromTo(
+              introTargets,
+              { autoAlpha: 0, y: motionTokens.distance.lg, scale: 0.985, filter: "blur(4px)" },
+              {
+                autoAlpha: 1,
+                y: 0,
+                scale: 1,
+                filter: "blur(0px)",
+                duration: motionTokens.duration.slow / 1000,
+                stagger: motionTokens.stagger.base,
+                ease: motionTokens.easing.emphasized,
+              }
+            );
+          }
+
+          if (gridTarget) {
+            gsap.to(gridTarget, {
+              y: 22,
+              ease: "none",
+              scrollTrigger: {
+                trigger: root,
+                start: "top top",
+                end: "bottom top",
+                scrub: true,
+              },
+            });
+          }
+        }, root);
+
+        cleanup = () => ctx.revert();
+      } catch {
+        // Fallback silencioso: mantém hero totalmente visível.
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+      cleanup();
+    };
+  }, [prefersReducedMotion]);
+
   return (
-    <Box
+    <div
+      ref={rootRef}
       className={cn(
-        "relative overflow-hidden",
+        "relative",
         "flex items-center",
         "py-14 sm:py-16 lg:py-18",
         "min-h-[520px] lg:min-h-[560px]",
         className
       )}
     >
-      <Box className="absolute inset-0 -z-10">
+      <Box className="absolute -top-20 lg:-top-24 inset-x-0 bottom-0 -z-10 overflow-hidden">
+        <Box className="absolute -inset-12 hero-bg-premium-canvas" />
+        <Box className="absolute -inset-12 hero-bg-premium-canvas-secondary opacity-35" />
         {asset.src && asset.isBg && (
           <Image
             src={asset.src}
-            alt="Hero background"
+            alt="Hero texture"
             fill
-            priority
-            className="object-cover"
+            className="object-cover opacity-[0.28] mix-blend-multiply hero-bg-premium-image-alt"
           />
         )}
-
-        <Box className="absolute inset-0 bg-gradient-to-b from-white via-white/95 to-white" />
-
-        <Box
-          className={cn(
-            "absolute inset-0",
-            "opacity-[0.22]",
-            "pointer-events-none"
-          )}
-          style={{
-            backgroundImage: `
-              linear-gradient(to right, rgb(59 130 246 / 0.08) 1px, transparent 1px),
-              linear-gradient(to bottom, rgb(59 130 246 / 0.08) 1px, transparent 1px)
-            `,
-            backgroundSize: "72px 72px",
-          }}
-        />
-
-        <Box className="absolute -right-24 top-1/2 -translate-y-1/2 h-[520px] w-[520px] rounded-full bg-gradient-radial from-blue-200/25 via-blue-100/15 to-transparent blur-3xl pointer-events-none" />
-        <Box className="absolute -left-24 top-1/3 h-[420px] w-[420px] rounded-full bg-gradient-radial from-gray-200/30 via-gray-100/15 to-transparent blur-3xl pointer-events-none" />
-
-        <Box className="absolute top-0 right-0 h-[2px] w-[38%] bg-gradient-to-l from-blue-500/25 via-blue-400/10 to-transparent" />
-        <Box className="absolute bottom-0 left-0 h-[2px] w-[34%] bg-gradient-to-r from-blue-500/25 via-blue-400/10 to-transparent" />
+        <Box className="absolute inset-0 bg-gradient-to-br from-blue-500/16 via-transparent to-sky-500/24 mix-blend-soft-light" />
+        <Box className="absolute inset-0 hero-bg-premium-grain opacity-[0.24]" />
+        <Box className="absolute inset-y-0 -left-1/2 w-1/2 hero-bg-premium-sheen" />
+        <Box className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_36%,rgb(15_23_42_/_0.12)_100%)]" />
+        <Box className="absolute inset-0 bg-gradient-to-b from-white/10 via-white/18 to-white/24" />
       </Box>
 
       <Container className="relative">
@@ -85,13 +138,13 @@ export function HeroSection({
               padding="xl"
               className={cn(
                 "relative",
-                "bg-white/70 border-white/55 backdrop-blur-md",
-                "shadow-[0_12px_36px_rgba(0,0,0,0.10)]",
-                "transition-shadow duration-300 hover:shadow-[0_18px_48px_rgba(0,0,0,0.12)]"
+                "bg-white/58 border-white/60 backdrop-blur-[8px]",
+                "shadow-[0_16px_42px_rgba(15,23,42,0.14)]",
+                "transition-shadow duration-300 hover:shadow-[0_20px_52px_rgba(15,23,42,0.18)]"
               )}
             >
               <Stack align="center" spacing="lg" className="text-center">
-                <Box className="flex items-center gap-2 opacity-70">
+                <Box data-hero-rail className="flex items-center gap-2 opacity-70">
                   <Box className="h-[2px] w-10 bg-gradient-to-r from-transparent via-blue-500/70 to-transparent" />
                   <Box className="h-2 w-2 rounded-full bg-blue-500/70" />
                   <Box className="h-[2px] w-10 bg-gradient-to-l from-transparent via-blue-500/70 to-transparent" />
@@ -99,6 +152,7 @@ export function HeroSection({
 
                 {typeof title === "string" ? (
                   <Typography
+                    data-hero-title
                     variant="display"
                     weight="bold"
                     className="text-balance text-gray-900 leading-[1.08] tracking-[-0.02em] text-4xl sm:text-5xl lg:text-6xl"
@@ -111,6 +165,7 @@ export function HeroSection({
 
                 {subtitle && (
                   <Typography
+                    data-hero-subtitle
                     variant="subtitle"
                     className="text-balance text-gray-600 leading-relaxed max-w-2xl"
                   >
@@ -118,7 +173,7 @@ export function HeroSection({
                   </Typography>
                 )}
 
-                {children && <Box className="pt-2">{children}</Box>}
+                {children && <Box data-hero-cta className="pt-2">{children}</Box>}
 
                 <Box className="mt-2 h-[2px] w-20 bg-gradient-to-r from-transparent via-gray-300/80 to-transparent opacity-60" />
               </Stack>
@@ -128,33 +183,35 @@ export function HeroSection({
           <Box className="mx-auto max-w-[1400px]">
             <Box className="grid grid-cols-1 lg:grid-cols-12 items-center gap-10">
               <Box className="hidden lg:flex lg:col-span-1 flex-col items-center gap-4 py-10">
-                <Box className="w-[2px] h-20 bg-gradient-to-b from-transparent via-blue-500/60 to-transparent" />
-                <Box className="w-2.5 h-2.5 rounded-full bg-blue-500/70 shadow-sm shadow-blue-500/30" />
-                <Box className="w-[2px] h-12 bg-gradient-to-b from-blue-500/45 to-transparent" />
+                <Box data-hero-rail className="w-[2px] h-20 bg-gradient-to-b from-transparent via-blue-500/60 to-transparent" />
+                <Box data-hero-rail className="w-2.5 h-2.5 rounded-full bg-blue-500/70 shadow-sm shadow-blue-500/30" />
+                <Box data-hero-rail className="w-[2px] h-12 bg-gradient-to-b from-blue-500/45 to-transparent" />
               </Box>
 
               <Box className={cn("relative", showVisualAside ? "lg:col-span-7" : "lg:col-span-11")}>
                 <Card
+                  data-hero-card
                   variant="glass"
                   padding="xl"
                   className={cn(
                     "relative",
-                    "bg-white/78 border-white/60 backdrop-blur-lg",
-                    "shadow-[0_10px_34px_rgba(0,0,0,0.10)]",
-                    "transition-all duration-300 hover:shadow-[0_16px_46px_rgba(0,0,0,0.12)]"
+                    "bg-white/54 border-white/65 backdrop-blur-[10px]",
+                    "shadow-[0_18px_46px_rgba(15,23,42,0.16)]",
+                    "transition-all duration-300 hover:shadow-[0_24px_56px_rgba(15,23,42,0.2)]"
                   )}
                 >
 
-                  <Box className="hidden lg:block absolute -left-6 top-10 w-[6px] h-28 rounded-full bg-gradient-to-b from-blue-500/80 via-blue-400/35 to-transparent" />
+                  <Box data-hero-rail className="hidden lg:block absolute -left-6 top-10 w-[6px] h-28 rounded-full bg-gradient-to-b from-blue-500/80 via-blue-400/35 to-transparent" />
 
                   <Stack spacing="lg">
-                    <Box className="flex items-center gap-3">
+                    <Box data-hero-rail className="flex items-center gap-3">
                       <Box className="w-14 h-[2px] bg-gradient-to-r from-blue-500/80 via-blue-400/55 to-blue-300/40 rounded-full" />
                       <Box className="w-2 h-2 rounded-full bg-blue-500/70 shadow-sm shadow-blue-500/30" />
                     </Box>
 
                     {typeof title === "string" ? (
                       <Typography
+                        data-hero-title
                         variant="display"
                         weight="bold"
                         className="text-gray-900 leading-[1.06] tracking-[-0.02em] text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem]"
@@ -167,6 +224,7 @@ export function HeroSection({
 
                     {subtitle && (
                       <Typography
+                        data-hero-subtitle
                         variant="subtitle"
                         className="text-gray-600 leading-relaxed text-lg max-w-2xl"
                       >
@@ -176,6 +234,7 @@ export function HeroSection({
 
                     {children && (
                       <Box
+                        data-hero-cta
                         className={cn(
                           "pt-3",
 
@@ -195,7 +254,7 @@ export function HeroSection({
               </Box>
 
               {showVisualAside && (
-                <Box className="hidden lg:block lg:col-span-4 relative h-[440px]">
+                <Box data-hero-visual className="hidden lg:block lg:col-span-4 relative h-[440px]">
                   <Box className="absolute inset-0">
                     <Box className="absolute right-0 top-1/2 -translate-y-1/2 w-full h-[360px] rounded-3xl overflow-hidden">
                       <Image
@@ -232,6 +291,6 @@ export function HeroSection({
           </Box>
         )}
       </Container>
-    </Box>
+    </div>
   );
 }

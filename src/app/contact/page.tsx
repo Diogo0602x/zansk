@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Box, Container, Stack, Typography, Button, Card, Image, Link, HeroSection, VisualAccent } from "@/components/ui";
+import { Reveal, Stagger } from "@/components/motion";
 import siteContent from "@/constants/siteContent";
 import { FaUser, FaEnvelope, FaBuilding, FaComment, FaPaperPlane, FaLinkedinIn } from "react-icons/fa";
 import { contactInfo } from "@/constants/contact";
@@ -42,19 +43,22 @@ export default function ContactPage() {
 
   return (
     <Box>
-      <HeroSection
-        layout="centered"
-        title={contactContent.content.headline}
-        subtitle={contactContent.content.text}
-        backgroundImage={contactContent.images.bgStripes}
-      />
+      <Reveal as="section" variant="heading">
+        <HeroSection
+          layout="centered"
+          title={contactContent.content.headline}
+          subtitle={contactContent.content.text}
+          backgroundImage={contactContent.images.bgStripes}
+        />
+      </Reveal>
 
       <Box className="py-20 lg:py-32 relative">
         <VisualAccent position="top-right" variant="circle" />
 
         <Container size="md">
           <Box className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-            <Card variant="glass" padding="xl">
+            <Reveal as="div" variant="rise">
+              <Card variant="glass" padding="xl">
               <form onSubmit={handleSubmit}>
                 <Stack spacing="lg">
                   <Typography variant="title" weight="bold" className="text-gray-900">
@@ -142,10 +146,12 @@ export default function ContactPage() {
                   </Button>
                 </Stack>
               </form>
-            </Card>
+              </Card>
+            </Reveal>
 
-            <Stack spacing="lg">
-              <Card variant="glass" padding="lg">
+            <Stagger as="div" childSelector="[data-stagger-item]">
+              <Stack spacing="lg">
+              <Card data-stagger-item variant="glass" padding="lg">
                 <Stack spacing="md">
                   <Box className="flex items-center gap-2">
                     <FaEnvelope className="text-accent-600 text-xl" />
@@ -165,7 +171,7 @@ export default function ContactPage() {
                 </Stack>
               </Card>
 
-              <Card variant="glass" padding="lg">
+              <Card data-stagger-item variant="glass" padding="lg">
                 <Stack spacing="md">
                   <Box className="flex items-center gap-2">
                     <FaLinkedinIn className="text-accent-600 text-xl" />
@@ -197,6 +203,7 @@ export default function ContactPage() {
               </Card>
 
               <Card
+                data-stagger-item
                 variant="glass"
                 padding="none"
                 className="overflow-hidden aspect-square relative shadow-lg"
@@ -208,7 +215,8 @@ export default function ContactPage() {
                   className="object-cover"
                 />
               </Card>
-            </Stack>
+              </Stack>
+            </Stagger>
           </Box>
         </Container>
       </Box>

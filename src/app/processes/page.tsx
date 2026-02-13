@@ -1,4 +1,5 @@
 import { Box, Container, Stack, Typography, Card, Image, HeroSection, SectionTitle } from "@/components/ui";
+import { Reveal, Stagger } from "@/components/motion";
 import siteContent from "@/constants/siteContent";
 import {
   FaSearch,
@@ -54,20 +55,22 @@ const processDetails = [
 export default function ProcessesPage() {
   return (
     <Box>
-      <HeroSection
-        layout="default"
-        title={processesContent.content.headline}
-        subtitle={processesContent.content.steps}
-        backgroundImage={processesContent.images.timeline}
-      />
+      <Reveal as="section" variant="heading">
+        <HeroSection
+          layout="default"
+          title={processesContent.content.headline}
+          subtitle={processesContent.content.steps}
+          backgroundImage={processesContent.images.timeline}
+        />
+      </Reveal>
 
       <Box className="py-20 lg:py-28 bg-gray-50/50">
         <Container>
-          <Box className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <Stagger as="div" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" childSelector="[data-stagger-item]">
             {processDetails.map((step, index) => {
               const Icon = step.icon;
               return (
-                <Card key={index} variant="glass" padding="lg">
+                <Card key={index} data-stagger-item variant="glass" padding="lg">
                   <Stack spacing="md">
                     <Box className="flex items-center gap-3">
                       <Box className="flex items-center justify-center w-10 h-10 rounded-full bg-accent-100 text-accent-600 border border-accent-200">
@@ -84,14 +87,14 @@ export default function ProcessesPage() {
                 </Card>
               );
             })}
-          </Box>
+          </Stagger>
         </Container>
       </Box>
 
       <Box className="py-20 lg:py-28">
         <Container>
-          <Box className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <Card variant="glass" padding="none" className="overflow-hidden aspect-video relative shadow-lg">
+          <Stagger as="div" className="grid grid-cols-1 lg:grid-cols-2 gap-6" childSelector="[data-stagger-item]">
+            <Card data-stagger-item variant="glass" padding="none" className="overflow-hidden aspect-video relative shadow-lg">
               <Image
                 src={processesContent.images.timeline}
                 alt="Timeline"
@@ -99,7 +102,7 @@ export default function ProcessesPage() {
                 className="object-cover"
               />
             </Card>
-            <Card variant="glass" padding="none" className="overflow-hidden aspect-video relative shadow-lg">
+            <Card data-stagger-item variant="glass" padding="none" className="overflow-hidden aspect-video relative shadow-lg">
               <Image
                 src={processesContent.images.workshop}
                 alt="Workshop"
@@ -107,18 +110,20 @@ export default function ProcessesPage() {
                 className="object-cover"
               />
             </Card>
-          </Box>
+          </Stagger>
         </Container>
       </Box>
 
       <Box className="py-20 lg:py-28 bg-gray-50/50">
         <Container>
           <Stack spacing="xl">
-            <SectionTitle align="center" subtitle="Uma metodologia testada e aprovada por dezenas de projetos">
-              Por que nosso processo funciona
-            </SectionTitle>
-            <Box className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-              <Card variant="glass" padding="lg">
+            <Reveal as="div" variant="heading">
+              <SectionTitle align="center" subtitle="Uma metodologia testada e aprovada por dezenas de projetos">
+                Por que nosso processo funciona
+              </SectionTitle>
+            </Reveal>
+            <Stagger as="div" className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8" childSelector="[data-stagger-item]">
+              <Card data-stagger-item variant="glass" padding="lg">
                 <Stack spacing="md">
                   <Typography variant="subtitle" weight="semibold" className="text-gray-900">
                     Previsibilidade
@@ -128,7 +133,7 @@ export default function ProcessesPage() {
                   </Typography>
                 </Stack>
               </Card>
-              <Card variant="glass" padding="lg">
+              <Card data-stagger-item variant="glass" padding="lg">
                 <Stack spacing="md">
                   <Typography variant="subtitle" weight="semibold" className="text-gray-900">
                     Transparência
@@ -138,7 +143,7 @@ export default function ProcessesPage() {
                   </Typography>
                 </Stack>
               </Card>
-              <Card variant="glass" padding="lg">
+              <Card data-stagger-item variant="glass" padding="lg">
                 <Stack spacing="md">
                   <Typography variant="subtitle" weight="semibold" className="text-gray-900">
                     Qualidade
@@ -148,7 +153,7 @@ export default function ProcessesPage() {
                   </Typography>
                 </Stack>
               </Card>
-            </Box>
+            </Stagger>
           </Stack>
         </Container>
       </Box>

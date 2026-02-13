@@ -1,4 +1,5 @@
 import { Box, Container, Stack, Typography, Card, Button, Image, HeroSection, ContentBlock, SectionDivider, VisualAccent } from "@/components/ui";
+import { Reveal, Stagger } from "@/components/motion";
 import siteContent from "@/constants/siteContent";
 import { FaPencilRuler, FaCode, FaMobileAlt, FaServer, FaRocket, FaCog, FaArrowRight } from "react-icons/fa";
 
@@ -43,18 +44,20 @@ const serviceDetails = [
 export default function ServicesPage() {
   return (
     <Box>
-      <HeroSection
-        layout="default"
-        title={servicesContent.content.headline}
-        subtitle="Transformamos desafios em soluções digitais eficientes e escaláveis"
-        backgroundImage={servicesContent.images.bannerTop}
-      />
+      <Reveal as="section" variant="heading">
+        <HeroSection
+          layout="default"
+          title={servicesContent.content.headline}
+          subtitle="Transformamos desafios em soluções digitais eficientes e escaláveis"
+          backgroundImage={servicesContent.images.bannerTop}
+        />
+      </Reveal>
 
       <Box className="py-20 lg:py-32 relative">
         <VisualAccent position="top-right" variant="circle" />
 
         <Container>
-          <Box className="mb-16 lg:mb-24">
+          <Reveal as="div" variant="rise" className="mb-16 lg:mb-24">
             <Card variant="glass" padding="none" className="overflow-hidden border-accent-200/60">
               <Box className="grid grid-cols-1 lg:grid-cols-2">
                 <Box className="relative aspect-square lg:aspect-auto">
@@ -88,10 +91,10 @@ export default function ServicesPage() {
                 </Box>
               </Box>
             </Card>
-          </Box>
+          </Reveal>
 
-          <Box className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-16">
-            <Card variant="glass" padding="none" className="relative overflow-hidden group cursor-pointer hover:border-accent-400 transition-all">
+          <Stagger as="div" className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-16" childSelector="[data-stagger-item]">
+            <Card data-stagger-item variant="glass" padding="none" className="relative overflow-hidden group cursor-pointer hover:border-accent-400 transition-all">
               <Box className="absolute inset-0 opacity-20 group-hover:opacity-25 transition-opacity">
                 <Image
                   src={servicesContent.images.web}
@@ -127,7 +130,7 @@ export default function ServicesPage() {
               </Box>
             </Card>
 
-            <Card variant="glass" padding="none" className="relative overflow-hidden group cursor-pointer hover:border-accent-400 transition-all">
+            <Card data-stagger-item variant="glass" padding="none" className="relative overflow-hidden group cursor-pointer hover:border-accent-400 transition-all">
               <Box className="absolute inset-0 opacity-15 group-hover:opacity-20 transition-opacity">
                 <Image
                   src={servicesContent.images.mobile}
@@ -162,16 +165,17 @@ export default function ServicesPage() {
                 </Box>
               </Box>
             </Card>
-          </Box>
+          </Stagger>
 
           <SectionDivider variant="gradient" spacing="sm" />
 
-          <Box className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
+          <Stagger as="div" className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16" childSelector="[data-stagger-item]">
             {serviceDetails.slice(3).map((service, index) => {
               const Icon = serviceIcons[index + 3];
               return (
                 <Card
                   key={service.title}
+                  data-stagger-item
                   variant="glass"
                   padding="md"
                   className="group hover:border-accent-400 transition-all"
@@ -197,7 +201,7 @@ export default function ServicesPage() {
                 </Card>
               );
             })}
-          </Box>
+          </Stagger>
         </Container>
       </Box>
 
@@ -207,7 +211,8 @@ export default function ServicesPage() {
         <VisualAccent position="bottom-right" variant="lines" />
 
         <Container>
-          <Card variant="glass" padding="none" className="max-w-5xl mx-auto overflow-hidden border-accent-200/60">
+          <Reveal as="div" variant="rise">
+            <Card variant="glass" padding="none" className="max-w-5xl mx-auto overflow-hidden border-accent-200/60">
             <Box className="grid grid-cols-1 lg:grid-cols-5">
               <Box className="lg:col-span-2 relative min-h-[300px] lg:min-h-0">
                 <Image
@@ -236,7 +241,8 @@ export default function ServicesPage() {
                 </ContentBlock>
               </Box>
             </Box>
-          </Card>
+            </Card>
+          </Reveal>
         </Container>
       </Box>
     </Box>

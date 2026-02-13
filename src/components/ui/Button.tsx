@@ -11,9 +11,9 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variantClasses = {
-  solid: "bg-accent-500 text-white hover:bg-accent-600 hover:scale-[1.02] active:scale-[0.98] shadow-sm hover:shadow-md transition-all",
-  ghost: "bg-transparent hover:bg-gray-100 hover:scale-[1.02] active:scale-[0.98] border border-gray-300 hover:border-gray-400 text-gray-700 hover:text-gray-900 transition-all",
-  glass: "bg-white/60 backdrop-blur-sm border border-gray-200 hover:bg-white/80 hover:border-gray-300 hover:scale-[1.02] active:scale-[0.98] shadow-sm hover:shadow transition-all text-gray-700 hover:text-gray-900",
+  solid: "bg-accent-500 text-white hover:bg-accent-600 hover:scale-[1.02] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] shadow-sm hover:shadow-md transition-all",
+  ghost: "bg-transparent hover:bg-gray-100 hover:scale-[1.02] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] border border-gray-300 hover:border-gray-400 text-gray-700 hover:text-gray-900 transition-all",
+  glass: "bg-white/60 backdrop-blur-sm border border-gray-200 hover:bg-white/80 hover:border-gray-300 hover:scale-[1.02] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] shadow-sm hover:shadow transition-all text-gray-700 hover:text-gray-900",
 };
 
 const sizeClasses = {
@@ -35,7 +35,7 @@ export function Button({
   return (
     <button
       className={cn(
-        "rounded-xl font-medium transition-all duration-200",
+        "rounded-xl font-medium transition-all duration-200 ease-[var(--motion-ease-standard)] motion-safe:transform-gpu motion-safe:will-change-transform",
         "focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2",
         "disabled:opacity-50 disabled:cursor-not-allowed",
         variantClasses[variant],

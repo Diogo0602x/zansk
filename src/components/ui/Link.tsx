@@ -10,9 +10,9 @@ interface LinkProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href"
 }
 
 const variantClasses = {
-  default: "text-primary underline underline-offset-4 hover:text-primary-200 transition-all duration-200",
-  nav: "text-primary/90 hover:text-primary transition-all duration-200",
-  footer: "text-secondary-300 hover:text-primary hover:translate-x-1 transition-all duration-200",
+  default: "text-primary underline underline-offset-4 hover:text-primary-200 transition-all duration-200 ease-[var(--motion-ease-standard)]",
+  nav: "text-primary/90 hover:text-primary transition-all duration-200 ease-[var(--motion-ease-standard)]",
+  footer: "text-secondary-300 hover:text-primary hover:translate-x-1 transition-all duration-200 ease-[var(--motion-ease-standard)]",
 };
 
 export function Link({

@@ -1,4 +1,5 @@
 import { Box, Container, Stack, Typography, Card, Image, HeroSection, ContentBlock, SectionDivider, VisualAccent } from "@/components/ui";
+import { Reveal, Stagger } from "@/components/motion";
 import siteContent from "@/constants/siteContent";
 import { FaMobileAlt, FaShoppingCart, FaArrowRight } from "react-icons/fa";
 
@@ -29,19 +30,21 @@ const caseStudies = [
 export default function CasesPage() {
   return (
     <Box>
-      <HeroSection
-        layout="default"
-        title={casesContent.content.headline}
-        subtitle={casesContent.content.text}
-        backgroundImage={casesContent.images.bgTech}
-      />
+      <Reveal as="section" variant="heading">
+        <HeroSection
+          layout="default"
+          title={casesContent.content.headline}
+          subtitle={casesContent.content.text}
+          backgroundImage={casesContent.images.bgTech}
+        />
+      </Reveal>
 
       <Box className="py-20 lg:py-32 relative">
         <VisualAccent position="top-right" variant="lines" />
 
         <Container>
           <Box className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            <Box className="lg:col-span-7 order-2 lg:order-1">
+            <Reveal as="div" variant="image" className="lg:col-span-7 order-2 lg:order-1">
               <Card
                 variant="glass"
                 padding="none"
@@ -63,9 +66,9 @@ export default function CasesPage() {
                   </Box>
                 </Box>
               </Card>
-            </Box>
+            </Reveal>
 
-            <Box className="lg:col-span-5 order-1 lg:order-2">
+            <Reveal as="div" variant="rise" className="lg:col-span-5 order-1 lg:order-2">
               <ContentBlock
                 layout="bordered"
                 title={caseStudies[0].title}
@@ -91,7 +94,7 @@ export default function CasesPage() {
                   </Box>
                 </Stack>
               </ContentBlock>
-            </Box>
+            </Reveal>
           </Box>
         </Container>
       </Box>
@@ -103,8 +106,9 @@ export default function CasesPage() {
 
         <Container>
           <Box className="space-y-16 lg:space-y-20">
-            <Box className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <Stagger as="div" className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center" childSelector="[data-stagger-item]">
               <Card
+                data-stagger-item
                 variant="glass"
                 padding="lg"
                 className="relative overflow-hidden group cursor-pointer hover:border-accent-400 transition-all"
@@ -149,6 +153,7 @@ export default function CasesPage() {
               </Card>
 
               <Card
+                data-stagger-item
                 variant="glass"
                 padding="none"
                 className="overflow-hidden group cursor-pointer hover:border-accent-400 transition-all"
@@ -195,7 +200,7 @@ export default function CasesPage() {
                   </Box>
                 </Box>
               </Card>
-            </Box>
+            </Stagger>
           </Box>
         </Container>
       </Box>
@@ -204,24 +209,26 @@ export default function CasesPage() {
 
       <Box className="py-20 lg:py-28 relative">
         <Container>
-          <ContentBlock
-            title="Portfólio Completo"
-            subtitle="Cada projeto é uma oportunidade de criar impacto real e duradouro"
-            alignment="center"
-            className="mb-12"
-          >
-            <Box className="mt-8">
-              <Card variant="glass" padding="none" className="overflow-hidden aspect-[21/9] relative shadow-2xl">
-                <Image
-                  src={casesContent.images.heroMinimal}
-                  alt="Portfolio Completo"
-                  fill
-                  className="object-cover"
-                />
-                <Box className="absolute inset-0 bg-gradient-to-t from-gray-900/40 via-transparent to-transparent" />
-              </Card>
-            </Box>
-          </ContentBlock>
+          <Reveal as="div" variant="rise">
+            <ContentBlock
+              title="Portfólio Completo"
+              subtitle="Cada projeto é uma oportunidade de criar impacto real e duradouro"
+              alignment="center"
+              className="mb-12"
+            >
+              <Box className="mt-8">
+                <Card variant="glass" padding="none" className="overflow-hidden aspect-[21/9] relative shadow-2xl">
+                  <Image
+                    src={casesContent.images.heroMinimal}
+                    alt="Portfolio Completo"
+                    fill
+                    className="object-cover"
+                  />
+                  <Box className="absolute inset-0 bg-gradient-to-t from-gray-900/40 via-transparent to-transparent" />
+                </Card>
+              </Box>
+            </ContentBlock>
+          </Reveal>
         </Container>
       </Box>
     </Box>

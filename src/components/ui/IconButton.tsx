@@ -31,7 +31,7 @@ export function IconButton({
   return (
     <button
       className={cn(
-        "rounded-xl transition-all duration-200",
+        "rounded-xl transition-all duration-200 ease-[var(--motion-ease-standard)] motion-safe:transform-gpu motion-safe:will-change-transform",
         "focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2",
         "disabled:opacity-50 disabled:cursor-not-allowed",
         sizeClasses[size],
