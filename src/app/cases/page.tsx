@@ -173,16 +173,16 @@ export default function CasesPage() {
 
       {activeCase && (
         <Box
-          className="fixed inset-0 z-[100] bg-gray-950/75 backdrop-blur-md p-4 md:p-8 flex items-center justify-center"
+          className="fixed inset-0 z-[100] bg-gray-950/75 backdrop-blur-md p-0 md:p-8 flex items-stretch md:items-center justify-center overflow-y-auto"
           onClick={() => setActiveCaseId(null)}
         >
           <Box
-            className="w-full max-w-6xl max-h-[90vh] bg-white rounded-2xl shadow-2xl overflow-hidden border border-accent-100 flex flex-col"
+            className="w-full h-full md:h-auto md:max-w-6xl md:max-h-[90vh] bg-white rounded-none md:rounded-2xl shadow-2xl overflow-hidden border-0 md:border md:border-accent-100 flex flex-col"
             onClick={(event) => event.stopPropagation()}
           >
-            <Box className="p-5 md:p-7 border-b border-accent-100 bg-gradient-to-r from-white via-accent-50/30 to-white flex items-start justify-between gap-4 flex-shrink-0">
+            <Box className="sticky top-0 z-10 p-4 sm:p-5 md:p-7 border-b border-accent-100 bg-gradient-to-r from-white via-accent-50/30 to-white flex items-start justify-between gap-4 flex-shrink-0">
               <Box>
-                <Typography variant="title" weight="bold" className="text-gray-900">
+                <Typography variant="title" weight="bold" className="text-gray-900 pr-2">
                   {activeCase.title}
                 </Typography>
                 <Typography variant="body" className="text-gray-600 mt-2">
@@ -192,14 +192,14 @@ export default function CasesPage() {
               <button
                 type="button"
                 onClick={() => setActiveCaseId(null)}
-                className="w-10 h-10 rounded-xl border border-accent-200 text-accent-700 hover:bg-accent-50 transition-colors flex items-center justify-center"
+                className="w-11 h-11 rounded-xl border border-gray-300 bg-white text-gray-700 hover:bg-gray-100 transition-colors flex items-center justify-center shadow-sm flex-shrink-0"
                 aria-label="Fechar modal"
               >
                 <FaTimes />
               </button>
             </Box>
 
-            <Box className="p-5 md:p-7 overflow-y-auto flex-1">
+            <Box className="p-4 sm:p-5 md:p-7 overflow-y-auto flex-1">
               <Stack spacing="xl">
                 <Box className="flex flex-wrap gap-2">
                   {activeCase.tags.map((tag) => (
@@ -240,7 +240,7 @@ export default function CasesPage() {
               </Stack>
             </Box>
 
-            <Box className="p-4 md:p-5 border-t border-accent-100 bg-white/95 backdrop-blur flex-shrink-0">
+            <Box className="sticky bottom-0 z-10 p-4 md:p-5 border-t border-accent-100 bg-white/95 backdrop-blur flex-shrink-0">
               <Box className="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-3">
                 <button
                   type="button"
