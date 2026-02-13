@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useScrolled } from "@/hooks";
 import { Box, Container, Stack, Link, Button, Image, Typography, IconButton } from "@/components/ui";
@@ -23,13 +23,25 @@ export function Header() {
   const scrolled = useScrolled(50);
   const pathname = usePathname();
 
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
   return (
     <Box
       as="header"
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-        scrolled
-          ? "bg-white/80 backdrop-blur-md border-b border-gray-200/60 shadow-sm"
+        "fixed top-0 left-0 right-0 z-[200] transition-all duration-500",
+        scrolled || mobileMenuOpen
+          ? "bg-white/90 backdrop-blur-md border-b border-gray-200/70 shadow-sm"
           : "bg-transparent"
       )}
     >
@@ -50,7 +62,7 @@ export function Header() {
               weight="bold"
               className={cn(
                 "text-xl lg:text-2xl transition-colors",
-                scrolled ? "text-gray-900" : "text-gray-700"
+                scrolled || mobileMenuOpen ? "text-gray-900" : "text-gray-700"
               )}
             >
               {siteContent.siteName}
@@ -100,7 +112,7 @@ export function Header() {
               <svg
                 className={cn(
                   "w-6 h-6 transition-colors",
-                  scrolled ? "text-gray-900" : "text-gray-700"
+                  scrolled || mobileMenuOpen ? "text-gray-900" : "text-gray-700"
                 )}
                 fill="none"
                 stroke="currentColor"
@@ -126,41 +138,54 @@ export function Header() {
             label="Menu"
             variant="ghost"
             size="sm"
-            className="lg:hidden"
+            className={cn(
+              "lg:hidden transition-all",
+              mobileMenuOpen && "bg-white border border-gray-300/80 shadow-sm"
+            )}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           />
         </Stack>
 
         {mobileMenuOpen && (
-          <Box as="nav" className="lg:hidden pb-4 animate-in slide-in-from-top">
-            <Stack spacing="xs">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  variant="nav"
-                  className={cn(
-                    "block px-4 py-3 rounded-lg text-sm font-medium no-underline transition-all duration-200",
-                    pathname === link.href
-                      ? "bg-gray-100 text-gray-900"
-                      : "text-gray-700 hover:text-gray-900 hover:bg-gray-50"
-                  )}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              ))}
-              <Box className="pt-2">
-                <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
-                  <Button variant="ghost" size="md" fullWidth>
-                    <Typography variant="body" weight="medium">
-                      Fale conosco
-                    </Typography>
-                  </Button>
-                </Link>
-              </Box>
-            </Stack>
-          </Box>
+          <>
+            <Box
+              className="lg:hidden fixed inset-0 top-[72px] bg-gray-950/35 backdrop-blur-[2px] z-[190]"
+              onClick={() => setMobileMenuOpen(false)}
+            />
+            <Box as="nav" className="lg:hidden fixed top-[72px] left-0 right-0 z-[200] animate-in slide-in-from-top duration-200">
+              <Container>
+                <Box className="mt-3 rounded-2xl border border-gray-200/90 bg-white p-2.5 shadow-xl shadow-gray-900/20">
+                  <Stack spacing="xs">
+                    {navLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        variant="nav"
+                        className={cn(
+                          "block px-4 py-3 rounded-lg text-sm font-medium no-underline transition-all duration-200 border",
+                          pathname === link.href
+                            ? "bg-accent-50 border-accent-200 text-gray-900"
+                            : "bg-white border-gray-200/90 text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+                        )}
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                    <Box className="pt-2">
+                      <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
+                        <Button variant="ghost" size="md" fullWidth className="border border-gray-300/90 bg-white hover:bg-gray-50">
+                          <Typography variant="body" weight="medium">
+                            Fale conosco
+                          </Typography>
+                        </Button>
+                      </Link>
+                    </Box>
+                  </Stack>
+                </Box>
+              </Container>
+            </Box>
+          </>
         )}
       </Container>
     </Box>
