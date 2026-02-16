@@ -202,6 +202,75 @@ export default function ServicesPage() {
               );
             })}
           </Stagger>
+
+          <Box className="mt-20 lg:mt-24">
+            <Card variant="glass" padding="lg" className="border-accent-200/60">
+              <Stack spacing="lg">
+                <Box className="space-y-2">
+                  <Typography variant="title" as="h2" weight="bold" className="text-gray-900">
+                    Performance de verdade, sem sacrificar UX/UI
+                  </Typography>
+                  <Typography variant="body" as="p" className="text-gray-600 leading-relaxed">
+                    Nosso foco em arquitetura, otimização de assets e experiência de interface gera sites, apps e sistemas
+                    com alta qualidade visual e técnica ao mesmo tempo.
+                  </Typography>
+                </Box>
+
+                <Box className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <Card variant="glass" padding="none" className="overflow-hidden border border-gray-200/70">
+                    <Box className="relative aspect-[16/10]">
+                      <Image
+                        src="/insights/page-speed-zansk.webp"
+                        alt="Relatório PageSpeed Insights do site da Zansk com pontuações 100"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        quality={78}
+                        className="object-cover"
+                      />
+                    </Box>
+                    <Box className="p-4">
+                      <Typography variant="caption" as="p" weight="semibold" className="text-gray-900">
+                        Zansk Tech: 100 em Desempenho, Acessibilidade, Boas Práticas e SEO.
+                      </Typography>
+                    </Box>
+                  </Card>
+
+                  <Card variant="glass" padding="none" className="overflow-hidden border border-gray-200/70">
+                    <Box className="relative aspect-[16/10]">
+                      <Image
+                        src="/insights/page-speed-emmanuel.webp"
+                        alt="Relatório PageSpeed Insights de projeto cliente com pontuações 100"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        quality={78}
+                        className="object-cover"
+                      />
+                    </Box>
+                    <Box className="p-4">
+                      <Typography variant="caption" as="p" weight="semibold" className="text-gray-900">
+                        Projeto cliente: consistência de performance sem perder experiência.
+                      </Typography>
+                    </Box>
+                  </Card>
+                </Box>
+
+                <Box className="flex flex-wrap items-center gap-3">
+                  <a
+                    href="https://pagespeed.web.dev/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors"
+                  >
+                    Verificar no PageSpeed Insights
+                    <FaArrowRight className="text-xs" />
+                  </a>
+                  <Typography variant="caption" as="p" className="text-gray-500">
+                    Metodologia aplicada em criação de sites, apps e sistemas com foco em velocidade e usabilidade.
+                  </Typography>
+                </Box>
+              </Stack>
+            </Card>
+          </Box>
         </Container>
       </Box>
 
