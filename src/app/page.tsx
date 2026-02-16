@@ -1,9 +1,24 @@
 import { Box, Container, Stack, Typography, Button, Card, Image, HeroSection, ContentBlock, SectionDivider, VisualAccent } from "@/components/ui";
 import siteContent from "@/constants/siteContent";
-import { FaPalette, FaRocket, FaCheckCircle, FaArrowRight, FaLayerGroup } from "react-icons/fa";
+import { FaPalette, FaRocket, FaCheckCircle, FaArrowRight, FaLayerGroup, FaQuoteLeft } from "react-icons/fa";
 
 const { pages } = siteContent;
 const homeContent = pages.home;
+
+const featuredReviews = [
+  {
+    name: "Dr. Emmanuel Nascimento",
+    role: "Advogado",
+    image: "/reviews/foto-emmanuel.webp",
+    text: "Equipe extremamente técnica e objetiva. Ganhei um site rápido, elegante e orientado para conversão.",
+  },
+  {
+    name: "Padre Cássio Dalpiaz",
+    role: "Professor e Pesquisador",
+    image: "/reviews/foto-padre-cassio.webp",
+    text: "Conseguiram traduzir a essência do projeto em uma experiência clara, bonita e muito bem executada.",
+  },
+];
 
 export default function HomePage() {
   return (
@@ -183,6 +198,56 @@ export default function HomePage() {
                 </Box>
               </ContentBlock>
             </Box>
+          </Box>
+        </Container>
+      </Box>
+
+      <Box className="py-20 lg:py-28 bg-gray-50/50">
+        <Container>
+          <Stack spacing="lg" className="mb-10">
+            <Typography variant="title" as="h2" weight="bold" className="text-gray-900 text-center">
+              Avaliações reais de quem confiou na Zansk
+            </Typography>
+            <Typography variant="body" as="p" className="text-gray-600 text-center max-w-3xl mx-auto">
+              Performance, UX/UI e qualidade de entrega em projetos que exigem resultado sem abrir mão da experiência.
+            </Typography>
+          </Stack>
+
+          <Box className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {featuredReviews.map((review) => (
+              <Card key={review.name} variant="glass" padding="lg" className="relative overflow-hidden border-accent-200/50">
+                <Box className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent-500 via-accent-300 to-transparent" />
+                <Stack spacing="md">
+                  <Box className="flex items-center gap-4">
+                    <Box className="relative w-14 h-14 rounded-xl overflow-hidden border border-accent-200 shadow-sm">
+                      <Image
+                        src={review.image}
+                        alt={review.name}
+                        fill
+                        sizes="56px"
+                        quality={76}
+                        className="object-cover"
+                      />
+                    </Box>
+                    <Box>
+                      <Typography variant="body" as="p" weight="semibold" className="text-gray-900">
+                        {review.name}
+                      </Typography>
+                      <Typography variant="caption" as="p" className="text-gray-500">
+                        {review.role}
+                      </Typography>
+                    </Box>
+                  </Box>
+
+                  <Box className="space-y-2">
+                    <FaQuoteLeft className="text-accent-500/70 text-lg" />
+                    <Typography variant="body" as="p" className="text-gray-700 leading-relaxed italic">
+                      &ldquo;{review.text}&rdquo;
+                    </Typography>
+                  </Box>
+                </Stack>
+              </Card>
+            ))}
           </Box>
         </Container>
       </Box>
