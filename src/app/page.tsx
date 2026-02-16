@@ -228,8 +228,8 @@ export default function HomePage() {
                         fill
                         sizes="56px"
                         quality={76}
-                        className="object-cover"
-                      />
+                        className={review.name === "Dr. Emmanuel Nascimento" ? "object-cover object-[center_25%]" : "object-cover"}
+                        />
                     </Box>
                     <Box>
                       <Typography variant="body" as="p" weight="semibold" className="text-gray-900">

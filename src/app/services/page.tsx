@@ -94,74 +94,70 @@ export default function ServicesPage() {
           </Reveal>
 
           <Stagger as="div" className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-16" childSelector="[data-stagger-item]">
-            <Card data-stagger-item variant="glass" padding="none" className="relative overflow-hidden group cursor-pointer hover:border-accent-400 transition-all">
-              <Box className="absolute inset-0 opacity-20 group-hover:opacity-25 transition-opacity">
+            <Card data-stagger-item variant="glass" padding="none" className="overflow-hidden group cursor-pointer hover:border-accent-400 transition-all">
+              <Box className="relative h-52 mt-4 mx-4 rounded-xl overflow-hidden">
                 <Image
                   src={servicesContent.images.web}
                   alt={serviceDetails[1].title}
                   fill
-                  className="object-cover scale-110 group-hover:scale-100 transition-transform duration-700"
+                  className="object-cover scale-[1.04] group-hover:scale-100 transition-transform duration-700"
                 />
+                <Box className="absolute inset-0 bg-gradient-to-t from-white/40 via-white/10 to-transparent" />
               </Box>
 
-              <Box className="relative z-10 p-8 flex flex-col justify-between min-h-[320px]">
-                <Box className="space-y-4">
-                  <Box className="w-12 h-12 rounded-xl bg-white/90 backdrop-blur-sm flex items-center justify-center border border-gray-200">
-                    <FaCode className="text-accent-600 text-xl" />
+              <Box className="p-6 space-y-4 bg-white/88">
+                <Box className="flex items-center gap-3">
+                  <Box className="w-11 h-11 rounded-xl bg-accent-100 border border-accent-200 flex items-center justify-center shadow-sm">
+                    <FaCode className="text-accent-600 text-lg" />
                   </Box>
-
-                  <Typography variant="subtitle" weight="bold" className="text-gray-900">
+                  <Typography variant="subtitle" as="h3" weight="bold" className="text-gray-900">
                     {serviceDetails[1].title}
                   </Typography>
                 </Box>
 
-                <Box className="space-y-4">
-                  <Typography variant="body" className="text-gray-700 text-sm">
-                    {serviceDetails[1].description}
-                  </Typography>
+                <Typography variant="body" as="p" className="text-gray-700 text-sm leading-relaxed min-h-[52px]">
+                  {serviceDetails[1].description}
+                </Typography>
 
-                  <Box className="flex items-center gap-2 text-accent-600">
-                    <Typography variant="caption" weight="medium">
-                      Saiba mais
-                    </Typography>
-                    <FaArrowRight className="text-xs group-hover:translate-x-1 transition-transform" />
-                  </Box>
+                <Box className="flex items-center gap-2 text-accent-600">
+                  <Typography variant="caption" as="span" weight="medium">
+                    Saiba mais
+                  </Typography>
+                  <FaArrowRight className="text-xs group-hover:translate-x-1 transition-transform" />
                 </Box>
               </Box>
             </Card>
 
-            <Card data-stagger-item variant="glass" padding="none" className="relative overflow-hidden group cursor-pointer hover:border-accent-400 transition-all">
-              <Box className="absolute inset-0 opacity-15 group-hover:opacity-20 transition-opacity">
+            <Card data-stagger-item variant="glass" padding="none" className="overflow-hidden group cursor-pointer hover:border-accent-400 transition-all">
+              <Box className="relative h-52 mt-4 mx-4 rounded-xl overflow-hidden">
                 <Image
                   src={servicesContent.images.mobile}
                   alt={serviceDetails[2].title}
                   fill
-                  className="object-cover scale-110 group-hover:scale-100 transition-transform duration-700"
+                  className="object-cover scale-[1.04] group-hover:scale-100 transition-transform duration-700"
                 />
+                <Box className="absolute inset-0 bg-gradient-to-t from-white/40 via-white/10 to-transparent" />
               </Box>
 
-              <Box className="relative z-10 p-8 flex flex-col justify-between min-h-[320px]">
-                <Box className="space-y-4">
-                  <Box className="w-12 h-12 rounded-xl bg-white/90 backdrop-blur-sm flex items-center justify-center border border-gray-200">
-                    <FaMobileAlt className="text-accent-600 text-xl" />
+              <Box className="p-6 space-y-4 bg-white/88">
+                <Box className="flex items-center gap-3">
+                  <Box className="w-11 h-11 rounded-xl bg-accent-100 border border-accent-200 flex items-center justify-center shadow-sm">
+                    <FaMobileAlt className="text-accent-600 text-lg" />
                   </Box>
-
-                  <Typography variant="subtitle" weight="bold" className="text-gray-900">
+                  <Typography variant="subtitle" as="h3" weight="bold" className="text-gray-900">
                     {serviceDetails[2].title}
                   </Typography>
                 </Box>
 
-                <Box className="space-y-4">
-                  <Typography variant="body" className="text-gray-700 text-sm">
-                    {serviceDetails[2].description}
-                  </Typography>
+                <Typography variant="body" as="p" className="text-gray-700 text-sm leading-relaxed min-h-[52px]">
+                  {serviceDetails[2].description}
+                </Typography>
 
-                  <Box className="flex items-center gap-2 text-accent-600">
-                    <Typography variant="caption" weight="medium">
-                      Saiba mais
-                    </Typography>
-                    <FaArrowRight className="text-xs group-hover:translate-x-1 transition-transform" />
-                  </Box>
+                <Box className="flex items-center gap-2 text-accent-600">
+                  <Typography variant="caption" as="span" weight="medium">
+                    Saiba mais
+                  </Typography>
+                  <FaArrowRight className="text-xs group-hover:translate-x-1 transition-transform" />
                 </Box>
               </Box>
             </Card>
@@ -205,53 +201,83 @@ export default function ServicesPage() {
 
           <Box className="mt-20 lg:mt-24">
             <Card variant="glass" padding="lg" className="border-accent-200/60">
-              <Stack spacing="lg">
-                <Box className="space-y-2">
+              <Stack spacing="xl">
+                <Box className="space-y-3">
                   <Typography variant="title" as="h2" weight="bold" className="text-gray-900">
-                    Performance de verdade, sem sacrificar UX/UI
+                    Performance comprovada, sem abrir mão de UX/UI
                   </Typography>
-                  <Typography variant="body" as="p" className="text-gray-600 leading-relaxed">
-                    Nosso foco em arquitetura, otimização de assets e experiência de interface gera sites, apps e sistemas
-                    com alta qualidade visual e técnica ao mesmo tempo.
+                  <Typography variant="body" as="p" className="text-gray-600 leading-relaxed max-w-3xl">
+                    Organizamos arquitetura, front-end e otimização de mídia para entregar experiências rápidas,
+                    acessíveis e visualmente sólidas. A prova está nos relatórios e no uso real.
                   </Typography>
+                  <Box className="flex flex-wrap gap-2 pt-1">
+                    <Box className="px-3 py-1.5 rounded-lg bg-accent-50 border border-accent-200 text-xs text-accent-700 font-semibold">
+                      100 Desempenho
+                    </Box>
+                    <Box className="px-3 py-1.5 rounded-lg bg-accent-50 border border-accent-200 text-xs text-accent-700 font-semibold">
+                      100 Acessibilidade
+                    </Box>
+                    <Box className="px-3 py-1.5 rounded-lg bg-accent-50 border border-accent-200 text-xs text-accent-700 font-semibold">
+                      100 Boas Práticas
+                    </Box>
+                    <Box className="px-3 py-1.5 rounded-lg bg-accent-50 border border-accent-200 text-xs text-accent-700 font-semibold">
+                      100 SEO
+                    </Box>
+                  </Box>
                 </Box>
 
-                <Box className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <Card variant="glass" padding="none" className="overflow-hidden border border-gray-200/70">
+                <Box className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+                  <Card variant="glass" padding="none" className="overflow-hidden border border-gray-200/70 lg:col-span-7 relative">
+                    <Box className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent-500 via-accent-300 to-transparent z-10" />
                     <Box className="relative aspect-[16/10]">
                       <Image
                         src="/insights/page-speed-zansk.webp"
-                        alt="Relatório PageSpeed Insights do site da Zansk com pontuações 100"
+                        alt="Relatório PageSpeed Insights do site da Zansk com pontuações máximas"
                         fill
-                        sizes="(max-width: 768px) 100vw, 50vw"
+                        sizes="(max-width: 1024px) 100vw, 58vw"
                         quality={78}
                         className="object-cover"
                       />
                     </Box>
-                    <Box className="p-4">
+                    <Box className="p-4 border-t border-gray-100">
                       <Typography variant="caption" as="p" weight="semibold" className="text-gray-900">
-                        Zansk Tech: 100 em Desempenho, Acessibilidade, Boas Práticas e SEO.
+                        Caso principal: Zansk Tech com 100 em todos os pilares analisados.
                       </Typography>
                     </Box>
                   </Card>
 
-                  <Card variant="glass" padding="none" className="overflow-hidden border border-gray-200/70">
-                    <Box className="relative aspect-[16/10]">
-                      <Image
-                        src="/insights/page-speed-emmanuel.webp"
-                        alt="Relatório PageSpeed Insights de projeto cliente com pontuações 100"
-                        fill
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                        quality={78}
-                        className="object-cover"
-                      />
-                    </Box>
-                    <Box className="p-4">
-                      <Typography variant="caption" as="p" weight="semibold" className="text-gray-900">
-                        Projeto cliente: consistência de performance sem perder experiência.
-                      </Typography>
-                    </Box>
-                  </Card>
+                  <Box className="lg:col-span-5 space-y-4">
+                    <Card variant="glass" padding="none" className="overflow-hidden border border-gray-200/70 relative">
+                      <Box className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent-500 via-accent-300 to-transparent z-10" />
+                      <Box className="relative aspect-[16/10]">
+                        <Image
+                          src="/insights/page-speed-emmanuel.webp"
+                          alt="Relatório PageSpeed Insights de projeto cliente com pontuações máximas"
+                          fill
+                          sizes="(max-width: 1024px) 100vw, 42vw"
+                          quality={78}
+                          className="object-cover"
+                        />
+                      </Box>
+                      <Box className="p-4 border-t border-gray-100">
+                        <Typography variant="caption" as="p" weight="semibold" className="text-gray-900">
+                          Projeto cliente com consistência técnica e visual.
+                        </Typography>
+                      </Box>
+                    </Card>
+
+                    <Card variant="glass" padding="md" className="border-gray-200/70">
+                      <Stack spacing="sm">
+                        <Typography variant="caption" as="p" weight="bold" className="text-gray-900 uppercase tracking-wide">
+                          O que isso representa
+                        </Typography>
+                        <Typography variant="caption" as="p" className="text-gray-600 leading-relaxed">
+                          Carregamento mais rápido, melhor leitura em mobile, menor fricção de navegação e maior
+                          confiança para conversão.
+                        </Typography>
+                      </Stack>
+                    </Card>
+                  </Box>
                 </Box>
 
                 <Box className="flex flex-wrap items-center gap-3">
@@ -265,7 +291,7 @@ export default function ServicesPage() {
                     <FaArrowRight className="text-xs" />
                   </a>
                   <Typography variant="caption" as="p" className="text-gray-500">
-                    Metodologia aplicada em criação de sites, apps e sistemas com foco em velocidade e usabilidade.
+                    Foco em sites, apps e sistemas performáticos sem perder qualidade de experiência.
                   </Typography>
                 </Box>
               </Stack>
