@@ -65,7 +65,7 @@ export default function ServicesPage() {
                     src={servicesContent.images.uiWireframe}
                     alt={serviceDetails[0].title}
                     fill
-                    className="object-cover"
+                    className="object-cover object-[center_30%]"
                   />
                   <Box className="absolute inset-0 bg-gradient-to-r from-transparent to-white/90 lg:to-white/95" />
                 </Box>
@@ -95,12 +95,12 @@ export default function ServicesPage() {
 
           <Stagger as="div" className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-16" childSelector="[data-stagger-item]">
             <Card data-stagger-item variant="glass" padding="none" className="overflow-hidden group cursor-pointer hover:border-accent-400 transition-all">
-              <Box className="relative h-52 mt-4 mx-4 rounded-xl overflow-hidden">
+              <Box className="relative h-56 mt-6 mx-4 rounded-xl overflow-hidden">
                 <Image
                   src={servicesContent.images.web}
                   alt={serviceDetails[1].title}
                   fill
-                  className="object-cover scale-[1.04] group-hover:scale-100 transition-transform duration-700"
+                  className="object-cover object-[center_20%] scale-[1.04] group-hover:scale-100 transition-transform duration-700"
                 />
                 <Box className="absolute inset-0 bg-gradient-to-t from-white/40 via-white/10 to-transparent" />
               </Box>
@@ -129,12 +129,12 @@ export default function ServicesPage() {
             </Card>
 
             <Card data-stagger-item variant="glass" padding="none" className="overflow-hidden group cursor-pointer hover:border-accent-400 transition-all">
-              <Box className="relative h-52 mt-4 mx-4 rounded-xl overflow-hidden">
+              <Box className="relative h-56 mt-6 mx-4 rounded-xl overflow-hidden">
                 <Image
                   src={servicesContent.images.mobile}
                   alt={serviceDetails[2].title}
                   fill
-                  className="object-cover scale-[1.04] group-hover:scale-100 transition-transform duration-700"
+                  className="object-cover object-[center_20%] scale-[1.04] group-hover:scale-100 transition-transform duration-700"
                 />
                 <Box className="absolute inset-0 bg-gradient-to-t from-white/40 via-white/10 to-transparent" />
               </Box>
@@ -314,7 +314,7 @@ export default function ServicesPage() {
                   src={servicesContent.images.architecture}
                   alt="Arquitetura"
                   fill
-                  className="object-cover opacity-60"
+                  className="object-cover object-[center_16%] opacity-60"
                 />
                 <Box className="absolute inset-0 bg-gradient-to-r from-transparent to-white/90 lg:to-white/95" />
               </Box>
