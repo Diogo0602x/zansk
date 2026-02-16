@@ -37,10 +37,9 @@ export const siteContent: SiteContent = {
       title: "Home",
       objective: "Impacto imediato + posicionamento claro.",
       images: {
-        hero: "/home/hero.png",
-        bg: "/home/bg.png",
-        homeUi: "/home/home-ui.png",
-        homeMethod: "/home/home-method.png",
+        bg: "/home/bg.webp",
+        homeUi: "/home/home-ui.webp",
+        homeMethod: "/home/home-method.webp",
       },
       content: {
         headline: "Transformamos ideias em produtos digitais com impacto real",
@@ -54,9 +53,9 @@ export const siteContent: SiteContent = {
       title: "Sobre",
       objective: "Credibilidade, identidade e propósito.",
       images: {
-        humanWorkspace: "/about/human-workspace.png",
-        abstractGeometry: "/about/abstract-geometry.png",
-        teamMoment: "/about/team-moment.png",
+        humanWorkspace: "/about/human-workspace.webp",
+        abstractGeometry: "/about/abstract-geometry.webp",
+        teamMoment: "/about/team-moment.webp",
       },
       content: {
         headline: "Uma parceira digital focada em clareza, qualidade e resultado",
@@ -68,11 +67,11 @@ export const siteContent: SiteContent = {
       title: "Serviços",
       objective: "Clareza de oferta e valor entregue.",
       images: {
-        bannerTop: "/services/banner-top.png",
-        uiWireframe: "/services/ui-wireframe.png",
-        web: "/services/web.png",
-        mobile: "/services/mobile.png",
-        architecture: "/services/architecture.png",
+        bannerTop: "/services/banner-top.webp",
+        uiWireframe: "/services/ui-wireframe.webp",
+        web: "/services/web.webp",
+        mobile: "/services/mobile.webp",
+        architecture: "/services/architecture.webp",
       },
       content: {
         headline: "Do design à entrega. Do lançamento à evolução",
@@ -92,10 +91,10 @@ export const siteContent: SiteContent = {
       title: "Time",
       objective: "Confiança humana e senioridade.",
       images: {
-        teamSilhouette: "/team/team-silhouette.png",
-        portraits: "/team/portraits.png",
-        pairProgramming: "/team/pair-programming.png",
-        culture: "/team/culture.png",
+        teamSilhouette: "/team/team-silhouette.webp",
+        portraits: "/team/portraits.webp",
+        pairProgramming: "/team/pair-programming.webp",
+        culture: "/team/culture.webp",
       },
       content: {
         headline: "Time enxuto. Mentalidade sênior. Entrega consistente",
@@ -107,9 +106,9 @@ export const siteContent: SiteContent = {
       title: "Avaliações",
       objective: "Prova social e resultados.",
       images: {
-        bgMinimal: "/reviews/bg-minimal.png",
-        results: "/reviews/results.png",
-        meeting: "/reviews/meeting.png",
+        bgMinimal: "/reviews/bg-minimal.webp",
+        results: "/reviews/results.webp",
+        meeting: "/reviews/meeting.webp",
       },
       content: {
         headline: "Confiança construída com entrega",
@@ -121,9 +120,9 @@ export const siteContent: SiteContent = {
       title: "Cases / Portfólio",
       objective: "Mostrar capacidade na prática.",
       images: {
-        heroMinimal: "/cases/hero-minimal.png",
-        mockups: "/cases/mockups.png",
-        bgTech: "/cases/bg-tech.png",
+        heroMinimal: "/cases/hero-minimal.webp",
+        mockups: "/cases/mockups.webp",
+        bgTech: "/cases/bg-tech.webp",
       },
       content: {
         headline: "Projetos que evoluíram produtos e negócios",
@@ -135,8 +134,8 @@ export const siteContent: SiteContent = {
       title: "Processos",
       objective: "Explicar o método e reduzir fricção comercial.",
       images: {
-        timeline: "/processes/timeline.png",
-        workshop: "/processes/workshop.png",
+        timeline: "/processes/timeline.webp",
+        workshop: "/processes/workshop.webp",
       },
       content: {
         headline: "Processo simples, previsível e transparente",
@@ -148,8 +147,8 @@ export const siteContent: SiteContent = {
       title: "Contato",
       objective: "Conversão.",
       images: {
-        bgStripes: "/contact/bg-stripes.png",
-        humanMessage: "/contact/human-message.png",
+        bgStripes: "/contact/bg-stripes.webp",
+        humanMessage: "/contact/human-message.webp",
       },
       content: {
         headline: "Vamos conversar sobre o seu produto?",

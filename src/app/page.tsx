@@ -1,5 +1,4 @@
 import { Box, Container, Stack, Typography, Button, Card, Image, HeroSection, ContentBlock, SectionDivider, VisualAccent } from "@/components/ui";
-import { Reveal, Stagger } from "@/components/motion";
 import siteContent from "@/constants/siteContent";
 import { FaPalette, FaRocket, FaCheckCircle, FaArrowRight, FaLayerGroup } from "react-icons/fa";
 
@@ -9,7 +8,7 @@ const homeContent = pages.home;
 export default function HomePage() {
   return (
     <Box>
-      <Reveal as="section" variant="heading">
+      <Box as="section">
         <HeroSection
           layout="default"
           title={homeContent.content.headline}
@@ -25,45 +24,45 @@ export default function HomePage() {
             </Box>
           </Button>
         </HeroSection>
-      </Reveal>
+      </Box>
 
       <Box className="py-20 lg:py-32 relative overflow-hidden">
         <VisualAccent position="top-right" variant="grid" />
 
         <Container>
           <Box className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            <Reveal as="div" variant="rise" className="lg:col-span-5">
+            <Box className="lg:col-span-5">
               <ContentBlock
                 layout="bordered"
                 title="Design que comunica e converte"
                 subtitle="Criamos interfaces intuitivas e experiências memoráveis que colocam o usuário no centro de cada decisão."
               >
-                <Stagger as="div" className="mt-6" childSelector="[data-stagger-item]">
+                <Box className="mt-6">
                   <Stack spacing="md">
-                    <Box data-stagger-item className="flex items-center gap-3 text-gray-700">
+                    <Box className="flex items-center gap-3 text-gray-700">
                       <Box className="w-1.5 h-1.5 rounded-full bg-accent-500" />
                       <Typography variant="body" className="text-sm">
                         Pesquisa e estratégia centrada no usuário
                       </Typography>
                     </Box>
-                    <Box data-stagger-item className="flex items-center gap-3 text-gray-700">
+                    <Box className="flex items-center gap-3 text-gray-700">
                       <Box className="w-1.5 h-1.5 rounded-full bg-accent-500" />
                       <Typography variant="body" className="text-sm">
                         Prototipagem de alta fidelidade
                       </Typography>
                     </Box>
-                    <Box data-stagger-item className="flex items-center gap-3 text-gray-700">
+                    <Box className="flex items-center gap-3 text-gray-700">
                       <Box className="w-1.5 h-1.5 rounded-full bg-accent-500" />
                       <Typography variant="body" className="text-sm">
                         Testes de usabilidade e iteração
                       </Typography>
                     </Box>
                   </Stack>
-                </Stagger>
+                </Box>
               </ContentBlock>
-            </Reveal>
+            </Box>
 
-            <Reveal as="div" variant="image" className="lg:col-span-7 relative">
+            <Box className="lg:col-span-7 relative">
               <Box className="absolute -right-8 -top-8 w-full h-full bg-gradient-to-br from-accent-100/30 to-transparent rounded-3xl blur-2xl opacity-50" />
               <Card
                 variant="glass"
@@ -97,7 +96,7 @@ export default function HomePage() {
                   </Box>
                 </Box>
               </Box>
-            </Reveal>
+            </Box>
           </Box>
         </Container>
       </Box>
@@ -109,7 +108,7 @@ export default function HomePage() {
 
         <Container>
           <Box className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
-            <Reveal as="div" variant="image" className="lg:col-span-6 order-2 lg:order-1 relative">
+            <Box className="lg:col-span-6 order-2 lg:order-1 relative">
               <Box className="absolute -left-4 top-1/2 -translate-y-1/2 space-y-2 hidden lg:block">
                 <Box className="w-8 h-px bg-gradient-to-r from-accent-400 to-transparent" />
                 <Box className="w-12 h-px bg-gradient-to-r from-accent-300 to-transparent" />
@@ -143,9 +142,9 @@ export default function HomePage() {
                   </Typography>
                 </Box>
               </Box>
-            </Reveal>
+            </Box>
 
-            <Reveal as="div" variant="rise" className="lg:col-span-6 order-1 lg:order-2">
+            <Box className="lg:col-span-6 order-1 lg:order-2">
               <ContentBlock
                 title="Processo claro e entrega consistente"
               >
@@ -153,8 +152,8 @@ export default function HomePage() {
                   Trabalhamos com transparência total, alinhando expectativas e entregando resultados mensuráveis em cada etapa.
                 </Typography>
 
-                <Stagger as="div" className="grid grid-cols-2 gap-4 mt-8" childSelector="[data-stagger-item]">
-                  <Card data-stagger-item variant="glass" padding="md" className="border-gray-200/60">
+                <Box className="grid grid-cols-2 gap-4 mt-8">
+                  <Card variant="glass" padding="md" className="border-gray-200/60">
                     <Box className="space-y-2">
                       <Box className="w-8 h-8 rounded-lg bg-accent-100 flex items-center justify-center">
                         <FaCheckCircle className="text-accent-600 text-sm" />
@@ -168,7 +167,7 @@ export default function HomePage() {
                     </Box>
                   </Card>
 
-                  <Card data-stagger-item variant="glass" padding="md" className="border-gray-200/60">
+                  <Card variant="glass" padding="md" className="border-gray-200/60">
                     <Box className="space-y-2">
                       <Box className="w-8 h-8 rounded-lg bg-accent-100 flex items-center justify-center">
                         <FaLayerGroup className="text-accent-600 text-sm" />
@@ -181,9 +180,9 @@ export default function HomePage() {
                       </Typography>
                     </Box>
                   </Card>
-                </Stagger>
+                </Box>
               </ContentBlock>
-            </Reveal>
+            </Box>
           </Box>
         </Container>
       </Box>
@@ -197,7 +196,7 @@ export default function HomePage() {
         </Box>
 
         <Container className="relative z-10">
-          <Reveal as="div" variant="rise">
+          <Box>
             <Card variant="glass" padding="none" className="max-w-5xl mx-auto overflow-hidden border-accent-200/60">
             <Box className="grid grid-cols-1 lg:grid-cols-12">
               <Box className="lg:col-span-1 bg-gradient-to-b from-accent-500 via-accent-400 to-accent-300 hidden lg:flex items-center justify-center">
@@ -235,7 +234,7 @@ export default function HomePage() {
               </Box>
             </Box>
             </Card>
-          </Reveal>
+          </Box>
         </Container>
       </Box>
     </Box>

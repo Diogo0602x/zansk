@@ -43,11 +43,11 @@ const portfolioCases: CaseData[] = [
       "Projeto completo em React, Next.js, Tailwind e TypeScript com foco em performance, responsividade e clareza de conteudo para conversão.",
     tags: ["React", "Next.js", "Tailwind CSS", "TypeScript", "Mobile-first", "Responsivo"],
     siteUrl: "https://www.emmanuelnascimentoadv.com.br/",
-    cover: "/cases/emmanuel/mockup-site-emmanuel-novo.png",
+    cover: "/cases/emmanuel/mockup-site-emmanuel-novo.webp",
     images: {
-      primary: "/cases/emmanuel/mockup-site-emmanuel-antigo.png",
-      secondary: "/cases/emmanuel/mockup-site-emmanuel-novo.png",
-      tertiary: "/cases/emmanuel/mockup-site-emmanuel-comparacao.png",
+      primary: "/cases/emmanuel/mockup-site-emmanuel-antigo.webp",
+      secondary: "/cases/emmanuel/mockup-site-emmanuel-novo.webp",
+      tertiary: "/cases/emmanuel/mockup-site-emmanuel-comparacao.webp",
     },
     highlights: [
       "Arquitetura de componentes para evolucao continua.",
@@ -70,11 +70,11 @@ const portfolioCases: CaseData[] = [
       "Projeto academico com interface informativa e estetica literaria. Estruturado para apresentar trajetoria, areas de atuacao, cursos e contato direto.",
     tags: ["React 20", "TypeScript", "Vite", "React Router v7", "Framer Motion", "Tailwind CSS", "React Icons"],
     siteUrl: "https://www.ocinzento.com.br/",
-    cover: "/cases/padre-cassio/mockup-site-padre-cassio-web.png",
+    cover: "/cases/padre-cassio/mockup-site-padre-cassio-web.webp",
     images: {
-      primary: "/cases/padre-cassio/mockup-site-padre-cassio-mobile.png",
-      secondary: "/cases/padre-cassio/mockup-site-padre-cassio-web.png",
-      tertiary: "/cases/padre-cassio/mockup-site-padre-cassio-combined.png",
+      primary: "/cases/padre-cassio/mockup-site-padre-cassio-mobile.webp",
+      secondary: "/cases/padre-cassio/mockup-site-padre-cassio-web.webp",
+      tertiary: "/cases/padre-cassio/mockup-site-padre-cassio-combined.webp",
     },
     highlights: [
       "Interface alinhada ao contexto academico e tematico do projeto.",

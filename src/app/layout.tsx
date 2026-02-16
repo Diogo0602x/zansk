@@ -10,6 +10,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://zansk.com.br"),
   title: "Zansk Tech",
   description:
     "Design, tecnologia e estratégia para lançar, evoluir ou reestruturar produtos digitais.",

@@ -1,8 +1,12 @@
 node_modules
 .next
+.next/cache
 out
 dist
 build
+*.tsbuildinfo
+.eslintcache
+.cache
 
 # Logs
 *.log

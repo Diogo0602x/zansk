@@ -221,3 +221,15 @@
   mix-blend-mode: soft-light;
   pointer-events: none;
 }
+
+@media (max-width: 768px) {
+  .hero-bg-premium-sheen,
+  .hero-bg-premium-grain,
+  .hero-bg-premium-canvas-secondary {
+    display: none;
+  }
+
+  .hero-bg-premium-canvas {
+    background-size: 100% 100%, 100% 100%, 100% 100%;
+  }
+}

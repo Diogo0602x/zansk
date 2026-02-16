@@ -1,6 +1,4 @@
-"use client";
-
-import { ReactNode, useMemo } from "react";
+import { ReactNode } from "react";
 import { Box, Container, Stack, Typography, Image, Card } from "@/components/ui";
 import { cn } from "@/lib/utils";
 import { normalizeAssetPath } from "@/utils/assets";
@@ -22,15 +20,12 @@ export function HeroSection({
   className,
   children,
 }: HeroSectionProps) {
-  const asset = useMemo(() => {
-    const src = backgroundImage ? normalizeAssetPath(backgroundImage) : undefined;
-    if (!src) return { src: undefined, isBg: false };
-
-    const filename = src.split("/").pop()?.toLowerCase() ?? "";
-    const isBg = filename.startsWith("bg") || filename.includes("bg-");
-
-    return { src, isBg };
-  }, [backgroundImage]);
+  const src = backgroundImage ? normalizeAssetPath(backgroundImage) : undefined;
+  const filename = src?.split("/").pop()?.toLowerCase() ?? "";
+  const asset = {
+    src,
+    isBg: filename.startsWith("bg") || filename.includes("bg-"),
+  };
 
   const showVisualAside = layout === "default" && asset.src && !asset.isBg;
 
@@ -40,16 +35,16 @@ export function HeroSection({
         <Box className="absolute -inset-12 hero-bg-premium-canvas" />
         <Box className="absolute -inset-12 hero-bg-premium-canvas-secondary opacity-35" />
         {asset.src && asset.isBg && (
-              <Box
-            aria-hidden="true"
-            className="absolute inset-0 opacity-[0.28] mix-blend-multiply hero-bg-premium-image-alt"
-            style={{
-              backgroundImage: `url(${asset.src})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-            }}
-          />
+          <Box aria-hidden="true" className="absolute inset-0 hidden md:block">
+            <Image
+              src={asset.src}
+              alt=""
+              fill
+              sizes="100vw"
+              quality={48}
+              className="object-cover opacity-[0.2] mix-blend-multiply hero-bg-premium-image-alt"
+            />
+          </Box>
         )}
         <Box className="absolute inset-0 bg-gradient-to-br from-gray-500/16 via-transparent to-slate-500/22 mix-blend-soft-light" />
         <Box className="absolute inset-0 hero-bg-premium-grain opacity-[0.24]" />

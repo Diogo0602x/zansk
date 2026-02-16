@@ -13,7 +13,6 @@ export { Skeleton } from "./Skeleton";
 export { Spinner } from "./Spinner";
 export { LoadingOverlay } from "./LoadingOverlay";
 export { WhatsAppButton } from "./WhatsAppButton";
-export { PageIntro } from "./PageIntro";
 export { SectionTitle } from "./SectionTitle";
 export { HeroSection } from "./HeroSection";
 export { ContentBlock } from "./ContentBlock";
