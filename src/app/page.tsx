@@ -10,13 +10,13 @@ const featuredReviews = [
     name: "Dr. Emmanuel Nascimento",
     role: "Advogado",
     image: "/reviews/foto-emmanuel.webp",
-    text: "Equipe extremamente técnica e objetiva. Ganhei um site rápido, elegante e orientado para conversão.",
+    text: "Conduziram o projeto com objetividade e clareza, atentos a cada reunião e a todos os pedidos até chegar exatamente no que eu precisava.",
   },
   {
     name: "Padre Cássio Dalpiaz",
     role: "Professor e Pesquisador",
     image: "/reviews/foto-padre-cassio.webp",
-    text: "Conseguiram traduzir a essência do projeto em uma experiência clara, bonita e muito bem executada.",
+    text: "Trouxeram com sensibilidade a essência institucional e a temática de Senhor dos Anéis, transformando tudo o que eu imaginava em um site fiel e marcante.",
   },
 ];
 
@@ -202,6 +202,8 @@ export default function HomePage() {
         </Container>
       </Box>
 
+      <SectionDivider variant="gradient" spacing="md" />
+
       <Box className="py-20 lg:py-28 bg-gray-50/50">
         <Container>
           <Stack spacing="lg" className="mb-10">
@@ -252,7 +254,7 @@ export default function HomePage() {
         </Container>
       </Box>
 
-      <SectionDivider variant="asymmetric" spacing="lg" />
+      <SectionDivider variant="asymmetric" spacing="md" />
 
       <Box className="py-20 lg:py-32 relative overflow-hidden">
         <Box className="absolute inset-0 opacity-40">

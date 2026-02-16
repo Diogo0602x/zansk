@@ -25,7 +25,11 @@ export function SectionDivider({
       )}
 
       {variant === "gradient" && (
-        <Box className="w-full max-w-md h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
+        <Box className="w-full max-w-2xl flex items-center gap-3">
+          <Box className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
+          <Box className="w-1.5 h-1.5 rounded-full bg-accent-400/70" />
+          <Box className="flex-1 h-px bg-gradient-to-l from-transparent via-gray-300 to-transparent" />
+        </Box>
       )}
 
       {variant === "dots" && (
@@ -40,9 +44,9 @@ export function SectionDivider({
 
       {variant === "asymmetric" && (
         <Box className="w-full max-w-2xl flex items-center gap-4">
-          <Box className="flex-1 h-px bg-gradient-to-r from-transparent via-accent-400/40 to-accent-300/20" />
+          <Box className="flex-1 h-px bg-gradient-to-r from-transparent via-accent-400/55 to-accent-300/20" />
           <Box className="w-2 h-2 rounded-full bg-accent-500/60" />
-          <Box className="w-24 h-px bg-gradient-to-r from-accent-300/20 to-transparent" />
+          <Box className="w-24 h-px bg-gradient-to-r from-accent-300/35 to-transparent" />
         </Box>
       )}
     </Box>
