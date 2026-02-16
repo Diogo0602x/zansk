@@ -53,33 +53,40 @@ export default function TeamPage() {
                 Investimos em pessoas que valorizam qualidade, aprendizado contínuo e colaboração
                 genuína.
               </Typography>
-              <Stagger as="div" childSelector="[data-stagger-item]">
-                <Stack spacing="md">
-                <Box data-stagger-item className="flex items-start gap-3">
-                  <Box className="flex items-center justify-center w-8 h-8 rounded-lg bg-accent-100 border border-accent-200 flex-shrink-0 mt-1">
-                    <FaGraduationCap className="text-accent-600 text-sm" />
-                  </Box>
-                  <Typography variant="body" className="text-gray-600 leading-relaxed">
-                    Desenvolvimento técnico constante
-                  </Typography>
-                </Box>
-                <Box data-stagger-item className="flex items-start gap-3">
-                  <Box className="flex items-center justify-center w-8 h-8 rounded-lg bg-accent-100 border border-accent-200 flex-shrink-0 mt-1">
-                    <FaHandshake className="text-accent-600 text-sm" />
-                  </Box>
-                  <Typography variant="body" className="text-gray-600 leading-relaxed">
-                    Autonomia e responsabilidade
-                  </Typography>
-                </Box>
-                <Box data-stagger-item className="flex items-start gap-3">
-                  <Box className="flex items-center justify-center w-8 h-8 rounded-lg bg-accent-100 border border-accent-200 flex-shrink-0 mt-1">
-                    <FaComments className="text-accent-600 text-sm" />
-                  </Box>
-                  <Typography variant="body" className="text-gray-600 leading-relaxed">
-                    Feedback transparente e construtivo
-                  </Typography>
-                </Box>
-                </Stack>
+              <Stagger as="div" className="grid grid-cols-1 sm:grid-cols-3 gap-3" childSelector="[data-stagger-item]">
+                <Card data-stagger-item variant="glass" padding="md" className="relative overflow-hidden border-accent-200/50">
+                  <Box className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent-500 via-accent-300 to-transparent" />
+                  <Stack spacing="sm">
+                    <Box className="flex items-center justify-center w-8 h-8 rounded-lg bg-accent-100 border border-accent-200">
+                      <FaGraduationCap className="text-accent-600 text-sm" />
+                    </Box>
+                    <Typography variant="caption" as="p" className="text-gray-600 leading-relaxed text-sm">
+                      Desenvolvimento técnico constante
+                    </Typography>
+                  </Stack>
+                </Card>
+                <Card data-stagger-item variant="glass" padding="md" className="relative overflow-hidden border-accent-200/50">
+                  <Box className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent-500 via-accent-300 to-transparent" />
+                  <Stack spacing="sm">
+                    <Box className="flex items-center justify-center w-8 h-8 rounded-lg bg-accent-100 border border-accent-200">
+                      <FaHandshake className="text-accent-600 text-sm" />
+                    </Box>
+                    <Typography variant="caption" as="p" className="text-gray-600 leading-relaxed text-sm">
+                      Autonomia e responsabilidade
+                    </Typography>
+                  </Stack>
+                </Card>
+                <Card data-stagger-item variant="glass" padding="md" className="relative overflow-hidden border-accent-200/50">
+                  <Box className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent-500 via-accent-300 to-transparent" />
+                  <Stack spacing="sm">
+                    <Box className="flex items-center justify-center w-8 h-8 rounded-lg bg-accent-100 border border-accent-200">
+                      <FaComments className="text-accent-600 text-sm" />
+                    </Box>
+                    <Typography variant="caption" as="p" className="text-gray-600 leading-relaxed text-sm">
+                      Feedback transparente e construtivo
+                    </Typography>
+                  </Stack>
+                </Card>
               </Stagger>
               </Stack>
             </Reveal>

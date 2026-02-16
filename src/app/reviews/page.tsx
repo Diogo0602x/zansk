@@ -40,7 +40,8 @@ export default function ReviewsPage() {
         <Container>
           <Stagger as="div" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" childSelector="[data-stagger-item]">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} data-stagger-item variant="glass" padding="lg">
+              <Card key={index} data-stagger-item variant="glass" padding="lg" className="relative overflow-hidden border-accent-200/50">
+                <Box className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent-500 via-accent-300 to-transparent" />
                 <Stack spacing="md">
                   <Box className="flex items-center justify-between">
                     <FaQuoteLeft className="text-accent-600 text-2xl opacity-40" />
@@ -50,6 +51,9 @@ export default function ReviewsPage() {
                       ))}
                     </Box>
                   </Box>
+                  <Typography variant="caption" as="span" className="inline-flex w-fit rounded-full bg-gray-100 border border-gray-200 px-2.5 py-1 text-xs text-gray-600">
+                    Depoimento validado
+                  </Typography>
                   <Typography variant="body" className="text-gray-700 italic leading-relaxed">
                     &ldquo;{testimonial.text}&rdquo;
                   </Typography>
