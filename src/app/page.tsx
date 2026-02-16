@@ -217,7 +217,11 @@ export default function HomePage() {
                     <Typography variant="display" weight="bold" className="text-gray-900 text-balance">
                       Pronto para transformar sua ideia em realidade?
                     </Typography>
-                    <Typography variant="subtitle" className="text-gray-600 leading-relaxed max-w-2xl mx-auto">
+                    <Typography
+                      variant="subtitle"
+                      as="p"
+                      className="text-gray-600 leading-relaxed max-w-2xl mx-auto"
+                    >
                       Vamos conversar sobre como podemos ajudar seu produto a alcançar o próximo nível
                     </Typography>
                   </Box>
