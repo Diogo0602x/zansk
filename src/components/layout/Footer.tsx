@@ -13,12 +13,14 @@ export function Footer() {
           <Box className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             <Stack spacing="md">
               <Box className="flex items-center gap-3">
-                <Box className="relative w-10 h-10">
+                <Box className="w-10 h-10">
                   <Image
                     src="/logo.png"
                     alt="Zansk Tech Logo"
-                    fill
-                    className="object-contain"
+                    width={40}
+                    height={40}
+                    sizes="40px"
+                    className="object-contain w-full h-full"
                   />
                 </Box>
                 <Typography variant="title" as="h3" weight="bold" className="text-gray-900">

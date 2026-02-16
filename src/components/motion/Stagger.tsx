@@ -30,6 +30,11 @@ export function Stagger({
 
   useEffect(() => {
     if (prefersReducedMotion || !ref.current) return;
+    const root = ref.current;
+    const inInitialViewport = root.getBoundingClientRect().top <= window.innerHeight * 0.95;
+
+    // Se o bloco já está na dobra inicial, evita efeito de entrada para reduzir LCP.
+    if (inInitialViewport) return;
 
     let cleanup = () => {};
     let cancelled = false;
@@ -38,11 +43,8 @@ export function Stagger({
       try {
         const { gsap } = await loadMotionModules();
         if (cancelled || !ref.current) return;
-
-        const root = ref.current;
         const targets = Array.from(root.querySelectorAll<HTMLElement>(childSelector));
         if (targets.length === 0) return;
-        const inInitialViewport = root.getBoundingClientRect().top <= window.innerHeight * 0.95;
 
         const ctx = gsap.context(() => {
           const toConfig: gsap.TweenVars = {
@@ -54,26 +56,18 @@ export function Stagger({
             stagger: motionTokens.stagger[stagger],
           };
 
-          if (inInitialViewport) {
-            gsap.fromTo(
-              targets,
-              { autoAlpha: 0, y: motionTokens.distance[distance], scale: 0.985 },
-              toConfig
-            );
-          } else {
-            gsap.fromTo(
-              targets,
-              { autoAlpha: 0, y: motionTokens.distance[distance], scale: 0.985 },
-              {
-                ...toConfig,
-                scrollTrigger: {
-                  trigger: root,
-                  start: "top 92%",
-                  once: true,
-                },
-              }
-            );
-          }
+          gsap.fromTo(
+            targets,
+            { autoAlpha: 0, y: motionTokens.distance[distance], scale: 0.985 },
+            {
+              ...toConfig,
+              scrollTrigger: {
+                trigger: root,
+                start: "top 92%",
+                once: true,
+              },
+            }
+          );
         }, root);
 
         cleanup = () => ctx.revert();
@@ -93,7 +87,7 @@ export function Stagger({
     {
       ref,
       "data-animate": "stagger",
-      className: cn("motion-safe:will-change-transform", className),
+      className: cn(className),
       ...props,
     },
     children

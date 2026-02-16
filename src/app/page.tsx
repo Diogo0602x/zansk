@@ -1,5 +1,5 @@
 import { Box, Container, Stack, Typography, Button, Card, Image, HeroSection, ContentBlock, SectionDivider, VisualAccent } from "@/components/ui";
-import { Parallax, Reveal, Stagger } from "@/components/motion";
+import { Reveal, Stagger } from "@/components/motion";
 import siteContent from "@/constants/siteContent";
 import { FaPalette, FaRocket, FaCheckCircle, FaArrowRight, FaLayerGroup } from "react-icons/fa";
 
@@ -65,22 +65,22 @@ export default function HomePage() {
 
             <Reveal as="div" variant="image" className="lg:col-span-7 relative">
               <Box className="absolute -right-8 -top-8 w-full h-full bg-gradient-to-br from-accent-100/30 to-transparent rounded-3xl blur-2xl opacity-50" />
-              <Parallax speed={0.08}>
-                <Card
-                  variant="glass"
-                  padding="none"
-                  className="overflow-hidden aspect-video relative shadow-2xl border-accent-200/50"
-                >
-                  <Image
-                    src={homeContent.images.homeUi}
-                    alt="UI Design"
-                    fill
-                    className="object-cover"
-                  />
+              <Card
+                variant="glass"
+                padding="none"
+                className="overflow-hidden aspect-video relative shadow-2xl border-accent-200/50"
+              >
+                <Image
+                  src={homeContent.images.homeUi}
+                  alt="UI Design"
+                  fill
+                  sizes="(min-width: 1024px) 58vw, 100vw"
+                  quality={70}
+                  className="object-cover"
+                />
 
-                  <Box className="absolute inset-0 bg-gradient-to-tr from-accent-500/5 via-transparent to-transparent" />
-                </Card>
-              </Parallax>
+                <Box className="absolute inset-0 bg-gradient-to-tr from-accent-500/5 via-transparent to-transparent" />
+              </Card>
 
               <Box className="absolute -bottom-4 -left-4 px-5 py-3 bg-white backdrop-blur-md rounded-2xl border border-gray-200 shadow-xl">
                 <Box className="flex items-center gap-3">
@@ -116,17 +116,20 @@ export default function HomePage() {
                 <Box className="w-6 h-px bg-gradient-to-r from-accent-200 to-transparent" />
               </Box>
 
-              <Parallax as="div" className="relative" speed={0.1}>
+              <Box className="relative">
                 <Card
                   variant="glass"
                   padding="none"
-                  className="overflow-hidden aspect-video relative shadow-xl"
+                  className="overflow-hidden relative shadow-xl"
                 >
                   <Image
                     src={homeContent.images.homeMethod}
                     alt="Method"
-                    fill
-                    className="object-cover"
+                    width={1536}
+                    height={863}
+                    sizes="(max-width: 1024px) 100vw, 48vw"
+                    quality={70}
+                    className="w-full h-auto"
                   />
                   <Box className="absolute inset-0 bg-gradient-to-tl from-accent-500/10 via-transparent to-transparent" />
                 </Card>
@@ -139,7 +142,7 @@ export default function HomePage() {
                     Transparência
                   </Typography>
                 </Box>
-              </Parallax>
+              </Box>
             </Reveal>
 
             <Reveal as="div" variant="rise" className="lg:col-span-6 order-1 lg:order-2">

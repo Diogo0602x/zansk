@@ -32,6 +32,11 @@ export function Reveal({
 
   useEffect(() => {
     if (prefersReducedMotion || !ref.current) return;
+    const target = ref.current;
+    const inInitialViewport = target.getBoundingClientRect().top <= window.innerHeight * 0.95;
+
+    // Evita animar conteúdo já visível na dobra inicial para proteger FCP/LCP.
+    if (inInitialViewport) return;
 
     let cleanup = () => {};
     let cancelled = false;
@@ -40,11 +45,8 @@ export function Reveal({
       try {
         const { gsap } = await loadMotionModules();
         if (cancelled || !ref.current) return;
-
-        const target = ref.current;
         const distancePx = motionTokens.distance[distance];
         const durationInSeconds = durationMsToSeconds(duration);
-        const inInitialViewport = target.getBoundingClientRect().top <= window.innerHeight * 0.95;
 
         const fromByVariant: Record<RevealVariant, gsap.TweenVars> = {
           heading: { autoAlpha: 0, y: Math.max(12, distancePx), filter: "blur(3px)" },
@@ -68,18 +70,14 @@ export function Reveal({
             ease: motionTokens.easing.emphasized,
           };
 
-          if (inInitialViewport) {
-            gsap.fromTo(target, fromByVariant[variant], toConfig);
-          } else {
-            gsap.fromTo(target, fromByVariant[variant], {
-              ...toConfig,
-              scrollTrigger: {
-                trigger: target,
-                start: "top 92%",
-                once: true,
-              },
-            });
-          }
+          gsap.fromTo(target, fromByVariant[variant], {
+            ...toConfig,
+            scrollTrigger: {
+              trigger: target,
+              start: "top 92%",
+              once: true,
+            },
+          });
         }, target);
 
         cleanup = () => ctx.revert();
@@ -99,7 +97,7 @@ export function Reveal({
     {
       ref,
       "data-animate": "reveal",
-      className: cn("motion-safe:will-change-transform", className),
+      className: cn(className),
       ...props,
     },
     children

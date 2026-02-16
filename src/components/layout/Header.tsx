@@ -48,12 +48,14 @@ export function Header() {
       <Container>
         <Stack direction="row" align="center" justify="between" className="py-4 lg:py-5">
           <Link href="/" variant="nav" className="flex items-center gap-3 no-underline group">
-            <Box className="relative w-10 h-10 lg:w-11 lg:h-11 transition-transform group-hover:scale-105">
+            <Box className="w-10 h-10 lg:w-11 lg:h-11 transition-transform group-hover:scale-105">
               <Image
                 src="/logo.png"
                 alt="Zansk Tech Logo"
-                fill
-                className="object-contain"
+                width={44}
+                height={44}
+                sizes="44px"
+                className="object-contain w-full h-full"
                 priority
               />
             </Box>

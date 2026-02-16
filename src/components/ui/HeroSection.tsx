@@ -1,12 +1,9 @@
 "use client";
 
-import { ReactNode, useEffect, useMemo, useRef } from "react";
+import { ReactNode, useMemo } from "react";
 import { Box, Container, Stack, Typography, Image, Card } from "@/components/ui";
 import { cn } from "@/lib/utils";
 import { normalizeAssetPath } from "@/utils/assets";
-import { loadMotionModules } from "@/lib/motion/engine";
-import { motionTokens } from "@/lib/motion/tokens";
-import { usePrefersReducedMotion } from "@/lib/motion/usePrefersReducedMotion";
 
 interface HeroSectionProps {
   title: string | ReactNode;
@@ -25,9 +22,6 @@ export function HeroSection({
   className,
   children,
 }: HeroSectionProps) {
-  const rootRef = useRef<HTMLDivElement | null>(null);
-  const prefersReducedMotion = usePrefersReducedMotion();
-
   const asset = useMemo(() => {
     const src = backgroundImage ? normalizeAssetPath(backgroundImage) : undefined;
     if (!src) return { src: undefined, isBg: false };
@@ -40,87 +34,21 @@ export function HeroSection({
 
   const showVisualAside = layout === "default" && asset.src && !asset.isBg;
 
-  useEffect(() => {
-    if (prefersReducedMotion || !rootRef.current) return;
-
-    let cleanup = () => {};
-    let cancelled = false;
-
-    void (async () => {
-      try {
-        const { gsap } = await loadMotionModules();
-        if (cancelled || !rootRef.current) return;
-
-        const root = rootRef.current;
-
-        const introTargets = root.querySelectorAll<HTMLElement>(
-          "[data-hero-card], [data-hero-rail], [data-hero-title], [data-hero-subtitle], [data-hero-cta], [data-hero-visual]"
-        );
-        const gridTarget = root.querySelector<HTMLElement>("[data-hero-grid]");
-
-        const ctx = gsap.context(() => {
-          if (introTargets.length > 0) {
-            gsap.fromTo(
-              introTargets,
-              { autoAlpha: 0, y: motionTokens.distance.lg, scale: 0.985, filter: "blur(4px)" },
-              {
-                autoAlpha: 1,
-                y: 0,
-                scale: 1,
-                filter: "blur(0px)",
-                duration: motionTokens.duration.slow / 1000,
-                stagger: motionTokens.stagger.base,
-                ease: motionTokens.easing.emphasized,
-              }
-            );
-          }
-
-          if (gridTarget) {
-            gsap.to(gridTarget, {
-              y: 22,
-              ease: "none",
-              scrollTrigger: {
-                trigger: root,
-                start: "top top",
-                end: "bottom top",
-                scrub: true,
-              },
-            });
-          }
-        }, root);
-
-        cleanup = () => ctx.revert();
-      } catch {
-        // Fallback silencioso: mantém hero totalmente visível.
-      }
-    })();
-
-    return () => {
-      cancelled = true;
-      cleanup();
-    };
-  }, [prefersReducedMotion]);
-
   return (
-    <div
-      ref={rootRef}
-      className={cn(
-        "relative",
-        "flex items-center",
-        "py-14 sm:py-16 lg:py-18",
-        "min-h-[520px] lg:min-h-[560px]",
-        className
-      )}
-    >
+    <div className={cn("relative", "flex items-center", "py-14 sm:py-16 lg:py-18", "min-h-[520px] lg:min-h-[560px]", className)}>
       <Box className="absolute -top-20 lg:-top-24 inset-x-0 bottom-0 -z-10 overflow-hidden">
         <Box className="absolute -inset-12 hero-bg-premium-canvas" />
         <Box className="absolute -inset-12 hero-bg-premium-canvas-secondary opacity-35" />
         {asset.src && asset.isBg && (
-          <Image
-            src={asset.src}
-            alt="Hero texture"
-            fill
-            className="object-cover opacity-[0.28] mix-blend-multiply hero-bg-premium-image-alt"
+              <Box
+            aria-hidden="true"
+            className="absolute inset-0 opacity-[0.28] mix-blend-multiply hero-bg-premium-image-alt"
+            style={{
+              backgroundImage: `url(${asset.src})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
           />
         )}
         <Box className="absolute inset-0 bg-gradient-to-br from-gray-500/16 via-transparent to-slate-500/22 mix-blend-soft-light" />
@@ -167,6 +95,7 @@ export function HeroSection({
                   <Typography
                     data-hero-subtitle
                     variant="subtitle"
+                    as="p"
                     className="text-balance text-gray-600 leading-relaxed max-w-2xl"
                   >
                     {subtitle}
@@ -226,6 +155,7 @@ export function HeroSection({
                       <Typography
                         data-hero-subtitle
                         variant="subtitle"
+                        as="p"
                         className="text-gray-600 leading-relaxed text-lg max-w-2xl"
                       >
                         {subtitle}

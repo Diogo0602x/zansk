@@ -176,25 +176,20 @@
 }
 
 .hero-bg-premium-canvas {
-  background-image: url("/background-premium.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  transform-origin: center;
-  filter: saturate(1.14) contrast(1.08);
-  animation: hero-bg-kenburns 14s ease-in-out infinite alternate;
-  will-change: transform;
+  background:
+    radial-gradient(circle at 20% 20%, rgb(148 163 184 / 0.2), transparent 42%),
+    radial-gradient(circle at 78% 26%, rgb(71 85 105 / 0.18), transparent 38%),
+    linear-gradient(130deg, rgb(248 250 252 / 0.96) 0%, rgb(241 245 249 / 0.9) 48%, rgb(226 232 240 / 0.88) 100%);
+  background-size: 120% 120%, 110% 110%, 100% 100%;
+  background-position: 18% 20%, 80% 26%, center;
 }
 
 .hero-bg-premium-canvas-secondary {
-  background-image: url("/background-premium.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  transform-origin: center;
-  filter: saturate(1.08) contrast(1.04) blur(0.4px);
-  animation: hero-bg-kenburns-reverse 17s ease-in-out infinite alternate;
-  will-change: transform;
+  background:
+    linear-gradient(to right, rgb(100 116 139 / 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(100 116 139 / 0.08) 1px, transparent 1px);
+  background-size: 42px 42px;
+  background-position: 0 0;
 }
 
 .hero-bg-premium-image {
@@ -203,8 +198,7 @@
 }
 
 .hero-bg-premium-image-alt {
-  animation: hero-bg-kenburns 28s ease-in-out infinite alternate-reverse;
-  will-change: transform;
+  transform: translateZ(0);
 }
 
 .hero-bg-premium-sheen {
@@ -217,7 +211,7 @@
     transparent 100%
   );
   filter: blur(0.5px);
-  animation: hero-bg-sheen 6.8s var(--motion-ease-standard) infinite;
+  animation: hero-bg-sheen 9.6s var(--motion-ease-standard) infinite;
   pointer-events: none;
 }
 
