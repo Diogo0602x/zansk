@@ -22,6 +22,12 @@ interface CaseData {
     tertiary: string;
   };
   highlights: string[];
+  comparison: {
+    beforeLabel: string;
+    beforeDescription: string;
+    afterLabel: string;
+    afterDescription: string;
+  };
 }
 
 const { pages } = siteContent;
@@ -32,9 +38,9 @@ const portfolioCases: CaseData[] = [
     id: "emmanuel",
     title: "Case real - Emmanuel Nascimento Adv",
     shortDescription:
-      "Site institucional com foco em conversao, autoridade visual e experiencia mobile-first.",
+      "Site institucional com foco em conversão, autoridade visual e experiencia mobile-first.",
     fullDescription:
-      "Projeto completo em React, Next.js, Tailwind e TypeScript com foco em performance, responsividade e clareza de conteudo para conversao.",
+      "Projeto completo em React, Next.js, Tailwind e TypeScript com foco em performance, responsividade e clareza de conteudo para conversão.",
     tags: ["React", "Next.js", "Tailwind CSS", "TypeScript", "Mobile-first", "Responsivo"],
     siteUrl: "https://www.emmanuelnascimentoadv.com.br/",
     cover: "/cases/emmanuel/mockup-site-emmanuel-novo.png",
@@ -48,6 +54,12 @@ const portfolioCases: CaseData[] = [
       "Aprimoramento visual e navegacao objetiva para celular.",
       "Base tipada para manutencao segura e previsivel.",
     ],
+    comparison: {
+      beforeLabel: "Antes - versao anterior",
+      beforeDescription: "Layout legado com menor hierarquia visual e menos foco em conversão.",
+      afterLabel: "Depois - versao nova",
+      afterDescription: "Nova interface com leitura mais clara, CTA melhor destacado e experiencia mobile-first.",
+    },
   },
   {
     id: "cinzento",
@@ -69,6 +81,12 @@ const portfolioCases: CaseData[] = [
       "Organizacao de conteudo para facilitar leitura e descoberta de materiais.",
       "Animacoes fluida e responsividade para diferentes dispositivos.",
     ],
+    comparison: {
+      beforeLabel: "Antes - estrutura inicial",
+      beforeDescription: "Apresentacao menos organizada para exploracao de cursos e materiais.",
+      afterLabel: "Depois - estrutura otimizada",
+      afterDescription: "Navegacao refinada e distribuicao de conteudo com melhor escaneabilidade.",
+    },
   },
 ];
 
@@ -209,20 +227,65 @@ export default function CasesPage() {
                   ))}
                 </Box>
 
+                <Box>
+                  <Typography variant="subtitle" weight="bold" className="text-gray-900">
+                    Antes x Depois
+                  </Typography>
+                  <Typography variant="caption" className="text-gray-600 mt-1">
+                    Comparacao direta da evolucao visual e estrutural do projeto.
+                  </Typography>
+                </Box>
+
                 <Box className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   <Card variant="glass" padding="none" className="overflow-hidden border border-gray-200/70">
-                    <Box className="relative h-[320px] sm:h-[400px]">
-                      <Image src={activeCase.images.primary} alt={`${activeCase.title} imagem primaria`} fill className="object-contain bg-gray-50" />
+                    <Box className="p-4 pb-0">
+                      <Typography variant="caption" weight="bold" className="text-gray-900 uppercase tracking-wide">
+                        Antes
+                      </Typography>
+                      <Typography variant="caption" className="text-gray-600 mt-1">
+                        {activeCase.comparison.beforeLabel}
+                      </Typography>
+                      <Typography variant="caption" className="text-gray-500 mt-1">
+                        {activeCase.comparison.beforeDescription}
+                      </Typography>
+                    </Box>
+                    <Box className="relative h-[320px] sm:h-[400px] mt-4">
+                      <Box className="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full bg-gray-900/90 text-white text-[11px] font-semibold uppercase tracking-wide">
+                        Antes
+                      </Box>
+                      <Image src={activeCase.images.primary} alt={`${activeCase.title} antes`} fill className="object-contain bg-gray-50" />
                     </Box>
                   </Card>
                   <Card variant="glass" padding="none" className="overflow-hidden border border-gray-200/70">
-                    <Box className="relative h-[320px] sm:h-[400px]">
-                      <Image src={activeCase.images.secondary} alt={`${activeCase.title} imagem secundaria`} fill className="object-contain bg-gray-50" />
+                    <Box className="p-4 pb-0">
+                      <Typography variant="caption" weight="bold" className="text-gray-900 uppercase tracking-wide">
+                        Depois
+                      </Typography>
+                      <Typography variant="caption" className="text-gray-600 mt-1">
+                        {activeCase.comparison.afterLabel}
+                      </Typography>
+                      <Typography variant="caption" className="text-gray-500 mt-1">
+                        {activeCase.comparison.afterDescription}
+                      </Typography>
+                    </Box>
+                    <Box className="relative h-[320px] sm:h-[400px] mt-4">
+                      <Box className="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full bg-accent-600/95 text-white text-[11px] font-semibold uppercase tracking-wide">
+                        Depois
+                      </Box>
+                      <Image src={activeCase.images.secondary} alt={`${activeCase.title} depois`} fill className="object-contain bg-gray-50" />
                     </Box>
                   </Card>
                 </Box>
 
                 <Card variant="glass" padding="none" className="overflow-hidden border border-gray-200/70">
+                  <Box className="p-4 pb-0">
+                    <Typography variant="caption" weight="bold" className="text-gray-900 uppercase tracking-wide">
+                      Comparativo
+                    </Typography>
+                    <Typography variant="caption" className="text-gray-600 mt-1">
+                      Visao consolidada de antes e depois para validacao rapida.
+                    </Typography>
+                  </Box>
                   <Box className="relative h-[260px] sm:h-[360px]">
                     <Image src={activeCase.images.tertiary} alt={`${activeCase.title} imagem complementar`} fill className="object-contain bg-gray-50" />
                   </Box>
