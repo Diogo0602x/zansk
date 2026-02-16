@@ -10,7 +10,7 @@ export default function NotFound() {
           <Box className="flex items-center justify-center w-24 h-24 rounded-full bg-primary/10 border-2 border-primary/20 mb-4">
             <FaExclamationTriangle className="text-primary text-4xl" />
           </Box>
-          <Typography variant="display" weight="bold" align="center">
+          <Typography variant="display" as="h1" weight="bold" align="center">
             404
           </Typography>
           <Typography variant="title" align="center" className="text-secondary-300">

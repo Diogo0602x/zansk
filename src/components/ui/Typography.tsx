@@ -40,9 +40,9 @@ export function Typography({
   ...props
 }: TypographyProps) {
   const defaultTags = {
-    display: "h1",
-    title: "h2",
-    subtitle: "h3",
+    display: "p",
+    title: "p",
+    subtitle: "p",
     body: "p",
     caption: "p",
   } as const;

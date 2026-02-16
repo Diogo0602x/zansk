@@ -1,13 +1,18 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import dynamic from "next/dynamic";
 import { Header, Footer } from "@/components/layout";
-import { Box, WhatsAppButton } from "@/components/ui";
+import { Box } from "@/components/ui";
 import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
 });
+
+const WhatsAppButton = dynamic(
+  () => import("@/components/ui/WhatsAppButton").then((mod) => mod.WhatsAppButton)
+);
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://zansk.com.br"),

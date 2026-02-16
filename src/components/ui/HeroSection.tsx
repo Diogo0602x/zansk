@@ -77,6 +77,7 @@ export function HeroSection({
                   <Typography
                     data-hero-title
                     variant="display"
+                    as="h1"
                     weight="bold"
                     className="text-balance text-gray-900 leading-[1.08] tracking-[-0.02em] text-4xl sm:text-5xl lg:text-6xl"
                   >
@@ -137,6 +138,7 @@ export function HeroSection({
                       <Typography
                         data-hero-title
                         variant="display"
+                        as="h1"
                         weight="bold"
                         className="text-gray-900 leading-[1.06] tracking-[-0.02em] text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem]"
                       >

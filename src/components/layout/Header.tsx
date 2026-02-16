@@ -6,7 +6,6 @@ import { useScrolled } from "@/hooks";
 import { Box, Container, Stack, Link, Button, Image, Typography, IconButton } from "@/components/ui";
 import { cn } from "@/lib/utils";
 import siteContent from "@/constants/siteContent";
-import { FaPhoneAlt } from "react-icons/fa";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -99,7 +98,13 @@ export function Header() {
               <Link href="/contact">
                 <Button variant="ghost" size="sm">
                   <Box className="flex items-center gap-2">
-                    <FaPhoneAlt className="text-sm" />
+                    <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M2.75 5.5a2.25 2.25 0 0 1 2.25-2.25h2.1a1.5 1.5 0 0 1 1.47 1.2l.6 2.95a1.5 1.5 0 0 1-.43 1.34l-1.1 1.07a14.08 14.08 0 0 0 6.55 6.55l1.07-1.1a1.5 1.5 0 0 1 1.34-.43l2.95.6a1.5 1.5 0 0 1 1.2 1.47V19a2.25 2.25 0 0 1-2.25 2.25h-.75C9.34 21.25 2.75 14.66 2.75 6.25V5.5Z"
+                      />
+                    </svg>
                     <Typography variant="caption" weight="medium">
                       Fale conosco
                     </Typography>

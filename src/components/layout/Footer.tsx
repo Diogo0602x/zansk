@@ -23,7 +23,7 @@ export function Footer() {
                     className="object-contain w-full h-full"
                   />
                 </Box>
-                <Typography variant="title" as="h3" weight="bold" className="text-gray-900">
+                <Typography variant="title" as="p" weight="bold" className="text-gray-900">
                   {siteContent.siteName}
                 </Typography>
               </Box>

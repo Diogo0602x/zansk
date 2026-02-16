@@ -39,6 +39,7 @@ export function SectionTitle({
 
       <Typography
         variant="title"
+        as="h2"
         weight="bold"
         align={align}
         className="text-gray-900"
