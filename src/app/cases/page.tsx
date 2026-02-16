@@ -22,11 +22,16 @@ interface CaseData {
     tertiary: string;
   };
   highlights: string[];
-  comparison: {
-    beforeLabel: string;
-    beforeDescription: string;
-    afterLabel: string;
-    afterDescription: string;
+  showcase: {
+    mode: "beforeAfter" | "projectView";
+    heading: string;
+    description: string;
+    primaryLabel: string;
+    primaryDescription: string;
+    secondaryLabel: string;
+    secondaryDescription: string;
+    tertiaryLabel: string;
+    tertiaryDescription: string;
   };
 }
 
@@ -54,11 +59,16 @@ const portfolioCases: CaseData[] = [
       "Aprimoramento visual e navegacao objetiva para celular.",
       "Base tipada para manutencao segura e previsivel.",
     ],
-    comparison: {
-      beforeLabel: "Antes - versao anterior",
-      beforeDescription: "Layout legado com menor hierarquia visual e menos foco em conversão.",
-      afterLabel: "Depois - versao nova",
-      afterDescription: "Nova interface com leitura mais clara, CTA melhor destacado e experiencia mobile-first.",
+    showcase: {
+      mode: "beforeAfter",
+      heading: "Antes e depois",
+      description: "Evolução visual e estrutural com foco em clareza, autoridade e conversão.",
+      primaryLabel: "Antes",
+      primaryDescription: "Versão anterior com menor hierarquia e fluxo menos objetivo.",
+      secondaryLabel: "Depois",
+      secondaryDescription: "Nova versão com comunicação mais clara e experiência mobile-first.",
+      tertiaryLabel: "Comparativo consolidado",
+      tertiaryDescription: "Visão lado a lado para validar ganhos de estrutura e identidade.",
     },
   },
   {
@@ -81,11 +91,16 @@ const portfolioCases: CaseData[] = [
       "Organizacao de conteudo para facilitar leitura e descoberta de materiais.",
       "Animacoes fluida e responsividade para diferentes dispositivos.",
     ],
-    comparison: {
-      beforeLabel: "Antes - estrutura inicial",
-      beforeDescription: "Apresentacao menos organizada para exploracao de cursos e materiais.",
-      afterLabel: "Depois - estrutura otimizada",
-      afterDescription: "Navegacao refinada e distribuicao de conteudo com melhor escaneabilidade.",
+    showcase: {
+      mode: "projectView",
+      heading: "Visão do projeto",
+      description: "Apresentação institucional com direção criativa e temática autoral bem resolvida.",
+      primaryLabel: "Versão mobile",
+      primaryDescription: "Leitura confortável e navegação fluida para consumo de conteúdo em telas menores.",
+      secondaryLabel: "Versão web",
+      secondaryDescription: "Composição editorial e identidade visual para reforçar presença institucional.",
+      tertiaryLabel: "Composição geral",
+      tertiaryDescription: "Conjunto de telas que evidencia unidade estética e consistência de navegação.",
     },
   },
 ];
@@ -228,62 +243,70 @@ export default function CasesPage() {
                 </Box>
 
                 <Box>
-                  <Typography variant="subtitle" weight="bold" className="text-gray-900">
-                    Antes x Depois
+                  <Typography variant="subtitle" as="h3" weight="bold" className="text-gray-900">
+                    {activeCase.showcase.heading}
                   </Typography>
-                  <Typography variant="caption" className="text-gray-600 mt-1">
-                    Comparacao direta da evolucao visual e estrutural do projeto.
+                  <Typography variant="caption" as="p" className="text-gray-600 mt-1">
+                    {activeCase.showcase.description}
                   </Typography>
                 </Box>
 
                 <Box className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   <Card variant="glass" padding="none" className="overflow-hidden border border-gray-200/70">
                     <Box className="p-4 pb-0">
-                      <Typography variant="caption" weight="bold" className="text-gray-900 uppercase tracking-wide">
-                        Antes
+                      <Typography variant="caption" as="span" weight="bold" className="text-gray-900 uppercase tracking-wide">
+                        {activeCase.showcase.primaryLabel}
                       </Typography>
-                      <Typography variant="caption" className="text-gray-600 mt-1">
-                        {activeCase.comparison.beforeLabel}
-                      </Typography>
-                      <Typography variant="caption" className="text-gray-500 mt-1">
-                        {activeCase.comparison.beforeDescription}
+                      <Typography variant="caption" as="p" className="text-gray-500 mt-1">
+                        {activeCase.showcase.primaryDescription}
                       </Typography>
                     </Box>
                     <Box className="relative h-[320px] sm:h-[400px] mt-4">
-                      <Box className="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full bg-gray-900/90 text-white text-[11px] font-semibold uppercase tracking-wide">
-                        Antes
-                      </Box>
-                      <Image src={activeCase.images.primary} alt={`${activeCase.title} antes`} fill className="object-contain bg-gray-50" />
+                      {activeCase.showcase.mode === "beforeAfter" && (
+                        <Box className="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full bg-gray-900/90 text-white text-[11px] font-semibold uppercase tracking-wide">
+                          Antes
+                        </Box>
+                      )}
+                      <Image
+                        src={activeCase.images.primary}
+                        alt={`${activeCase.title} - ${activeCase.showcase.primaryLabel}`}
+                        fill
+                        className="object-contain bg-gray-50"
+                      />
                     </Box>
                   </Card>
                   <Card variant="glass" padding="none" className="overflow-hidden border border-gray-200/70">
                     <Box className="p-4 pb-0">
-                      <Typography variant="caption" weight="bold" className="text-gray-900 uppercase tracking-wide">
-                        Depois
+                      <Typography variant="caption" as="span" weight="bold" className="text-gray-900 uppercase tracking-wide">
+                        {activeCase.showcase.secondaryLabel}
                       </Typography>
-                      <Typography variant="caption" className="text-gray-600 mt-1">
-                        {activeCase.comparison.afterLabel}
-                      </Typography>
-                      <Typography variant="caption" className="text-gray-500 mt-1">
-                        {activeCase.comparison.afterDescription}
+                      <Typography variant="caption" as="p" className="text-gray-500 mt-1">
+                        {activeCase.showcase.secondaryDescription}
                       </Typography>
                     </Box>
                     <Box className="relative h-[320px] sm:h-[400px] mt-4">
-                      <Box className="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full bg-accent-600/95 text-white text-[11px] font-semibold uppercase tracking-wide">
-                        Depois
-                      </Box>
-                      <Image src={activeCase.images.secondary} alt={`${activeCase.title} depois`} fill className="object-contain bg-gray-50" />
+                      {activeCase.showcase.mode === "beforeAfter" && (
+                        <Box className="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full bg-accent-600/95 text-white text-[11px] font-semibold uppercase tracking-wide">
+                          Depois
+                        </Box>
+                      )}
+                      <Image
+                        src={activeCase.images.secondary}
+                        alt={`${activeCase.title} - ${activeCase.showcase.secondaryLabel}`}
+                        fill
+                        className="object-contain bg-gray-50"
+                      />
                     </Box>
                   </Card>
                 </Box>
 
                 <Card variant="glass" padding="none" className="overflow-hidden border border-gray-200/70">
                   <Box className="p-4 pb-0">
-                    <Typography variant="caption" weight="bold" className="text-gray-900 uppercase tracking-wide">
-                      Comparativo
+                    <Typography variant="caption" as="span" weight="bold" className="text-gray-900 uppercase tracking-wide">
+                      {activeCase.showcase.tertiaryLabel}
                     </Typography>
-                    <Typography variant="caption" className="text-gray-600 mt-1">
-                      Visao consolidada de antes e depois para validacao rapida.
+                    <Typography variant="caption" as="p" className="text-gray-500 mt-1">
+                      {activeCase.showcase.tertiaryDescription}
                     </Typography>
                   </Box>
                   <Box className="relative h-[260px] sm:h-[360px]">
