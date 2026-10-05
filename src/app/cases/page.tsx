@@ -6,7 +6,7 @@ import { Reveal } from "@/components/motion";
 import siteContent from "@/constants/siteContent";
 import { FaArrowRight, FaTimes } from "react-icons/fa";
 
-type CaseId = "emmanuel" | "cinzento";
+type CaseId = "emmanuel" | "cinzento" | "villa-paraiso";
 
 interface CaseData {
   id: CaseId;
@@ -39,6 +39,38 @@ const { pages } = siteContent;
 const casesContent = pages.cases;
 
 const portfolioCases: CaseData[] = [
+  {
+    id: "villa-paraiso",
+    title: "Case real - Villa Paraíso",
+    shortDescription:
+      "Renovação do site institucional com identidade visual valorizada, informações mais claras e experiência desktop e mobile.",
+    fullDescription:
+      "Projeto entregue pela Zansk Tech para a Villa Paraíso, complexo de chácaras rurais em Alexânia/GO. A nova experiência reúne apresentação do projeto, setores, informações e contato em uma interface alinhada à paisagem e à identidade da marca.",
+    tags: ["Site institucional", "UX/UI Design", "Responsivo", "Desktop e mobile", "Redesign"],
+    siteUrl: "https://www.villaparaiso.com.br/",
+    cover: "/cases/villa-paraiso/mockup-site-villa-paraiso-novo.webp",
+    images: {
+      primary: "/cases/villa-paraiso/mockup-site-villa-paraiso-antigo.webp",
+      secondary: "/cases/villa-paraiso/mockup-site-villa-paraiso-novo.webp",
+      tertiary: "/cases/villa-paraiso/mockup-site-villa-paraiso-mobile.webp",
+    },
+    highlights: [
+      "Identidade visual que valoriza as paisagens e o contexto do projeto.",
+      "Hierarquia de conteúdo para apresentar setores, diferenciais e informações.",
+      "Experiência adaptada a desktop e mobile, com acesso direto ao contato.",
+    ],
+    showcase: {
+      mode: "beforeAfter",
+      heading: "Antes e depois",
+      description: "Evolução da presença digital com foco em identidade, organização e clareza.",
+      primaryLabel: "Antes",
+      primaryDescription: "Registro da versão anterior, com navegação e composição visual originais.",
+      secondaryLabel: "Depois",
+      secondaryDescription: "Nova versão entregue, com destaque para a paisagem e a apresentação do projeto.",
+      tertiaryLabel: "Versão mobile",
+      tertiaryDescription: "A identidade do projeto em uma composição adaptada às telas menores.",
+    },
+  },
   {
     id: "emmanuel",
     title: "Case real - Emmanuel Nascimento Adv",
